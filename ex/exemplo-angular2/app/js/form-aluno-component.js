@@ -36,6 +36,7 @@ System.register(['angular2/core', './model/curso', './model/aluno', 'angular2/co
                     this.fb = fb;
                     this.alunoService = alunoService;
                     this.sucesso = false;
+                    this.mensagem = "";
                     this.aluno = new aluno_1.Aluno();
                     this.cursos = [
                         new curso_1.Curso('angular2', 'Angular 2'),
@@ -51,7 +52,30 @@ System.register(['angular2/core', './model/curso', './model/aluno', 'angular2/co
                     ];
                     this.buildForm(this.fb);
                     this.idEditar = -1;
-                    this.alunos = this.alunoService.listarTodos();
+                    this.listar();
+                };
+                FormAlunoComponent.prototype.listar = function () {
+                    var _this = this;
+                    this.alunoService.listar().subscribe(function (data) { return _this.alunos = data; }, function (error) { return _this.error = "Erro ao listar alunos"; });
+                };
+                FormAlunoComponent.prototype.excluir = function (aluno) {
+                    var _this = this;
+                    this.alunoService.excluir(aluno.id).subscribe(function (data) { return _this.mensagem = data; }, function (error) { return _this.error = "Erro ao excluir aluno"; }, function () { return _this.listar(); });
+                };
+                FormAlunoComponent.prototype.cadastrar = function () {
+                    var _this = this;
+                    this.alunoService.cadastrar(this.aluno).subscribe(function (data) { return _this.mensagem = data; }, function (error) { return _this.error = "Erro ao cadastrar aluno"; }, function () { return _this.listar(); });
+                    this.aluno = new aluno_1.Aluno();
+                };
+                FormAlunoComponent.prototype.editar = function (aluno) {
+                    this.idEditar = aluno.id;
+                    this.aluno = aluno;
+                };
+                FormAlunoComponent.prototype.atualizar = function () {
+                    var _this = this;
+                    this.alunoService.atualizar(this.aluno).subscribe(function (data) { return _this.mensagem = data; }, function (error) { return _this.error = "Erro ao atualizar aluno"; }, function () { return _this.listar(); });
+                    this.aluno = new aluno_1.Aluno();
+                    this.idEditar = -1;
                 };
                 FormAlunoComponent.prototype.buildForm = function (fb) {
                     this.alunoForm = fb.group({
@@ -59,23 +83,6 @@ System.register(['angular2/core', './model/curso', './model/aluno', 'angular2/co
                         email: ['', common_1.Validators.compose([common_1.Validators.required, email_validator_1.EmailValidator.validate])],
                         curso: ['', common_1.Validators.required]
                     });
-                };
-                FormAlunoComponent.prototype.cadastrar = function () {
-                    this.alunoService.cadastrar(this.aluno);
-                    this.aluno = new aluno_1.Aluno();
-                };
-                FormAlunoComponent.prototype.editar = function (id) {
-                    this.idEditar = id;
-                    this.aluno = new aluno_1.Aluno(this.alunos[id].nome, this.alunos[id].email, this.alunos[id].idade, this.alunos[id].curso);
-                };
-                FormAlunoComponent.prototype.atualizar = function () {
-                    this.alunoService.atualizar(this.idEditar, this.aluno);
-                    this.aluno = new aluno_1.Aluno();
-                    this.idEditar = -1;
-                };
-                FormAlunoComponent.prototype.excluir = function (id) {
-                    this.alunoService.excluir(id);
-                    this.idEditar = -1;
                 };
                 FormAlunoComponent = __decorate([
                     core_1.Component({

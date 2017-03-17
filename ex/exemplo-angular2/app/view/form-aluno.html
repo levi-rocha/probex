@@ -2,6 +2,7 @@
     <h2 class="text-center">Cadastro de Aluno</h2>
     <hr />
 
+    <div [hidden]="mensagem == ''" class="alert alert-warning">{{mensagem}}</div>
     <div class="col-md-4">
         <form [ngFormModel]="alunoForm">
             <div class="form-group">
@@ -12,7 +13,7 @@
             <div class="form-group">
                 <label class="control-label" for="email">Email</label>
                 <input type="text" class="form-control" name="email" id="email" [(ngModel)]="aluno.email" ngControl="email">
-                <div [hidden]="alunoForm.find('email').valid" class="alert alert-danger">Favor digitar um email válido</div>
+                <div [hidden]="alunoForm.find('email').valid" class="alert alert-danger">Digita um email válido p****</div>
             </div>
             <div class="form-group">
                 <label class="control-label" for="idade">Idade</label>
@@ -49,18 +50,18 @@
                     <th>Email</th>
                     <th>&nbsp;</th>
                 </tr>
-                <tr *ngFor="#aluno of alunos; #id=index">
-                    <td>{{aluno.nome}}</td>
-                    <td>{{aluno.email}}</td>
-                    <td>
-                        <button class="btn btn-info" (click)="editar(id)">
+                <tr *ngFor="#aluno of alunos">
+	<td>{{aluno.nome}}</td>
+	<td>{{aluno.email}}</td>
+	<td>
+                <button class="btn btn-info" (click)="editar(aluno)">
                     Editar
                 </button>
-                        <button class="btn btn-danger" (click)="excluir(id)">
+                <button class="btn btn-danger" (click)="excluir(aluno)">
                     Excluir
                 </button>
-                    </td>
-                </tr>
+	</td>			
+</tr>
             </table>
         </div>
     </div>

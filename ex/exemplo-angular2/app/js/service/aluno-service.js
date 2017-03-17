@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../model/aluno'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,39 +8,45 @@ System.register(['angular2/core', '../model/aluno'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, aluno_1;
+    var core_1, http_1;
     var AlunoService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (aluno_1_1) {
-                aluno_1 = aluno_1_1;
-            }],
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (_1) {}],
         execute: function() {
             AlunoService = (function () {
-                function AlunoService() {
-                    this.alunos = [
-                        new aluno_1.Aluno('Fulano', 'fulano@email.com'),
-                        new aluno_1.Aluno('Beltrano', 'beltrano@email.com')
-                    ];
+                function AlunoService(http) {
+                    this.http = http;
+                    this.urlServico = "http://localhost:8080/ExemploRest/rest/alunos";
                 }
-                AlunoService.prototype.listarTodos = function () {
-                    return this.alunos;
-                };
-                AlunoService.prototype.cadastrar = function (aluno) {
-                    this.alunos.push(aluno);
-                };
-                AlunoService.prototype.atualizar = function (id, aluno) {
-                    this.alunos[id] = aluno;
+                AlunoService.prototype.listar = function () {
+                    return this.http.get(this.urlServico).map(function (res) { return res.json(); });
                 };
                 AlunoService.prototype.excluir = function (id) {
-                    this.alunos.splice(id, 1);
+                    var url = this.urlServico + '/' + id;
+                    return this.http.delete(url).map(function (res) { return res.text(); });
+                };
+                AlunoService.prototype.cadastrar = function (aluno) {
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    var body = JSON.stringify(aluno);
+                    return this.http.post(this.urlServico, body, options).map(function (res) { return res.text(); });
+                };
+                AlunoService.prototype.atualizar = function (aluno) {
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    var body = JSON.stringify(aluno);
+                    return this.http.put(this.urlServico, body, options).map(function (res) { return res.text(); });
                 };
                 AlunoService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], AlunoService);
                 return AlunoService;
             })();

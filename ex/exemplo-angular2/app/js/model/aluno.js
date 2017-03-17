@@ -4,7 +4,8 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             Aluno = (function () {
-                function Aluno(nome, email, idade, curso) {
+                function Aluno(id, nome, email, idade, curso) {
+                    this.id = id;
                     this.nome = nome;
                     this.email = email;
                     this.idade = idade;

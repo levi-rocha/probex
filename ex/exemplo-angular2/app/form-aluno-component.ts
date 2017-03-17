@@ -22,6 +22,9 @@ export class FormAlunoComponent implements OnInit{
     idEditar: number;
     alunos: Aluno[];
 
+    error: string;
+    mensagem: string = "";
+
     constructor(private fb: FormBuilder, private alunoService: AlunoService) {
           this.aluno = new Aluno();
           this.cursos = [
@@ -40,7 +43,48 @@ export class FormAlunoComponent implements OnInit{
         this.buildForm(this.fb);
 
         this.idEditar = -1;
-        this.alunos = this.alunoService.listarTodos();
+        this.listar();
+   }
+
+   listar() {
+        this.alunoService.listar().subscribe(
+            data => this.alunos = data,
+            error => this.error = "Erro ao listar alunos"
+        );
+    }
+
+    excluir(aluno: Aluno) {
+        this.alunoService.excluir(aluno.id).subscribe(
+            data => this.mensagem = data,
+            error => this.error = "Erro ao excluir aluno",
+            () => this.listar()
+        );
+
+    }
+
+    cadastrar() {
+        this.alunoService.cadastrar(this.aluno).subscribe(
+            data => this.mensagem = data,
+            error => this.error = "Erro ao cadastrar aluno",
+            () => this.listar()
+        );
+
+        this.aluno = new Aluno();
+    }
+
+    editar(aluno: Aluno) {
+        this.idEditar = aluno.id;
+        this.aluno = aluno;
+    }
+
+    atualizar() {
+        this.alunoService.atualizar(this.aluno).subscribe(
+            data => this.mensagem = data,
+            error => this.error = "Erro ao atualizar aluno",
+            () => this.listar()
+        );
+        this.aluno = new Aluno();
+        this.idEditar = -1;
     }
 
     buildForm(fb: FormBuilder): void {
@@ -49,27 +93,6 @@ export class FormAlunoComponent implements OnInit{
             email: ['',Validators.compose([Validators.required, EmailValidator.validate])],
             curso: ['', Validators.required]
         });
-    }
-
-    cadastrar() {
-        this.alunoService.cadastrar(this.aluno);
-        this.aluno = new Aluno();        
-    }
-
-    editar(id: number) {
-        this.idEditar = id;
-        this.aluno = new Aluno(this.alunos[id].nome, this.alunos[id].email, this.alunos[id].idade, this.alunos[id].curso);
-    }
-
-    atualizar() {
-        this.alunoService.atualizar(this.idEditar, this.aluno);
-        this.aluno = new Aluno();
-        this.idEditar = -1;
-    }
-
-    excluir(id: number) {
-        this.alunoService.excluir(id);
-        this.idEditar = -1;
     }
 
 }

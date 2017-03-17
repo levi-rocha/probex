@@ -1,27 +1,37 @@
 import {Injectable} from 'angular2/core';
 import {Aluno} from '../model/aluno';
+import {Http, Headers, RequestOptions } from 'angular2/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class AlunoService {
 
-    private alunos: Aluno[]  = [
-        new Aluno('Fulano', 'fulano@email.com'),
-        new Aluno('Beltrano', 'beltrano@email.com')
-    ];
+    urlServico: string = "http://localhost:8080/ExemploRest/rest/alunos";
 
-    listarTodos() {
-        return this.alunos;
+    constructor(private http: Http) {
+
     }
 
-    cadastrar(aluno: Aluno) {
-        this.alunos.push(aluno);
-    }
-
-    atualizar(id: number, aluno: Aluno) {
-        this.alunos[id] = aluno;
+    listar() {
+        return this.http.get(this.urlServico).map(res => res.json());
     }
 
     excluir(id: number) {
-        this.alunos.splice(id, 1);
+        let url = this.urlServico + '/' + id;
+        return this.http.delete(url).map(res => res.text());
+    }
+
+    cadastrar(aluno: Aluno) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify(aluno);
+        return this.http.post(this.urlServico, body, options).map(res => res.text());
+    }
+
+    atualizar(aluno: Aluno) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify(aluno);
+        return this.http.put(this.urlServico, body, options).map(res => res.text());
     }
 }
