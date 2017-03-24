@@ -3,8 +3,8 @@
 	<name>ProjetoEAR</name>
 	<comment></comment>
 	<projects>
-		<project>ModuloEJB</project>
 		<project>ExemploRest</project>
+		<project>ModuloEJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
