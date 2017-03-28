@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>ProbexEJB</project>
-		<project>Rest</project>
+		<project>ProbexWeb</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

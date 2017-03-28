@@ -5,7 +5,7 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Rest.war" deploy-path="/" handle="module:/resource/Rest/Rest">
+        <dependent-module archiveName="ProbexWeb.war" deploy-path="/" handle="module:/resource/ProbexWeb/ProbexWeb">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
