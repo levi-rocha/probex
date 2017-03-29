@@ -48,13 +48,16 @@ public class UserDAO {
 		try {
 			User detached = manager.find(User.class, user.getId());
 
+			if (detached == null)
+				return "no user found with id " + user.getId();
+			
 			User managed = manager.merge(detached);
 
 			managed.setUsername(user.getUsername());
 			managed.setEmail(user.getEmail());
 			managed.setPassword(user.getPassword());
 
-			return user.getUsername() + " update";
+			return user.getUsername() + " updated";
 		} catch (PersistenceException e) {
 			return "could not update data " + e;
 		}
