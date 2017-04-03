@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,13 +32,13 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String email;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER) /* temporary EAGER band-aid for USER REST CRUD functionality */
 	private Set<Permission> permissions;
 
-	@OneToMany(mappedBy = "author")
+	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER) /* temporary EAGER band-aid for USER REST CRUD functionality*/
 	private Set<Post> posts;
 
-	@OneToMany(mappedBy = "author")
+	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER) /* temporary EAGER band-aid for USER REST CRUD functionality */
 	private Set<Comment> comments;
 
 	/* getters and setters */
