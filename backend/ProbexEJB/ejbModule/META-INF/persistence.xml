@@ -7,7 +7,11 @@
     <persistence-unit name="ProbexPU">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:/ProbexDS</jta-data-source>
-        <class>br.unifor.probex.entity.User</class>        
+        <class>br.unifor.probex.entity.User</class>
+        <class>br.unifor.probex.entity.Permission</class>
+        <class>br.unifor.probex.entity.Post</class>
+        <class>br.unifor.probex.entity.Comment</class>
+        <class>br.unifor.probex.entity.Report</class>       
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />

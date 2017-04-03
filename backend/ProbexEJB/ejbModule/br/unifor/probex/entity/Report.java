@@ -11,17 +11,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "comments")
-public class Comment implements Serializable {
+@Table(name = "reports")
+public class Report implements Serializable {
 
-	private static final long serialVersionUID = 7181905141104406592L;
+	private static final long serialVersionUID = -2738651723891695230L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable = false)
-	private String content;
+	private String description;
 
 	@ManyToOne
 	private User author;
@@ -39,12 +39,12 @@ public class Comment implements Serializable {
 		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public User getAuthor() {
