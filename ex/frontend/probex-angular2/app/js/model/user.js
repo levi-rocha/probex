@@ -4,7 +4,8 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             User = (function () {
-                function User(username, password, email, permission) {
+                function User(id, username, password, email, permission) {
+                    this.id = id;
                     this.username = username;
                     this.password = password;
                     this.email = email;

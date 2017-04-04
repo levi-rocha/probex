@@ -1,6 +1,8 @@
 <div class="container">
     <h2 class="text-center">Signup</h2>
     <hr />
+
+    <div [hidden]="message == ''" class="alert alert-warning">{{message}}</div>
     
     <div class="col-md-4">
         <form [ngFormModel]="userForm">
@@ -50,16 +52,16 @@
                     <th>Email</th>
                     <th>&nbsp;</th>
                 </tr>
-                <tr *ngFor="#user of users; #id=index">
+                <tr *ngFor="#user of users">
                     <td>{{user.username}}</td>
                     <td>{{user.email}}</td>
                     <td>
-                        <button class="btn btn-info" (click)="edit(id)">
-                    Edit
-                </button>
-                        <button class="btn btn-danger" (click)="delete(id)">
-                    Delete
-                </button>
+                        <button class="btn btn-info" (click)="edit(user)">
+                            Edit
+                        </button>
+                        <button class="btn btn-danger" (click)="delete(user)">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             </table>

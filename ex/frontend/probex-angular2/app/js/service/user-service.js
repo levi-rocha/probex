@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../model/user'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,39 +8,45 @@ System.register(['angular2/core', '../model/user'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1;
+    var core_1, http_1;
     var UserService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (user_1_1) {
-                user_1 = user_1_1;
-            }],
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (_1) {}],
         execute: function() {
             UserService = (function () {
-                function UserService() {
-                    this.users = [
-                        new user_1.User('fulano', 'fulano123', 'fulano@email.com'),
-                        new user_1.User('beltrano', 'beltrano123', 'beltrano@email.com')
-                    ];
+                function UserService(http) {
+                    this.http = http;
+                    this.serviceUrl = "http://localhost:8080/ProbexService/rest/users";
                 }
                 UserService.prototype.listAll = function () {
-                    return this.users;
+                    return this.http.get(this.serviceUrl).map(function (res) { return res.json(); });
                 };
                 UserService.prototype.insert = function (user) {
-                    this.users.push(user);
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    var body = JSON.stringify(user);
+                    return this.http.post(this.serviceUrl, body, options).map(function (res) { return res.text(); });
                 };
-                UserService.prototype.update = function (id, user) {
-                    this.users[id] = user;
+                UserService.prototype.update = function (user) {
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    var body = JSON.stringify(user);
+                    return this.http.put(this.serviceUrl, body, options).map(function (res) { return res.text(); });
                 };
                 UserService.prototype.delete = function (id) {
-                    this.users.splice(id, 1);
+                    var url = this.serviceUrl + '/' + id;
+                    return this.http.delete(url).map(function (res) { return res.text(); });
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], UserService);
                 return UserService;
             })();

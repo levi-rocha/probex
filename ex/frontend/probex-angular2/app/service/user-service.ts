@@ -1,28 +1,38 @@
 import {Injectable} from 'angular2/core';
 import {User} from '../model/user';
+import {Http, Headers, RequestOptions } from 'angular2/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
 
-    private users: User[] = [
-        new User('fulano', 'fulano123', 'fulano@email.com'),
-        new User('beltrano', 'beltrano123', 'beltrano@email.com')
-    ];
+    serviceUrl: string = "http://localhost:8080/ProbexService/rest/users";
+
+    constructor(private http: Http) {
+
+    }
 
     listAll() {
-        return this.users;
+        return this.http.get(this.serviceUrl).map(res => res.json());
     }
 
     insert(user: User) {
-        this.users.push(user);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify(user);
+        return this.http.post(this.serviceUrl, body, options).map(res => res.text());
     }
 
-    update(id: number, user: User) {
-        this.users[id] = user;
+    update(user: User) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify(user);
+        return this.http.put(this.serviceUrl, body, options).map(res => res.text());
     }
 
     delete(id: number) {
-        this.users.splice(id, 1);
+        let url = this.serviceUrl + '/' + id;
+        return this.http.delete(url).map(res => res.text());
     }
 
 }

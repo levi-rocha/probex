@@ -36,6 +36,7 @@ System.register(['angular2/core', "./model/permission", "./model/user", 'angular
                     this.fb = fb;
                     this.userService = userService;
                     this.success = false;
+                    this.message = "";
                 }
                 FormUserComponent.prototype.ngOnInit = function () {
                     this.user = new user_1.User();
@@ -46,7 +47,7 @@ System.register(['angular2/core', "./model/permission", "./model/user", 'angular
                     ];
                     this.buildForm(this.fb);
                     this.editId = -1;
-                    this.users = this.userService.listAll();
+                    this.listAll();
                 };
                 FormUserComponent.prototype.buildForm = function (fb) {
                     this.userForm = fb.group({
@@ -56,22 +57,28 @@ System.register(['angular2/core', "./model/permission", "./model/user", 'angular
                         permission: ['', common_1.Validators.required]
                     });
                 };
+                FormUserComponent.prototype.listAll = function () {
+                    var _this = this;
+                    this.userService.listAll().subscribe(function (data) { return _this.users = data; }, function (error) { return _this.error = "Could not list users"; });
+                };
                 FormUserComponent.prototype.insert = function () {
-                    this.userService.insert(this.user);
+                    var _this = this;
+                    this.userService.insert(this.user).subscribe(function (data) { return _this.message = data; }, function (error) { return _this.error = "Could not save user"; }, function () { return _this.listAll(); });
                     this.user = new user_1.User();
                 };
-                FormUserComponent.prototype.edit = function (id) {
-                    this.editId = id;
-                    this.user = new user_1.User(this.users[id].username, this.users[id].password, this.users[id].email, this.users[id].permission);
+                FormUserComponent.prototype.edit = function (user) {
+                    this.editId = user.id;
+                    this.user = user;
                 };
                 FormUserComponent.prototype.update = function () {
-                    this.userService.update(this.editId, this.user);
+                    var _this = this;
+                    this.userService.update(this.user).subscribe(function (data) { return _this.message = data; }, function (error) { return _this.error = "Could not update user"; }, function () { return _this.listAll(); });
                     this.user = new user_1.User();
                     this.editId = -1;
                 };
-                FormUserComponent.prototype.delete = function (id) {
-                    this.userService.delete(id);
-                    this.editId = -1;
+                FormUserComponent.prototype.delete = function (user) {
+                    var _this = this;
+                    this.userService.delete(user.id).subscribe(function (data) { return _this.message = data; }, function (error) { return _this.error = "Could not delete user"; }, function () { return _this.listAll(); });
                 };
                 FormUserComponent = __decorate([
                     core_1.Component({

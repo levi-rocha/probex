@@ -22,6 +22,9 @@ export class FormUserComponent implements OnInit{
 
     userForm: ControlGroup;
 
+    error: string;
+    message: string = "";
+
     constructor(private fb: FormBuilder, private userService: UserService) {
         
     }
@@ -36,7 +39,7 @@ export class FormUserComponent implements OnInit{
         this.buildForm(this.fb);
 
         this.editId = -1;
-        this.users = this.userService.listAll();
+        this.listAll();
     }
 
     buildForm(fb: FormBuilder): void {
@@ -48,25 +51,44 @@ export class FormUserComponent implements OnInit{
         });
     }
 
+    listAll() {
+        this.userService.listAll().subscribe(
+            data => this.users = data,
+            error => this.error = "Could not list users"
+        );
+    }
+
     insert() {
-        this.userService.insert(this.user);
+        this.userService.insert(this.user).subscribe(
+            data => this.message = data,
+            error => this.error = "Could not save user",
+            () => this.listAll()
+        );
+
         this.user = new User();
     }
 
-    edit(id: number) {
-        this.editId = id;
-        this.user = new User(this.users[id].username, this.users[id].password, this.users[id].email, this.users[id].permission);
+    edit(user: User) {
+        this.editId = user.id;
+        this.user = user;
     }
 
     update() {
-        this.userService.update(this.editId, this.user);
+        this.userService.update(this.user).subscribe(
+            data => this.message = data,
+            error => this.error = "Could not update user",
+            () => this.listAll()
+        );
         this.user = new User();
         this.editId = -1;
     }
 
-    delete(id: number) {
-        this.userService.delete(id);
-        this.editId = -1;
+    delete(user: User) {
+        this.userService.delete(user.id).subscribe(
+            data => this.message = data,
+            error => this.error = "Could not delete user",
+            () => this.listAll()
+        );
     }
 
 }
