@@ -1,0 +1,68 @@
+<div class="container">
+    <h2 class="text-center">Signup</h2>
+    <hr />
+    
+    <div class="col-md-4">
+        <form [ngFormModel]="userForm">
+            <div class="form-group">
+                <label class="control-label" for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" [(ngModel)]="user.username" ngControl="username">
+                <div [hidden]="userForm.find('username').valid" class="alert alert-danger">Choose a username</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="password">Password</label>
+                <input type="text" class="form-control" name="password" id="password" [(ngModel)]="user.password" ngControl="password">
+                <div [hidden]="userForm.find('password').valid" class="alert alert-danger">Choose a password</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" [(ngModel)]="user.email" ngControl="email">
+                <div [hidden]="userForm.find('email').valid" class="alert alert-danger">Enter a valid email</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="permission">Permission</label>
+                <select name="permission" id="permission" class="form-control" [(ngModel)]="user.permission" ngControl="permission">
+                <option value="">Select</option>
+                <option *ngFor="#permission of permissions" [value]="permission.code">
+                     {{permission.name}}
+                </option>
+            </select>
+                <div [hidden]="userForm.find('permission').valid" class="alert alert-danger">Choose a permission</div>
+            </div>
+
+            <hr />
+
+            <div class="form-group text-center">
+                <button class="btn btn-success" *ngIf="editId<0" [disabled]="!userForm.valid" (click)="insert()">
+                Sign up
+            </button>
+                <button class="btn btn-success" *ngIf="editId>=0" [disabled]="!userForm.valid" (click)="update()">
+                Submit
+            </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr *ngFor="#user of users; #id=index">
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="edit(id)">
+                    Edit
+                </button>
+                        <button class="btn btn-danger" (click)="delete(id)">
+                    Delete
+                </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
