@@ -23,6 +23,13 @@ public class UserResource {
 	@EJB
 	private UserBORemote userBO;
 
+	@Path("{id}")
+	@GET
+	@Produces("application/json")
+	public User findUserById(@PathParam("id") Long id) {
+		return userBO.findUserById(id);
+	}
+	
 	@GET
 	@Produces("application/json")
 	public Collection<User> listUsers() {

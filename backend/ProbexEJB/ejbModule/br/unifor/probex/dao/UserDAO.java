@@ -32,6 +32,10 @@ public class UserDAO {
 		return manager.createQuery("SELECT a FROM User a").getResultList();
 	}
 
+	public User findById(Long id) {
+		return manager.find(User.class, id);
+	}
+
 	public String remove(Long id) {
 
 		try {
@@ -50,7 +54,7 @@ public class UserDAO {
 
 			if (detached == null)
 				return "no user found with id " + user.getId();
-			
+
 			User managed = manager.merge(detached);
 
 			managed.setUsername(user.getUsername());

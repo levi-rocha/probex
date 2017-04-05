@@ -22,6 +22,11 @@ public class UserBO implements UserBORemote {
 	public Collection<User> listUsers() {
 		return this.userDAO.list();
 	}
+	
+	@Override
+	public User findUserById(Long id) {
+		return this.userDAO.findById(id);
+	}
 
 	@Override
 	public String addUser(User user) {

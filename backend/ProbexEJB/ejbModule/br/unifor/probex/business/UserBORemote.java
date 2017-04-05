@@ -10,6 +10,8 @@ import br.unifor.probex.entity.User;
 public interface UserBORemote {
 
 	public Collection<User> listUsers();
+	
+	public User findUserById(Long id);
 
 	public String addUser(User user);
 
