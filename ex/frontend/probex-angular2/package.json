@@ -2,28 +2,45 @@
   "name": "probex-angular2",
   "version": "0.0.1",
   "scripts": {
-    "tsc": "tsc",
-    "clean": "rm -r app/js/*",
-    "tsc:w": "tsc -w",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
-    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings"
   },
+  "keywords": [],
   "author": "Levi Rocha",
   "license": "ISC",
   "dependencies": {
     "angular2": "2.0.0-beta.0",
-    "bootstrap": "3.3.6",
     "es6-promise": "3.0.2",
     "es6-shim": "0.34.1",
-    "jquery": "2.2.0",
-    "reflect-metadata": "0.1.3",
-    "rxjs": "5.0.0-beta.0",
-    "systemjs": "0.19.6",
-    "zone.js": "0.5.10"
+    "@angular/common":  "2.0.0-rc.3",
+    "@angular/compiler":  "2.0.0-rc.3",
+    "@angular/core":  "2.0.0-rc.3",
+    "@angular/forms": "0.1.1",
+    "@angular/http":  "2.0.0-rc.3",
+    "@angular/platform-browser":  "2.0.0-rc.3",
+    "@angular/platform-browser-dynamic":  "2.0.0-rc.3",
+    "@angular/router":  "3.0.0-alpha.7",
+    "@angular/router-deprecated":  "2.0.0-rc.2",
+    "@angular/upgrade":  "2.0.0-rc.3",
+    "systemjs": "0.19.27",
+    "core-js": "^2.4.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12",
+    "jquery": "^2.0.0",
+    "bootstrap": "^3.3.6"
   },
   "devDependencies": {
-    "concurrently": "1.0.0",
-    "lite-server": "1.3.1",
-    "typescript": "1.7.5"
-  }
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.2.0",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4",
+    "canonical-path": "0.0.2",
+    "http-server": "^0.9.0"
+  },
+  "repository": {}
 }

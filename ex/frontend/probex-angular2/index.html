@@ -2,7 +2,10 @@
  
   <head>
     <title>Probex</title>
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href=".">
+
     <!-- 1. Carregam as bibliotecas da aplicação -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
@@ -10,17 +13,14 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
  
     <!-- 2. Configura o SystemJS, que é responsável por carregar os arquivos js assincronamente -->
+    <script src="systemjs.config.js"></script>
     <script>
-      System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
       System.import('app/js/boot').then(null, console.error.bind(console));
     </script>
  
@@ -28,7 +28,9 @@
  
   <!-- 3. Exibe a aplicação -->
   <body>
-    <my-app>Loading...</my-app>
+    <div class="container">
+      <my-app>Loading...</my-app>
+    </div>
   </body>
   
 </html>

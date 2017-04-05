@@ -1,0 +1,33 @@
+<h1>Listagem de Alunos</h1>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th class="text-right">
+                <a class="btn btn-success" 
+                    [routerLink]="['/aluno-cadastrar']">
+                    Cadastrar
+                </a>
+            </th>
+        </tr>
+        <tr *ngFor="let aluno of alunos; #id=index">
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.email }}</td>
+            <td>
+				<a class="btn btn-warning" 
+                    [routerLink]="['/aluno-visualizar/'+id]">
+                    Visualizar
+                </a>
+				<a class="btn btn-info" 
+                    [routerLink]="['/aluno-editar/'+id]">
+                    Editar
+                </a>
+                <button class="btn btn-danger" (click)="excluir(id)">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

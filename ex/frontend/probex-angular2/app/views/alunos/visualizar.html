@@ -1,0 +1,19 @@
+<h1>Visualizar Aluno</h1>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+			<td>{{ aluno.nome }}</td>
+		</tr>
+		<tr>
+            <th>Email</th>
+            <td>{{ aluno.email }}</td>
+        </tr>
+    </table>
+	<div class="text-center">
+		<a class="btn btn-default" [routerLink]="['/aluno-listar']">
+			Voltar
+		</a>
+	</div>
+</div>
