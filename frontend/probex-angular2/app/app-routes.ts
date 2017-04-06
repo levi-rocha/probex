@@ -1,11 +1,11 @@
 import { provideRouter, RouterConfig } from '@angular/router'; 
 import { UserRoutes } from './components/users/user-routes';
-import { LoginRoutes } from './components/autenticacao/login-routes';
-import { AUTH_PROVIDERS } from './components/autenticacao/login-routes';
+import { SigninRoutes } from './components/auth/signin-routes';
+import { AUTH_PROVIDERS } from './components/auth/signin-routes';
 
 export const routes: RouterConfig = [
 	...UserRoutes,
-	...LoginRoutes
+	...SigninRoutes
 ]; 
 
 export const APP_ROUTER_PROVIDERS = [ 
