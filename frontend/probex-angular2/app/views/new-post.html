@@ -1,0 +1,24 @@
+<h1>New Post</h1>
+
+<div class="well">
+    <form role="form">
+        <div class="form-group">
+            <label class="control-label" for="title">Title</label>
+            <input type="text" class="form-control" name="title" 
+                id="title" [(ngModel)]="post.title">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="content">Text</label>
+            <textarea class="form-control" name="content" 
+                id="content" [(ngModel)]="post.content">
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-success" (click)="submit()">
+                Submit
+            </button>
+			<a class="btn btn-default" [routerLink]="['']">
+                Back
+            </a>
+        </div>
+    </form>
+</div>

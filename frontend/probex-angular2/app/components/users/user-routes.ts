@@ -25,10 +25,5 @@ export const UserRoutes: RouterConfig = [
 		path: 'user-view/:id', 
 		component: UserViewComponent, 
 		canActivate: [ AuthGuard ] 
-	},
-	{ 
-		path: '', 
-		redirectTo: '/user-list', 
-		terminal: true 
 	}
 ];
