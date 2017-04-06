@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SigninService } from '../../services/signin-service';
 
@@ -12,12 +12,23 @@ export class SigninComponent {
 	private username: string;
 	private password: string;
 
+	error: string;
+
 	constructor(private router: Router, private signinService: SigninService) {
+		this.signinService.loggedUser.subscribe(
+			value => {
+				console.log(value);
+				if (value != "") {
+					this.router.navigate(['']);
+				}
+			},
+			error => {
+				this.error = "Could not log in";
+			}
+		);
 	}
 
 	signin() {
-		console.log("signin called with " + this.username + " and " + this.password);
-		this.signinService.signin(this.username, this.password);
-		this.router.navigate(['']);
+		this.signinService.signin(this.username, this.password);	
 	}
 }

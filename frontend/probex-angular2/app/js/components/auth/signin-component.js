@@ -13,13 +13,20 @@ var router_1 = require('@angular/router');
 var signin_service_1 = require('../../services/signin-service');
 var SigninComponent = (function () {
     function SigninComponent(router, signinService) {
+        var _this = this;
         this.router = router;
         this.signinService = signinService;
+        this.signinService.loggedUser.subscribe(function (value) {
+            console.log(value);
+            if (value != "") {
+                _this.router.navigate(['']);
+            }
+        }, function (error) {
+            _this.error = "Could not log in";
+        });
     }
     SigninComponent.prototype.signin = function () {
-        console.log("signin called with " + this.username + " and " + this.password);
         this.signinService.signin(this.username, this.password);
-        this.router.navigate(['']);
     };
     SigninComponent = __decorate([
         core_1.Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class SigninService {
@@ -11,6 +11,8 @@ export class SigninService {
 	private user: User;
 
 	error: string;
+
+	loggedUser = new BehaviorSubject("");
 
 	constructor(private http: Http) {
 
@@ -23,6 +25,7 @@ export class SigninService {
 				if (this.user != null) {
 					console.log("succesful");
 					sessionStorage['username'] = this.user.username
+					this.loggedUser.next(this.user.username);
 				}
 			},
 			error => {
@@ -34,6 +37,7 @@ export class SigninService {
 
 	signout() {
 		delete sessionStorage['username'];
+		this.loggedUser.next("");
 	}
 
 	signedin() {

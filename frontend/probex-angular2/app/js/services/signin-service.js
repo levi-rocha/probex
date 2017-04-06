@@ -10,11 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/Rx');
+var Rx_1 = require('rxjs/Rx');
 var SigninService = (function () {
     function SigninService(http) {
         this.http = http;
         this.serviceUrl = "http://localhost:8080/ProbexService/rest/signin";
+        this.loggedUser = new Rx_1.BehaviorSubject("");
     }
     SigninService.prototype.signin = function (username, password) {
         var _this = this;
@@ -23,6 +24,7 @@ var SigninService = (function () {
             if (_this.user != null) {
                 console.log("succesful");
                 sessionStorage['username'] = _this.user.username;
+                _this.loggedUser.next(_this.user.username);
             }
         }, function (error) {
             _this.error = "Could not sign in";
@@ -31,6 +33,7 @@ var SigninService = (function () {
     };
     SigninService.prototype.signout = function () {
         delete sessionStorage['username'];
+        this.loggedUser.next("");
     };
     SigninService.prototype.signedin = function () {
         return sessionStorage['username'] != null;
