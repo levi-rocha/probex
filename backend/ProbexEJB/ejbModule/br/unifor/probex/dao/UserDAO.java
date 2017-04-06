@@ -4,8 +4,10 @@ import java.util.Collection;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 import br.unifor.probex.entity.User;
 
@@ -30,6 +32,19 @@ public class UserDAO {
 	public Collection<User> list() {
 
 		return manager.createQuery("SELECT a FROM User a").getResultList();
+	}
+
+	public User findByUsernameAndPassword(String username, String password) {
+		Query query = manager
+				.createQuery("SELECT a FROM User a WHERE a.username = :username AND a.password = :password");
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		try {
+			return (User) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+
 	}
 
 	public User findById(Long id) {

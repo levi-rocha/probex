@@ -27,6 +27,11 @@ public class UserBO implements UserBORemote {
 	public User findUserById(Long id) {
 		return this.userDAO.findById(id);
 	}
+	
+	@Override
+	public User validateUserPassword(String username, String password) {
+		return this.userDAO.findByUsernameAndPassword(username, password);
+	}
 
 	@Override
 	public String addUser(User user) {
