@@ -9,27 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
 var signin_service_1 = require('./services/signin-service');
-var AppComponent = (function () {
-    function AppComponent(signinService) {
-        var _this = this;
+var router_1 = require('@angular/router');
+var AuthGuard = (function () {
+    function AuthGuard(signinService, router) {
         this.signinService = signinService;
-        this.signinService.loggedUser.subscribe(function (value) {
-            _this.loggedUsername = value;
-            console.log("loggedUser changed: " + value);
-        }, function (error) { return console.log("error"); });
+        this.router = router;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'meu-app',
-            templateUrl: 'app/menu.html',
-            providers: [signin_service_1.SigninService],
-            directives: [router_1.ROUTER_DIRECTIVES]
-        }), 
-        __metadata('design:paramtypes', [signin_service_1.SigninService])
-    ], AppComponent);
-    return AppComponent;
+    AuthGuard.prototype.canActivate = function () {
+        if (this.signinService.signedin()) {
+            return true;
+        }
+        this.router.navigate(['/signin']);
+    };
+    AuthGuard = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [signin_service_1.SigninService, router_1.Router])
+    ], AuthGuard);
+    return AuthGuard;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.AuthGuard = AuthGuard;
+//# sourceMappingURL=auth-guard.js.map

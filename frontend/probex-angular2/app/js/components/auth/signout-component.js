@@ -10,26 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var signin_service_1 = require('./services/signin-service');
-var AppComponent = (function () {
-    function AppComponent(signinService) {
-        var _this = this;
+var signin_service_1 = require('../../services/signin-service');
+var SignoutComponent = (function () {
+    function SignoutComponent(router, signinService) {
+        this.router = router;
         this.signinService = signinService;
-        this.signinService.loggedUser.subscribe(function (value) {
-            _this.loggedUsername = value;
-            console.log("loggedUser changed: " + value);
-        }, function (error) { return console.log("error"); });
     }
-    AppComponent = __decorate([
+    SignoutComponent.prototype.ngOnInit = function () {
+        this.signout();
+    };
+    SignoutComponent.prototype.signout = function () {
+        this.signinService.signout();
+        this.router.navigate(['/signin']);
+    };
+    SignoutComponent = __decorate([
         core_1.Component({
-            selector: 'meu-app',
-            templateUrl: 'app/menu.html',
-            providers: [signin_service_1.SigninService],
-            directives: [router_1.ROUTER_DIRECTIVES]
+            selector: 'signout',
+            template: '',
+            providers: [signin_service_1.SigninService]
         }), 
-        __metadata('design:paramtypes', [signin_service_1.SigninService])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [router_1.Router, signin_service_1.SigninService])
+    ], SignoutComponent);
+    return SignoutComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.SignoutComponent = SignoutComponent;
+//# sourceMappingURL=signout-component.js.map

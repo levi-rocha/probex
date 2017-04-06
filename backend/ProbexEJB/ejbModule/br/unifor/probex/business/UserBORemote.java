@@ -12,6 +12,8 @@ public interface UserBORemote {
 	public Collection<User> listUsers();
 	
 	public User findUserById(Long id);
+	
+	public User validateUserPassword(String username, String password);
 
 	public String addUser(User user);
 

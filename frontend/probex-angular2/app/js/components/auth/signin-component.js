@@ -10,26 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var signin_service_1 = require('./services/signin-service');
-var AppComponent = (function () {
-    function AppComponent(signinService) {
+var signin_service_1 = require('../../services/signin-service');
+var SigninComponent = (function () {
+    function SigninComponent(router, signinService) {
         var _this = this;
+        this.router = router;
         this.signinService = signinService;
         this.signinService.loggedUser.subscribe(function (value) {
-            _this.loggedUsername = value;
-            console.log("loggedUser changed: " + value);
-        }, function (error) { return console.log("error"); });
+            console.log(value);
+            if (value != "") {
+                _this.router.navigate(['']);
+            }
+        }, function (error) {
+            _this.error = "Could not log in";
+        });
     }
-    AppComponent = __decorate([
+    SigninComponent.prototype.signin = function () {
+        this.signinService.signin(this.username, this.password);
+    };
+    SigninComponent = __decorate([
         core_1.Component({
-            selector: 'meu-app',
-            templateUrl: 'app/menu.html',
-            providers: [signin_service_1.SigninService],
-            directives: [router_1.ROUTER_DIRECTIVES]
+            selector: 'signin',
+            templateUrl: 'app/views/signin.html',
+            providers: [signin_service_1.SigninService]
         }), 
-        __metadata('design:paramtypes', [signin_service_1.SigninService])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [router_1.Router, signin_service_1.SigninService])
+    ], SigninComponent);
+    return SigninComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.SigninComponent = SigninComponent;
+//# sourceMappingURL=signin-component.js.map

@@ -3,28 +3,28 @@ import { UserListComponent } from './user-list-component';
 import { UserSignupComponent } from './user-signup-component';
 import { UserEditComponent } from './user-edit-component';
 import { UserViewComponent } from './user-view-component';
-import { LoginGuard } from '../../login-guard';
+import { AuthGuard } from '../../auth-guard';
 
 export const UserRoutes: RouterConfig = [
 	{ 
 		path: 'user-list', 
 		component: UserListComponent, 
-		canActivate: [ LoginGuard ] 
+		canActivate: [ AuthGuard ] 
 	}, 
 	{ 
 		path: 'user-signup', 
 		component: UserSignupComponent, 
-		canActivate: [ LoginGuard ] 
+		canActivate: [ AuthGuard ] 
 	}, 
 	{ 
 		path: 'user-edit/:id', 
 		component: UserEditComponent, 
-		canActivate: [ LoginGuard ] 
+		canActivate: [ AuthGuard ] 
 	},
 	{ 
 		path: 'user-view/:id', 
 		component: UserViewComponent, 
-		canActivate: [ LoginGuard ] 
+		canActivate: [ AuthGuard ] 
 	},
 	{ 
 		path: '', 
