@@ -1,5 +1,6 @@
 package br.unifor.probex.restful.resources;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.unifor.probex.business.UserBORemote;
+import br.unifor.probex.dto.UserDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -29,11 +31,16 @@ public class UserResource {
 	public User findUserById(@PathParam("id") Long id) {
 		return userBO.findUserById(id);
 	}
-	
+
 	@GET
 	@Produces("application/json")
-	public Collection<User> listUsers() {
-		return userBO.listUsers();
+	public Collection<UserDTO> listUsers() {
+		Collection<UserDTO> users = new ArrayList<UserDTO>();
+		Collection<User> data = userBO.listUsers();
+		for (User u : data) {
+			users.add(new UserDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail()));
+		}
+		return users;
 	}
 
 	@POST
