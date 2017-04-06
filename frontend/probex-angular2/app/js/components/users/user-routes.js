@@ -12,8 +12,7 @@ exports.UserRoutes = [
     },
     {
         path: 'user-signup',
-        component: user_signup_component_1.UserSignupComponent,
-        canActivate: [auth_guard_1.AuthGuard]
+        component: user_signup_component_1.UserSignupComponent
     },
     {
         path: 'user-edit/:id',
@@ -24,11 +23,6 @@ exports.UserRoutes = [
         path: 'user-view/:id',
         component: user_view_component_1.UserViewComponent,
         canActivate: [auth_guard_1.AuthGuard]
-    },
-    {
-        path: '',
-        redirectTo: '/user-list',
-        terminal: true
     }
 ];
 //# sourceMappingURL=user-routes.js.map

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES  } from '@angular/router';
 import { SigninService } from '../../services/signin-service';
 
 @Component({
 	selector: 'signin',
 	templateUrl: 'app/views/signin.html',
-	providers: [ SigninService ]
+	providers: [ SigninService ],
+	directives: [ ROUTER_DIRECTIVES ]
 })
 export class SigninComponent {
 
