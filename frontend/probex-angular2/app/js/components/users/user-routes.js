@@ -12,8 +12,7 @@ exports.UserRoutes = [
     },
     {
         path: 'user-signup',
-        component: user_signup_component_1.UserSignupComponent,
-        canActivate: [auth_guard_1.AuthGuard]
+        component: user_signup_component_1.UserSignupComponent
     },
     {
         path: 'user-edit/:id',

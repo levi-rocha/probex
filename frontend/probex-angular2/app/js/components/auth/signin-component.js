@@ -32,7 +32,8 @@ var SigninComponent = (function () {
         core_1.Component({
             selector: 'signin',
             templateUrl: 'app/views/signin.html',
-            providers: [signin_service_1.SigninService]
+            providers: [signin_service_1.SigninService],
+            directives: [router_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [router_1.Router, signin_service_1.SigninService])
     ], SigninComponent);

@@ -13,8 +13,7 @@ export const UserRoutes: RouterConfig = [
 	}, 
 	{ 
 		path: 'user-signup', 
-		component: UserSignupComponent, 
-		canActivate: [ AuthGuard ] 
+		component: UserSignupComponent
 	}, 
 	{ 
 		path: 'user-edit/:id', 
