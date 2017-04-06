@@ -1,7 +1,7 @@
 package br.unifor.probex.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,37 +32,37 @@ public class User implements Serializable {
 	private String email;
 
 	@ManyToMany
-	private List<Permission> permissions;
+	private Set<Permission> permissions;
 
 	@OneToMany(mappedBy = "author")
-	private List<Post> posts;
+	private Set<Post> posts;
 
 	@OneToMany(mappedBy = "author")
-	private List<Comment> comments;
+	private Set<Comment> comments;
 
 	/* getters and setters */
 
-	public List<Permission> getPermissions() {
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(List<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 
-	public List<Post> getPosts() {
+	public Set<Post> getPosts() {
 		return posts;
 	}
 
-	public void setPosts(List<Post> posts) {
+	public void setPosts(Set<Post> posts) {
 		this.posts = posts;
 	}
 
-	public List<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 

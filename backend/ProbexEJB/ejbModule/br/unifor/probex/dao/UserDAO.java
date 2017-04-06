@@ -48,7 +48,10 @@ public class UserDAO {
 	}
 
 	public User findById(Long id) {
-		return manager.find(User.class, id);
+		return (User) manager
+				.createQuery(
+						"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.id = :id", User.class)
+				.setParameter("id", id).getSingleResult();
 	}
 
 	public String remove(Long id) {
