@@ -30,17 +30,26 @@ public class UserDAO {
 	}
 
 	public Collection<User> list() {
-
-		return manager.createQuery("SELECT a FROM User a").getResultList();
+		Collection<User> users = manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permissions", User.class)
+				.getResultList();
+		for (User u : users) {
+			u.setPassword(null);
+			u.setComments(null);
+			u.setPosts(null);
+		}
+		return users;
 	}
 
 	public User findByUsernameAndPassword(String username, String password) {
-		Query query = manager
-				.createQuery("SELECT a FROM User a WHERE a.username = :username AND a.password = :password");
+		Query query = manager.createQuery(
+				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.username = :username AND a.password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
+		User user;
 		try {
-			return (User) query.getSingleResult();
+			user = (User) query.getSingleResult();
+			user.setPassword(null);
+			return user;
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -48,10 +57,11 @@ public class UserDAO {
 	}
 
 	public User findById(Long id) {
-		return (User) manager
-				.createQuery(
-						"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.id = :id", User.class)
-				.setParameter("id", id).getSingleResult();
+		User user = (User) manager.createQuery(
+				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.id = :id",
+				User.class).setParameter("id", id).getSingleResult();
+		user.setPassword(null);
+		return user;
 	}
 
 	public String remove(Long id) {
