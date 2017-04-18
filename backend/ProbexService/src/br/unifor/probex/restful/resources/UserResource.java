@@ -15,7 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.unifor.probex.business.UserBORemote;
-import br.unifor.probex.dto.UserDTO;
+import br.unifor.probex.dto.UserPermissionsDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -34,13 +34,12 @@ public class UserResource {
 
 	@GET
 	@Produces("application/json")
-	public Collection<UserDTO> listUsers() {
-		Collection<UserDTO> users = new ArrayList<UserDTO>();
-		Collection<User> data = userBO.listUsers();
-		for (User u : data) {
-			users.add(new UserDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail()));
+	public Collection<UserPermissionsDTO> listUsers() {
+		Collection<UserPermissionsDTO> data = userBO.listUsers();
+		for (UserPermissionsDTO u : data) {
+			u.setPassword(null);
 		}
-		return users;
+		return data;
 	}
 
 	@POST

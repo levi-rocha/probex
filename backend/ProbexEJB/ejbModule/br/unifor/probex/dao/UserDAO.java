@@ -1,6 +1,7 @@
 package br.unifor.probex.dao;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import br.unifor.probex.dto.UserPermissionsDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -18,26 +20,23 @@ public class UserDAO {
 	private EntityManager manager;
 
 	public String insert(User user) {
-
 		try {
 			manager.persist(user);
-
 			return user.getUsername() + " inserted";
 		} catch (PersistenceException e) {
 			return "could not insert data " + e;
 		}
-
 	}
 
-	public Collection<User> list() {
+	public Collection<UserPermissionsDTO> list() {
 		Collection<User> users = manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permissions", User.class)
 				.getResultList();
+		Collection<UserPermissionsDTO> userDTOs = new HashSet<UserPermissionsDTO>();
 		for (User u : users) {
-			u.setPassword(null);
-			u.setComments(null);
-			u.setPosts(null);
+			UserPermissionsDTO dto = new UserPermissionsDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail(), u.getPermissions());
+			userDTOs.add(dto);
 		}
-		return users;
+		return userDTOs;
 	}
 
 	public User findByUsernameAndPassword(String username, String password) {
