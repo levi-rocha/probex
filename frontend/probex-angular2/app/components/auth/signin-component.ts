@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES  } from '@angular/router';
+import {Component, ViewEncapsulation} from '@angular/core';
+import { Router } from '@angular/router';
 import { SigninService } from '../../services/signin-service';
 
 @Component({
-	selector: 'signin',
-	templateUrl: 'app/views/signin.html',
+	selector: 'signIn',
+	templateUrl: 'app/views/signIn.html',
 	providers: [ SigninService ],
-	directives: [ ROUTER_DIRECTIVES ]
+	encapsulation: ViewEncapsulation.None,
 })
 export class SigninComponent {
 
@@ -29,7 +29,7 @@ export class SigninComponent {
 		);
 	}
 
-	signin() {
-		this.signinService.signin(this.username, this.password);	
+	signIn() {
+		this.signinService.signIn(this.username, this.password);
 	}
 }

@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { Post } from '.././models/post';
 import { PostService } from '.././services/post-service';
 import { OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
 	selector: 'post-list',
 	templateUrl: 'app/views/post-list.html',
-	providers: [ PostService ],
-	directives: [ ROUTER_DIRECTIVES ]
+	providers: [ PostService ]
 })
 export class PostListComponent implements OnInit {
 

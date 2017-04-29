@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var user_1 = require('../.././models/user');
-var user_service_1 = require('../.././services/user-service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var user_1 = require("../.././models/user");
+var user_service_1 = require("../.././services/user-service");
+var router_1 = require("@angular/router");
 var UserSignupComponent = (function () {
     function UserSignupComponent(router, userService) {
         this.router = router;
@@ -20,20 +21,19 @@ var UserSignupComponent = (function () {
     UserSignupComponent.prototype.ngOnInit = function () {
         this.user = new user_1.User();
     };
-    UserSignupComponent.prototype.signup = function () {
+    UserSignupComponent.prototype.signUp = function () {
         var _this = this;
         this.userService.insert(this.user).subscribe(function (data) { return _this.router.navigate(['/user-list']); }, function (error) { return _this.error = "Could not save user"; });
     };
-    UserSignupComponent = __decorate([
-        core_1.Component({
-            selector: 'user-signup',
-            templateUrl: 'app/views/users/signup.html',
-            providers: [user_service_1.UserService],
-            directives: [router_1.ROUTER_DIRECTIVES]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, user_service_1.UserService])
-    ], UserSignupComponent);
     return UserSignupComponent;
 }());
+UserSignupComponent = __decorate([
+    core_1.Component({
+        selector: 'user-signup',
+        templateUrl: 'app/views/users/signUp.html',
+        providers: [user_service_1.UserService]
+    }),
+    __metadata("design:paramtypes", [router_1.Router, user_service_1.UserService])
+], UserSignupComponent);
 exports.UserSignupComponent = UserSignupComponent;
 //# sourceMappingURL=user-signup-component.js.map

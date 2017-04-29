@@ -1,21 +1,23 @@
-<h1>Sign In</h1>
-<div class="well">
-    <form role="form">
-        <div class="form-group">
-            <label class="control-label" for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" [(ngModel)]="username">
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="senha">Password</label>
-            <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password">
-        </div>
-        <div class="form-group text-center">
-            <button class="btn btn-success" (click)="signin()">
-		            Sign in
-		    </button>
-            <a class="btn btn-success" [routerLink]="['/user-signup']">
-		            Sign up
-		    </a>
-        </div>
-    </form>
+<div class="vertical-center">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-leg-offset-4">
+        <md-card>
+            <md-card-header>
+                <h2>Probex</h2>
+            </md-card-header>
+            <md-card-content>
+                <div>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Usuario" [(ngModel)]="username" required>
+                    </md-input-container>
+                </div>
+                <md-input-container class="full-width">
+                    <input mdInput placeholder="Senha" [(ngModel)]="password" required>
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions>
+                <button md-button (click)="signIn()">Entrar</button>
+                <button md-button [routerLink]="['/user-signup']">Inscreva-se</button>
+            </md-card-actions>
+        </md-card>
+    </div>
 </div>

@@ -20,14 +20,14 @@ var UserSignupComponent = (function () {
     UserSignupComponent.prototype.ngOnInit = function () {
         this.user = new user_1.User();
     };
-    UserSignupComponent.prototype.signup = function () {
+    UserSignupComponent.prototype.signUp = function () {
         var _this = this;
         this.userService.insert(this.user).subscribe(function (data) { return _this.router.navigate(['/user-list']); }, function (error) { return _this.error = "Could not save user"; });
     };
     UserSignupComponent = __decorate([
         core_1.Component({
             selector: 'user-signup',
-            templateUrl: 'app/views/users/signup.html',
+            templateUrl: 'app/views/users/signUp.html',
             providers: [user_service_1.UserService],
             directives: [router_1.ROUTER_DIRECTIVES]
         }), 
@@ -36,4 +36,4 @@ var UserSignupComponent = (function () {
     return UserSignupComponent;
 }());
 exports.UserSignupComponent = UserSignupComponent;
-//# sourceMappingURL=user-signup-component.js.map
+//# sourceMappingURL=user-signUp-component.js.map

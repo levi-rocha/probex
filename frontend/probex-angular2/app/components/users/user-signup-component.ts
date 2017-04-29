@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { User } from '../.././models/user';
 import { UserService } from '../.././services/user-service';
 import { OnInit } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'user-signup',
-	templateUrl: 'app/views/users/signup.html',
-	providers: [ UserService ],
-	directives: [ ROUTER_DIRECTIVES ]
+	templateUrl: 'app/views/users/signUp.html',
+	providers: [ UserService ]
 })
 export class UserSignupComponent implements OnInit {
 
@@ -23,7 +22,7 @@ export class UserSignupComponent implements OnInit {
 		this.user = new User();
 	}
 
-	signup() {
+	signUp() {
 		this.userService.insert(this.user).subscribe(
 			data => this.router.navigate(['/user-list']),
 			error => this.error = "Could not save user"
