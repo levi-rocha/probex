@@ -1,29 +1,30 @@
-<h1>User Signup</h1>
-
-<div class="well">
-    <form role="form">
-        <div class="form-group">
-            <label class="control-label" for="username">Username</label>
-            <input type="text" class="form-control" name="username" 
-                id="username" [(ngModel)]="user.username">
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="email">Email</label>
-            <input type="email" class="form-control" name="email" 
-                id="email" [(ngModel)]="user.email">
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="password">Password</label>
-            <input type="password" class="form-control" name="password" 
-                id="password" [(ngModel)]="user.password">
-        </div>
-        <div class="form-group text-center">
-            <button class="btn btn-success" (click)="signUp()">
-                Signup
-            </button>
-			<a class="btn btn-default" [routerLink]="['/user-list']">
-                Back
-            </a>
-        </div>
-    </form>
+<div class="vertical-center">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-sm-offset-0 col-lg-4 col-lg-offset-4">
+        <md-card>
+            <md-card-header>
+                <h2>Criar usuário</h2>
+            </md-card-header>
+            <md-card-content>
+                <div>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Usuário" [(ngModel)]="user.username" required>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="E-mail" type="email" [(ngModel)]="user.email" required>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-input-container class="full-width">
+                        <input mdInput type="password" placeholder="Senha" [(ngModel)]="user.password" required>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+            <md-card-actions>
+                <button md-raised-button color="primary" (click)="signUp()">Cadastrar</button>
+                <button md-button>Voltar</button>
+            </md-card-actions>
+        </md-card>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="vertical-center">
-    <div class="col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-leg-offset-4">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-sm-offset-0 col-lg-4 col-lg-offset-4">
         <md-card>
             <md-card-header>
                 <h2>Probex</h2>
@@ -7,16 +7,20 @@
             <md-card-content>
                 <div>
                     <md-input-container class="full-width">
-                        <input mdInput placeholder="Usuario" [(ngModel)]="username" required>
+                        <input mdInput placeholder="Usuário" [(ngModel)]="username" required>
                     </md-input-container>
                 </div>
                 <md-input-container class="full-width">
-                    <input mdInput placeholder="Senha" [(ngModel)]="password" required>
+                    <input mdInput type="password" placeholder="Senha" [(ngModel)]="password" required>
                 </md-input-container>
             </md-card-content>
             <md-card-actions>
-                <button md-button (click)="signIn()">Entrar</button>
-                <button md-button [routerLink]="['/user-signup']">Inscreva-se</button>
+                <div>
+                    <button md-button [routerLink]="['/user-signup']" class="full-width">Inscreva-se</button>
+                </div>
+                <div>
+                    <button md-raised-button color="primary" (click)="signIn()" class="full-width">Entrar</button>
+                </div>
             </md-card-actions>
         </md-card>
     </div>

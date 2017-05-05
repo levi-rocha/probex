@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class SigninService {
 
-	serviceUrl: string = "http://localhost:8080/ProbexService/rest/signIn";
+	serviceUrl: string = "http://localhost:8080/ProbexService/rest/signin";
 
 	private user: User;
 
@@ -48,7 +48,10 @@ export class SigninService {
 	}
 
 	private validateAndGetUser(username: string, password: string) {
-		let url = this.serviceUrl + '/u=' + username + '-p=' + password;
-		return this.http.get(url).map(res => res.json());
+		let params: URLSearchParams  = new URLSearchParams();
+		params.set("username", username);
+		params.set("password", password);
+		return this.http.get(this.serviceUrl, {search: params})
+			.map(res => res.json());
 	}
 }

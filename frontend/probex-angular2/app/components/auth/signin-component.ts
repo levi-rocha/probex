@@ -5,8 +5,7 @@ import { SigninService } from '../../services/signin-service';
 @Component({
 	selector: 'signIn',
 	templateUrl: 'app/views/signIn.html',
-	providers: [ SigninService ],
-	encapsulation: ViewEncapsulation.None,
+	providers: [ SigninService ]
 })
 export class SigninComponent {
 

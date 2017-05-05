@@ -35,8 +35,7 @@ SigninComponent = __decorate([
     core_1.Component({
         selector: 'signIn',
         templateUrl: 'app/views/signIn.html',
-        providers: [signin_service_1.SigninService],
-        encapsulation: core_1.ViewEncapsulation.None,
+        providers: [signin_service_1.SigninService]
     }),
     __metadata("design:paramtypes", [router_1.Router, signin_service_1.SigninService])
 ], SigninComponent);

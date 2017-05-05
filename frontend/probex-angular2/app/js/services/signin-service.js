@@ -15,7 +15,7 @@ var Rx_1 = require("rxjs/Rx");
 var SigninService = (function () {
     function SigninService(http) {
         this.http = http;
-        this.serviceUrl = "http://localhost:8080/ProbexService/rest/signIn";
+        this.serviceUrl = "http://localhost:8080/ProbexService/rest/signin";
         this.loggedUser = new Rx_1.BehaviorSubject("");
     }
     SigninService.prototype.signIn = function (username, password) {
@@ -41,8 +41,11 @@ var SigninService = (function () {
         return sessionStorage['username'] != null;
     };
     SigninService.prototype.validateAndGetUser = function (username, password) {
-        var url = this.serviceUrl + '/u=' + username + '-p=' + password;
-        return this.http.get(url).map(function (res) { return res.json(); });
+        var params = new URLSearchParams();
+        params.set("username", username);
+        params.set("password", password);
+        return this.http.get(this.serviceUrl, { search: params })
+            .map(function (res) { return res.json(); });
     };
     return SigninService;
 }());
