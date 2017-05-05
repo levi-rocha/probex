@@ -19,12 +19,14 @@ public class CommentBO implements CommentBORemote {
 	}
 
 	@Override
+	public Comment findCommentById(Long id) {
+		return this.commentDAO.findById(id);
+	}
+
+	@Override
 	public Collection<Comment> listComments() {
 		return this.commentDAO.list();
 	}
-	
-	
-	
 
 	@Override
 	public String addComment(Comment comment) {
@@ -37,7 +39,8 @@ public class CommentBO implements CommentBORemote {
 	}
 
 	@Override
-	public String updateComment(Comment comment ) {
+	public String updateComment(Comment comment) {
 		return this.commentDAO.update(comment);
 	}
+
 }

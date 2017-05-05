@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.unifor.probex.dao.PostDAO;
+import br.unifor.probex.dto.PostDTO;
 import br.unifor.probex.entity.Post;
 
 @Stateless
@@ -19,18 +20,17 @@ public class PostBO implements PostBORemote {
 	}
 
 	@Override
-	public Collection<Post> listPosts() {
+	public Collection<PostDTO> listPosts() {
 		return this.postDAO.list();
 	}
-	
-	@Override
-	public Post findUserById(Long id) {
-		return this.postDAO.findById(id);
-	}
-	
 
 	@Override
-	public String addUser(Post post) {
+	public Post findPostById(Long id) {
+		return this.postDAO.findById(id);
+	}
+
+	@Override
+	public String addPost(Post post) {
 		return this.postDAO.insert(post);
 	}
 
