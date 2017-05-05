@@ -17,7 +17,7 @@ import br.unifor.probex.business.CommentBORemote;
 import br.unifor.probex.entity.Comment;
 
 @Stateless
-@Path("/posts")
+@Path("/comments")
 public class CommentResource {
 
 	@EJB

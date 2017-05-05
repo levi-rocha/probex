@@ -30,15 +30,18 @@ public class PostDAO {
 
 	public Collection<PostDTO> list() {
 		Collection<Post> posts = manager
-				.createQuery("SELECT p FROM Post p JOIN FETCH p.author JOIN FETCH p.votes", Post.class).getResultList();
+				.createQuery("SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes", Post.class).getResultList();
 		Collection<PostDTO> postDTOs = new HashSet<PostDTO>();
 		for (Post p : posts) {
 			PostDTO dto = new PostDTO();
 			dto.setId(p.getId());
 			dto.setTitle(p.getTitle());
 			dto.setContent(p.getContent());
-			dto.setAuthorId(p.getAuthor().getId());
-			dto.setAuthorUsername(p.getAuthor().getUsername());
+			//TODO null check for author-less posts: handle as exception instead
+			if (p.getAuthor() != null) {
+				dto.setAuthorId(p.getAuthor().getId());
+				dto.setAuthorUsername(p.getAuthor().getUsername());
+			}
 			Set<Long> voteIds = new HashSet<Long>();
 			for (User v : p.getVotes()) {
 				voteIds.add(v.getId());
@@ -51,7 +54,7 @@ public class PostDAO {
 
 	public Post findById(Long id) {
 		Post post = manager.createQuery(
-				"select p from Post p join fetch p.author join fetch p.votes join fetch p.comments where p.id = :id",
+				"select p from Post p left join fetch p.author left join fetch p.votes left join fetch p.comments where p.id = :id",
 				Post.class).setParameter("id", id).getSingleResult();
 		return post;
 	}
