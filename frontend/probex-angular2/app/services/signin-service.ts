@@ -48,10 +48,7 @@ export class SigninService {
 	}
 
 	private validateAndGetUser(username: string, password: string) {
-		let params: URLSearchParams  = new URLSearchParams();
-		params.set("username", username);
-		params.set("password", password);
-		return this.http.get(this.serviceUrl, {search: params})
-			.map(res => res.json());
+		let url = this.serviceUrl + "/u="+username+"-p="+username;
+		return this.http.get(url).map(res => res.json());
 	}
 }

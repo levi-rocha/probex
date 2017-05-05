@@ -41,11 +41,8 @@ var SigninService = (function () {
         return sessionStorage['username'] != null;
     };
     SigninService.prototype.validateAndGetUser = function (username, password) {
-        var params = new URLSearchParams();
-        params.set("username", username);
-        params.set("password", password);
-        return this.http.get(this.serviceUrl, { search: params })
-            .map(function (res) { return res.json(); });
+        var url = this.serviceUrl + "/u=" + username + "-p=" + username;
+        return this.http.get(url).map(function (res) { return res.json(); });
     };
     return SigninService;
 }());

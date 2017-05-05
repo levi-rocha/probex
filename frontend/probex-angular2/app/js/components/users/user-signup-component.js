@@ -30,7 +30,7 @@ var UserSignupComponent = (function () {
 UserSignupComponent = __decorate([
     core_1.Component({
         selector: 'user-signup',
-        templateUrl: 'app/views/users/signUp.html',
+        templateUrl: 'app/views/users/signup.html',
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router, user_service_1.UserService])

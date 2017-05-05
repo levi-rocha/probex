@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'user-signup',
-	templateUrl: 'app/views/users/signUp.html',
+	templateUrl: 'app/views/users/signup.html',
 	providers: [ UserService ]
 })
 export class UserSignupComponent implements OnInit {

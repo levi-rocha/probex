@@ -4,7 +4,7 @@ import { SigninService } from '../../services/signin-service';
 
 @Component({
 	selector: 'signIn',
-	templateUrl: 'app/views/signIn.html',
+	templateUrl: 'app/views/signin.html',
 	providers: [ SigninService ]
 })
 export class SigninComponent {
