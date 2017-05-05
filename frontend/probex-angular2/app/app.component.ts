@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import {Component, ViewEncapsulation} from '@angular/core';
 import { SigninService } from './services/signin-service';
 
 @Component({
   selector: 'meu-app',
   templateUrl: 'app/menu.html',
   providers: [ SigninService ],
-  directives: [ROUTER_DIRECTIVES]
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
 
   private loggedUsername: string;
+  private signedIn: boolean = this.loggedUsername != '' && this.loggedUsername != null;
 
   constructor(private signinService: SigninService) {
     this.signinService.loggedUser.subscribe(

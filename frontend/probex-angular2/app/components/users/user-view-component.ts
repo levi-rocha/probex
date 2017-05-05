@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { User } from '../.././models/user';
-import { UserService } from '../.././services/user-service';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user-service';
 import { OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'user-view',
 	templateUrl: 'app/views/users/view.html',
-	providers: [ UserService ],
-	directives: [ ROUTER_DIRECTIVES ]
+	providers: [ UserService ]
 })
 export class UserViewComponent implements OnInit {
 

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var User = (function () {
     function User(id, username, password, email, permissions) {
         this.id = id;

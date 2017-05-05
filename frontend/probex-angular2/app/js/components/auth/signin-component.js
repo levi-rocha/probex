@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var signin_service_1 = require('../../services/signin-service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var signin_service_1 = require("../../services/signin-service");
 var SigninComponent = (function () {
     function SigninComponent(router, signinService) {
         var _this = this;
@@ -25,19 +26,18 @@ var SigninComponent = (function () {
             _this.error = "Could not log in";
         });
     }
-    SigninComponent.prototype.signin = function () {
-        this.signinService.signin(this.username, this.password);
+    SigninComponent.prototype.signIn = function () {
+        this.signinService.signIn(this.username, this.password);
     };
-    SigninComponent = __decorate([
-        core_1.Component({
-            selector: 'signin',
-            templateUrl: 'app/views/signin.html',
-            providers: [signin_service_1.SigninService],
-            directives: [router_1.ROUTER_DIRECTIVES]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, signin_service_1.SigninService])
-    ], SigninComponent);
     return SigninComponent;
 }());
+SigninComponent = __decorate([
+    core_1.Component({
+        selector: 'signIn',
+        templateUrl: 'app/views/signin.html',
+        providers: [signin_service_1.SigninService]
+    }),
+    __metadata("design:paramtypes", [router_1.Router, signin_service_1.SigninService])
+], SigninComponent);
 exports.SigninComponent = SigninComponent;
 //# sourceMappingURL=signin-component.js.map

@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var signin_service_1 = require('../../services/signin-service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var signin_service_1 = require("../../services/signin-service");
 var SignoutComponent = (function () {
     function SignoutComponent(router, signinService) {
         this.router = router;
@@ -20,18 +21,18 @@ var SignoutComponent = (function () {
         this.signout();
     };
     SignoutComponent.prototype.signout = function () {
-        this.signinService.signout();
-        this.router.navigate(['/signin']);
+        this.signinService.signOut();
+        this.router.navigate(['/signIn']);
     };
-    SignoutComponent = __decorate([
-        core_1.Component({
-            selector: 'signout',
-            template: '',
-            providers: [signin_service_1.SigninService]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, signin_service_1.SigninService])
-    ], SignoutComponent);
     return SignoutComponent;
 }());
+SignoutComponent = __decorate([
+    core_1.Component({
+        selector: 'signOut',
+        template: '',
+        providers: [signin_service_1.SigninService]
+    }),
+    __metadata("design:paramtypes", [router_1.Router, signin_service_1.SigninService])
+], SignoutComponent);
 exports.SignoutComponent = SignoutComponent;
 //# sourceMappingURL=signout-component.js.map

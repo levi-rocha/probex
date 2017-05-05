@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class SigninService {
@@ -13,12 +14,13 @@ export class SigninService {
 	error: string;
 
 	loggedUser = new BehaviorSubject("");
+	private router: Router;
 
 	constructor(private http: Http) {
 
 	}
 
-	signin(username: string, password: string) {
+	signIn(username: string, password: string) {
 		this.validateAndGetUser(username, password).subscribe(
 			data => {
 				this.user = data;
@@ -35,17 +37,18 @@ export class SigninService {
 		);
 	}
 
-	signout() {
+	signOut() {
 		delete sessionStorage['username'];
 		this.loggedUser.next("");
+		this.router.navigate(['/signIn']);
 	}
 
-	signedin() {
+	static signedIn() {
 		return sessionStorage['username'] != null;
 	}
 
 	private validateAndGetUser(username: string, password: string) {
-		let url = this.serviceUrl + '/u=' + username + '-p=' + password;
+		let url = this.serviceUrl + "/u="+username+"-p="+username;
 		return this.http.get(url).map(res => res.json());
 	}
 }
