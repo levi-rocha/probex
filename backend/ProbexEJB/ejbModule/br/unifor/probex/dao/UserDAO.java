@@ -47,7 +47,6 @@ public class UserDAO {
 		User user;
 		try {
 			user = (User) query.getSingleResult();
-			user.setPassword(null);
 			return user;
 		} catch (NoResultException e) {
 			return null;

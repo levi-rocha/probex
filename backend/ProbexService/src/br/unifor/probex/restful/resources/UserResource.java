@@ -1,6 +1,5 @@
 package br.unifor.probex.restful.resources;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.ejb.EJB;
