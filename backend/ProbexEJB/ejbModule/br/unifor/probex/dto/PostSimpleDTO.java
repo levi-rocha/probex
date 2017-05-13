@@ -1,7 +1,9 @@
 package br.unifor.probex.dto;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+
+import br.unifor.probex.entity.Post;
 
 public class PostSimpleDTO implements Serializable {
 
@@ -11,7 +13,25 @@ public class PostSimpleDTO implements Serializable {
 	private String title;
 	private String authorUsername;
 	private int voteCount;
-	private Timestamp date;
+	private Date date;
+
+	public static PostSimpleDTO fromPost(Post post) {
+		PostSimpleDTO dto = new PostSimpleDTO();
+		dto.setId(post.getId());
+		dto.setTitle(post.getTitle());
+		dto.setDate(post.getDate());
+		dto.setAuthorUsername(post.getAuthor().getUsername());
+		dto.setVoteCount(post.getVotes().size());
+		return dto;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public Long getId() {
 		return id;

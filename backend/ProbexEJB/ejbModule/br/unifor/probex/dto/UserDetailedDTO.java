@@ -1,18 +1,38 @@
 package br.unifor.probex.dto;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import br.unifor.probex.entity.Permission;
+import br.unifor.probex.entity.Post;
+import br.unifor.probex.entity.User;
 
-public class UserDetailedDTO {
-	
+public class UserDetailedDTO implements Serializable {
+
+	private static final long serialVersionUID = -4334805450243911807L;
+
 	private Long id;
 	private String username;
-	private String password;
 	private String email;
 	private Set<Permission> permissions;
 	private Set<PostSimpleDTO> posts;
-	
+
+	public static UserDetailedDTO fromUser(User user) {
+		UserDetailedDTO dto = new UserDetailedDTO();
+		dto.setId(user.getId());
+		dto.setUsername(user.getUsername());
+		dto.setEmail(user.getEmail());
+		dto.setPermissions(user.getPermissions());
+		Set<PostSimpleDTO> posts = new HashSet<PostSimpleDTO>();
+		for (Post p : user.getPosts()) {
+			PostSimpleDTO pdto = PostSimpleDTO.fromPost(p);
+			posts.add(pdto);
+		}
+		dto.setPosts(posts);
+		return dto;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -27,14 +47,6 @@ public class UserDetailedDTO {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEmail() {
@@ -60,7 +72,5 @@ public class UserDetailedDTO {
 	public void setPosts(Set<PostSimpleDTO> posts) {
 		this.posts = posts;
 	}
-	
-	
 
 }
