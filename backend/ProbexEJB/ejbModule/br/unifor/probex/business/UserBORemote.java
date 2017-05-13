@@ -1,18 +1,20 @@
 package br.unifor.probex.business;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Remote;
 
-import br.unifor.probex.dto.UserPermissionsDTO;
+import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Remote
 public interface UserBORemote {
 
-	public Collection<UserPermissionsDTO> listUsers();
+	public List<UserSimpleDTO> listUsers();
 
 	public User findUserById(Long id);
+	
+	public User findUserByUsername(String username);
 
 	public User validateUserPassword(String username, String password);
 

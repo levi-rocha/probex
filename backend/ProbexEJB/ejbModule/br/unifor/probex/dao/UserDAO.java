@@ -1,7 +1,8 @@
 package br.unifor.probex.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import br.unifor.probex.dto.UserPermissionsDTO;
+import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -28,12 +29,12 @@ public class UserDAO {
 		}
 	}
 
-	public Collection<UserPermissionsDTO> list() {
-		Collection<User> users = manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permissions", User.class)
+	public List<UserSimpleDTO> list() {
+		List<User> users = manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permissions", User.class)
 				.getResultList();
-		Collection<UserPermissionsDTO> userDTOs = new HashSet<UserPermissionsDTO>();
+		List<UserSimpleDTO> userDTOs = new ArrayList<UserSimpleDTO>();
 		for (User u : users) {
-			UserPermissionsDTO dto = new UserPermissionsDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail(),
+			UserSimpleDTO dto = new UserSimpleDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail(),
 					u.getPermissions());
 			userDTOs.add(dto);
 		}
@@ -59,7 +60,13 @@ public class UserDAO {
 		User user = (User) manager.createQuery(
 				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.id = :id",
 				User.class).setParameter("id", id).getSingleResult();
-		user.setPassword(null);
+		return user;
+	}
+	
+	public User findByUsername(String username) {
+		User user = (User) manager.createQuery(
+				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.username = :username",
+				User.class).setParameter("username", username).getSingleResult();
 		return user;
 	}
 

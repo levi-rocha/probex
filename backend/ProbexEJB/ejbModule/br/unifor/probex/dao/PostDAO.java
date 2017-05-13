@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import br.unifor.probex.dto.PostDTO;
+import br.unifor.probex.dto.PostSimpleDTO;
 import br.unifor.probex.entity.Post;
 import br.unifor.probex.entity.User;
 
@@ -28,25 +28,19 @@ public class PostDAO {
 		}
 	}
 
-	public Collection<PostDTO> list() {
+	public Collection<PostSimpleDTO> list() {
 		Collection<Post> posts = manager
 				.createQuery("SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes", Post.class).getResultList();
-		Collection<PostDTO> postDTOs = new HashSet<PostDTO>();
+		Collection<PostSimpleDTO> postDTOs = new HashSet<PostSimpleDTO>();
 		for (Post p : posts) {
-			PostDTO dto = new PostDTO();
+			PostSimpleDTO dto = new PostSimpleDTO();
 			dto.setId(p.getId());
 			dto.setTitle(p.getTitle());
-			dto.setContent(p.getContent());
 			//TODO null check for author-less posts: handle as exception instead
 			if (p.getAuthor() != null) {
-				dto.setAuthorId(p.getAuthor().getId());
 				dto.setAuthorUsername(p.getAuthor().getUsername());
 			}
-			Set<Long> voteIds = new HashSet<Long>();
-			for (User v : p.getVotes()) {
-				voteIds.add(v.getId());
-			}
-			dto.setVoteIds(voteIds);
+			dto.setVoteCount(p.getVotes().size());
 			postDTOs.add(dto);
 		}
 		return postDTOs;

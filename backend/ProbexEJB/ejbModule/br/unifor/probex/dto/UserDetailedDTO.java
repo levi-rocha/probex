@@ -1,32 +1,18 @@
 package br.unifor.probex.dto;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import br.unifor.probex.entity.Permission;
 
-public class UserPermissionsDTO implements Serializable {
-
-	private static final long serialVersionUID = 2839156404112207275L;
-
+public class UserDetailedDTO {
+	
 	private Long id;
 	private String username;
 	private String password;
 	private String email;
 	private Set<Permission> permissions;
-
-	public UserPermissionsDTO() {
-
-	}
-
-	public UserPermissionsDTO(Long id, String username, String password, String email, Set<Permission> permissions) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.permissions = permissions;
-	}
-
+	private Set<PostSimpleDTO> posts;
+	
 	public Long getId() {
 		return id;
 	}
@@ -66,5 +52,15 @@ public class UserPermissionsDTO implements Serializable {
 	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
+
+	public Set<PostSimpleDTO> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<PostSimpleDTO> posts) {
+		this.posts = posts;
+	}
+	
+	
 
 }

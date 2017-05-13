@@ -4,13 +4,13 @@ import java.util.Collection;
 
 import javax.ejb.Remote;
 
-import br.unifor.probex.dto.PostDTO;
+import br.unifor.probex.dto.PostSimpleDTO;
 import br.unifor.probex.entity.Post;
 
 @Remote
 public interface PostBORemote {
 
-	public Collection<PostDTO> listPosts();
+	public Collection<PostSimpleDTO> listPosts();
 
 	public String addPost(Post post);
 
