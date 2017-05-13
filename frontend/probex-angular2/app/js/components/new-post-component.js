@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var post_1 = require('.././models/post');
-var post_service_1 = require('.././services/post-service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var post_1 = require(".././models/post");
+var post_service_1 = require(".././services/post-service");
+var router_1 = require("@angular/router");
 var NewPostComponent = (function () {
     function NewPostComponent(router, postService) {
         this.router = router;
@@ -24,16 +25,15 @@ var NewPostComponent = (function () {
         var _this = this;
         this.postService.insert(this.post).subscribe(function (data) { return _this.router.navigate(['']); }, function (error) { return _this.error = "Could not save post"; });
     };
-    NewPostComponent = __decorate([
-        core_1.Component({
-            selector: 'new-post',
-            templateUrl: 'app/views/new-post.html',
-            providers: [post_service_1.PostService],
-            directives: [router_1.ROUTER_DIRECTIVES]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, post_service_1.PostService])
-    ], NewPostComponent);
     return NewPostComponent;
 }());
+NewPostComponent = __decorate([
+    core_1.Component({
+        selector: 'new-post',
+        templateUrl: 'app/views/new-post.html',
+        providers: [post_service_1.PostService]
+    }),
+    __metadata("design:paramtypes", [router_1.Router, post_service_1.PostService])
+], NewPostComponent);
 exports.NewPostComponent = NewPostComponent;
 //# sourceMappingURL=new-post-component.js.map

@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { User } from '../.././models/user';
-import { UserService } from '../.././services/user-service';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user-service';
 import { OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router'; 
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'user-edit',
 	templateUrl: 'app/views/users/edit.html',
-	providers: [ UserService ],
-	directives: [ ROUTER_DIRECTIVES ]
+	providers: [ UserService ]
 })
 export class UserEditComponent implements OnInit {
 

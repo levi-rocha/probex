@@ -8,16 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var Rx_1 = require('rxjs/Rx');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Rx_1 = require("rxjs/Rx");
 var SigninService = (function () {
     function SigninService(http) {
         this.http = http;
         this.serviceUrl = "http://localhost:8080/ProbexService/rest/signin";
         this.loggedUser = new Rx_1.BehaviorSubject("");
     }
-    SigninService.prototype.signin = function (username, password) {
+    SigninService.prototype.signIn = function (username, password) {
         var _this = this;
         this.validateAndGetUser(username, password).subscribe(function (data) {
             _this.user = data;
@@ -31,22 +32,23 @@ var SigninService = (function () {
             console.log("could not sign in");
         });
     };
-    SigninService.prototype.signout = function () {
+    SigninService.prototype.signOut = function () {
         delete sessionStorage['username'];
         this.loggedUser.next("");
+        this.router.navigate(['/signIn']);
     };
-    SigninService.prototype.signedin = function () {
+    SigninService.signedIn = function () {
         return sessionStorage['username'] != null;
     };
     SigninService.prototype.validateAndGetUser = function (username, password) {
-        var url = this.serviceUrl + '/u=' + username + '-p=' + password;
+        var url = this.serviceUrl + "/u=" + username + "-p=" + username;
         return this.http.get(url).map(function (res) { return res.json(); });
     };
-    SigninService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], SigninService);
     return SigninService;
 }());
+SigninService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], SigninService);
 exports.SigninService = SigninService;
 //# sourceMappingURL=signin-service.js.map

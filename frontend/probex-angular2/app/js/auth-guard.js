@@ -8,25 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var signin_service_1 = require('./services/signin-service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var signin_service_1 = require("./services/signin-service");
+var router_1 = require("@angular/router");
 var AuthGuard = (function () {
     function AuthGuard(signinService, router) {
         this.signinService = signinService;
         this.router = router;
     }
     AuthGuard.prototype.canActivate = function () {
-        if (this.signinService.signedin()) {
+        if (signin_service_1.SigninService.signedIn()) {
             return true;
         }
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signIn']);
     };
-    AuthGuard = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [signin_service_1.SigninService, router_1.Router])
-    ], AuthGuard);
     return AuthGuard;
 }());
+AuthGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [signin_service_1.SigninService, router_1.Router])
+], AuthGuard);
 exports.AuthGuard = AuthGuard;
 //# sourceMappingURL=auth-guard.js.map

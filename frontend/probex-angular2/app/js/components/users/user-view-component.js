@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var user_1 = require('../.././models/user');
-var user_service_1 = require('../.././services/user-service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var user_1 = require("../../models/user");
+var user_service_1 = require("../../services/user-service");
+var router_1 = require("@angular/router");
 var UserViewComponent = (function () {
     function UserViewComponent(route, userService) {
         this.route = route;
@@ -23,16 +24,16 @@ var UserViewComponent = (function () {
         this.id = +this.route.snapshot.params['id'];
         this.userService.findById(this.id).subscribe(function (data) { return _this.user = data; }, function (error) { return _this.error = "Could not find user"; });
     };
-    UserViewComponent = __decorate([
-        core_1.Component({
-            selector: 'user-view',
-            templateUrl: 'app/views/users/view.html',
-            providers: [user_service_1.UserService],
-            directives: [router_1.ROUTER_DIRECTIVES]
-        }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, user_service_1.UserService])
-    ], UserViewComponent);
     return UserViewComponent;
 }());
+UserViewComponent = __decorate([
+    core_1.Component({
+        selector: 'user-view',
+        templateUrl: 'app/views/users/view.html',
+        providers: [user_service_1.UserService]
+    }),
+    __metadata("design:paramtypes", [router_1.ActivatedRoute,
+        user_service_1.UserService])
+], UserViewComponent);
 exports.UserViewComponent = UserViewComponent;
 //# sourceMappingURL=user-view-component.js.map

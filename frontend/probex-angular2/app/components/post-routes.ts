@@ -1,9 +1,9 @@
-import { RouterConfig } from '@angular/router'; 
+import { Routes } from '@angular/router';
 import { NewPostComponent } from './new-post-component';
 import { PostListComponent } from './post-list-component';
 import { AuthGuard } from '../auth-guard';
 
-export const PostRoutes: RouterConfig = [
+export const PostRoutes: Routes = [
 	{ 
 		path: 'new-post', 
 		component: NewPostComponent, 
@@ -16,7 +16,7 @@ export const PostRoutes: RouterConfig = [
     },
 	{ 
 		path: '', 
-		redirectTo: '/post-list', 
-		terminal: true 
+		redirectTo: '/post-list',
+		pathMatch: 'full'
 	}
 ];

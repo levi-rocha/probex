@@ -33,7 +33,8 @@ public class UserDAO {
 				.getResultList();
 		Collection<UserPermissionsDTO> userDTOs = new HashSet<UserPermissionsDTO>();
 		for (User u : users) {
-			UserPermissionsDTO dto = new UserPermissionsDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail(), u.getPermissions());
+			UserPermissionsDTO dto = new UserPermissionsDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail(),
+					u.getPermissions());
 			userDTOs.add(dto);
 		}
 		return userDTOs;
