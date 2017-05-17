@@ -1,17 +1,14 @@
 package br.unifor.probex.dao;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import br.unifor.probex.dto.PostSimpleDTO;
 import br.unifor.probex.entity.Post;
-import br.unifor.probex.entity.User;
 
 @Stateless
 public class PostDAO {
@@ -28,22 +25,11 @@ public class PostDAO {
 		}
 	}
 
-	public Collection<PostSimpleDTO> list() {
-		Collection<Post> posts = manager
-				.createQuery("SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes", Post.class).getResultList();
-		Collection<PostSimpleDTO> postDTOs = new HashSet<PostSimpleDTO>();
-		for (Post p : posts) {
-			PostSimpleDTO dto = new PostSimpleDTO();
-			dto.setId(p.getId());
-			dto.setTitle(p.getTitle());
-			//TODO null check for author-less posts: handle as exception instead
-			if (p.getAuthor() != null) {
-				dto.setAuthorUsername(p.getAuthor().getUsername());
-			}
-			dto.setVoteCount(p.getVotes().size());
-			postDTOs.add(dto);
-		}
-		return postDTOs;
+	public List<Post> list() {
+		List<Post> posts = manager
+				.createQuery("SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes", Post.class)
+				.getResultList();
+		return posts;
 	}
 
 	public Post findById(Long id) {
@@ -51,6 +37,28 @@ public class PostDAO {
 				"select p from Post p left join fetch p.author left join fetch p.votes left join fetch p.comments where p.id = :id",
 				Post.class).setParameter("id", id).getSingleResult();
 		return post;
+	}
+
+	public List<Post> searchKeywords(List<String> keywords) {
+		if (keywords.size() <= 0)
+			return null;
+		List<Post> results = new ArrayList<Post>();
+		List<Post> searchResults = manager.createQuery(
+				"select p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)",
+				Post.class).setParameter("keyword", keywords.get(0)).getResultList();
+		keywords.remove(0);
+		for (Post p : searchResults) {
+			boolean hit = true;
+			for (String key : keywords) {
+				if (!p.getContent().toLowerCase().contains(key.toLowerCase())) {
+					hit = false;
+					break;
+				}
+			}
+			if (hit)
+				results.add(p);
+		}
+		return results;
 	}
 
 	public String update(Post post) {
@@ -64,7 +72,8 @@ public class PostDAO {
 
 			managed.setTitle(post.getTitle());
 			managed.setContent(post.getContent());
-			// TODO: votes, comments
+			managed.setComments(post.getComments());
+			managed.setVotes(post.getVotes());
 
 			return post.getTitle() + " updated";
 		} catch (PersistenceException e) {

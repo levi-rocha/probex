@@ -1,7 +1,5 @@
 package br.unifor.probex.dao;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -11,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -29,16 +26,10 @@ public class UserDAO {
 		}
 	}
 
-	public List<UserSimpleDTO> list() {
+	public List<User> list() {
 		List<User> users = manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permissions", User.class)
 				.getResultList();
-		List<UserSimpleDTO> userDTOs = new ArrayList<UserSimpleDTO>();
-		for (User u : users) {
-			UserSimpleDTO dto = new UserSimpleDTO(u.getId(), u.getUsername(), u.getPassword(), u.getEmail(),
-					u.getPermissions());
-			userDTOs.add(dto);
-		}
-		return userDTOs;
+		return users;
 	}
 
 	public User findByUsernameAndPassword(String username, String password) {
@@ -62,7 +53,7 @@ public class UserDAO {
 				User.class).setParameter("id", id).getSingleResult();
 		return user;
 	}
-	
+
 	public User findByUsername(String username) {
 		User user = (User) manager.createQuery(
 				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.username = :username",
@@ -71,7 +62,6 @@ public class UserDAO {
 	}
 
 	public String remove(Long id) {
-
 		try {
 			User user = manager.find(User.class, id);
 			manager.remove(user);
