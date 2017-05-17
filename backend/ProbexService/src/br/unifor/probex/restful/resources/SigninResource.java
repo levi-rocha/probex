@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.unifor.probex.business.UserBORemote;
+import br.unifor.probex.dto.UserDetailedDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -21,10 +22,10 @@ public class SigninResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User validate(User user) {
+	public UserDetailedDTO validate(User user) {
 		User data = (User) userBO.validateUserPassword(user.getUsername(), user.getPassword());
-		data.setPassword(null);
-		return data;
+		UserDetailedDTO dto = UserDetailedDTO.fromUser(data);
+		return dto;
 	}
 
 }

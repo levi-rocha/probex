@@ -12,6 +12,9 @@ import br.unifor.probex.entity.Post;
 
 @Stateless
 public class PostDAO {
+	
+	public static final String LATEST = " order by p.date desc";
+	public static final String POPULAR = " group by p.votes order by count(p.votes) desc";
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -25,10 +28,14 @@ public class PostDAO {
 		}
 	}
 
-	public List<Post> list() {
-		List<Post> posts = manager
-				.createQuery("SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes", Post.class)
-				.getResultList();
+	public List<Post> list(String orderBy) {
+		String query = null;
+		if (orderBy == null) {
+			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes";
+		} else {
+			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes" + orderBy;
+		}
+		List<Post> posts = manager.createQuery(query, Post.class).getResultList();
 		return posts;
 	}
 
@@ -39,13 +46,19 @@ public class PostDAO {
 		return post;
 	}
 
-	public List<Post> searchKeywords(List<String> keywords) {
+	public List<Post> searchKeywords(List<String> keywords, String orderBy) {
 		if (keywords.size() <= 0)
 			return null;
+		String query = null;
+		if (orderBy == null) {
+			query = "select p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)";
+		} else {
+			query = "select p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword) order by "
+					+ orderBy;
+		}
 		List<Post> results = new ArrayList<Post>();
-		List<Post> searchResults = manager.createQuery(
-				"select p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)",
-				Post.class).setParameter("keyword", keywords.get(0)).getResultList();
+		List<Post> searchResults = manager.createQuery(query, Post.class).setParameter("keyword", keywords.get(0))
+				.getResultList();
 		keywords.remove(0);
 		for (Post p : searchResults) {
 			boolean hit = true;

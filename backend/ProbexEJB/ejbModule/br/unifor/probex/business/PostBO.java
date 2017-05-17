@@ -20,12 +20,22 @@ public class PostBO implements PostBORemote {
 
 	@Override
 	public List<Post> listPosts() {
-		return this.postDAO.list();
+		return this.postDAO.list(null);
+	}
+
+	@Override
+	public List<Post> listPosts(String orderBy) {
+		return this.postDAO.list(orderBy);
 	}
 
 	@Override
 	public List<Post> searchKeywords(List<String> keywords) {
-		return this.postDAO.searchKeywords(keywords);
+		return this.postDAO.searchKeywords(keywords, null);
+	}
+
+	@Override
+	public List<Post> searchKeywords(List<String> keywords, String orderBy) {
+		return this.postDAO.searchKeywords(keywords, orderBy);
 	}
 
 	@Override

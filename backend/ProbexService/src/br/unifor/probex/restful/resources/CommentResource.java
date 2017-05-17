@@ -1,6 +1,7 @@
 package br.unifor.probex.restful.resources;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -14,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.unifor.probex.business.CommentBORemote;
+import br.unifor.probex.dto.CommentDTO;
 import br.unifor.probex.entity.Comment;
 
 @Stateless
@@ -26,14 +28,22 @@ public class CommentResource {
 	@Path("{id}")
 	@GET
 	@Produces("application/json")
-	public Comment findCommentById(@PathParam("id") Long id) {
-		return commentBO.findCommentById(id);
+	public CommentDTO findCommentById(@PathParam("id") Long id) {
+		Comment comment = commentBO.findCommentById(id);
+		CommentDTO dto = CommentDTO.fromComment(comment);
+		return dto;
 	}
 
 	@GET
 	@Produces("application/json")
-	public Collection<Comment> listComments() {
-		return commentBO.listComments();
+	public List<CommentDTO> listComments() {
+		List<Comment> comments = commentBO.listComments();
+		List<CommentDTO> dtos = new ArrayList<CommentDTO>();
+		for (Comment c : comments) {
+			CommentDTO dto = CommentDTO.fromComment(c);
+			dtos.add(dto);
+		}
+		return dtos;
 	}
 
 	@POST

@@ -10,8 +10,12 @@ import br.unifor.probex.entity.Post;
 public interface PostBORemote {
 
 	public List<Post> listPosts();
+	
+	public List<Post> listPosts(String orderBy);
 
 	public List<Post> searchKeywords(List<String> keywords);
+	
+	public List<Post> searchKeywords(List<String> keywords, String orderBy);
 
 	public String addPost(Post post);
 

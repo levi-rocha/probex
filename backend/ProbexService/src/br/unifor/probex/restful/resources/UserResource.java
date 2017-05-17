@@ -1,10 +1,7 @@
 package br.unifor.probex.restful.resources;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -19,10 +16,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import br.unifor.probex.business.UserBORemote;
-import br.unifor.probex.dto.PostSimpleDTO;
-import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.dto.UserDetailedDTO;
-import br.unifor.probex.entity.Post;
+import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -35,40 +30,26 @@ public class UserResource {
 	@Path("{id}")
 	@GET
 	@Produces("application/json")
-	public User findUserById(@PathParam("id") Long id) {
+	public UserDetailedDTO findUserById(@PathParam("id") Long id) {
 		User user = userBO.findUserById(id);
-		user.setPassword(null);
-		return user;
+		UserDetailedDTO dto = UserDetailedDTO.fromUser(user);
+		return dto;
 	}
 
 	@GET
 	@Produces("application/json")
-	public Collection<UserDetailedDTO> listUsers(@QueryParam("q") int quantity, @QueryParam("u") String username,
-			@QueryParam("s") int start) {
+	@SuppressWarnings("rawtypes")
+	public List listUsers(@QueryParam("q") int quantity, @QueryParam("u") String username, @QueryParam("s") int start) {
 		if (username != null) {
 			User user = userBO.findUserByUsername(username);
-			UserDetailedDTO dto = new UserDetailedDTO();
-			dto.setId(user.getId());
-			dto.setUsername(user.getUsername());
-			dto.setEmail(user.getEmail());
-			dto.setPermissions(user.getPermissions());
-			Set<PostSimpleDTO> posts = new HashSet<PostSimpleDTO>();
-			for (Post post : user.getPosts()) {
-				PostSimpleDTO pdto = new PostSimpleDTO();
-				pdto.setId(post.getId());
-				pdto.setTitle(post.getTitle());
-				pdto.setAuthorUsername(user.getUsername());
-				pdto.setVoteCount(post.getVotes().size());
-				posts.add(pdto);
-			}
-			dto.setPosts(posts);
-			Collection<UserDetailedDTO> data = new ArrayList<UserDetailedDTO>();
+			UserDetailedDTO dto = UserDetailedDTO.fromUser(user);
+			List<UserDetailedDTO> data = new ArrayList<UserDetailedDTO>();
 			data.add(dto);
 			return data;
 		}
-		List<UserSimpleDTO> data = userBO.listUsers();
+		List<User> data = userBO.listUsers();
 		if (quantity > 0) {
-			List<UserSimpleDTO> temp = new ArrayList<UserSimpleDTO>();
+			List<User> temp = new ArrayList<User>();
 			if (start < 0)
 				start = 0;
 			for (int i = start; i < start + quantity; i++) {
@@ -79,15 +60,10 @@ public class UserResource {
 			}
 			data = temp;
 		}
-		List<UserDetailedDTO> userData = new ArrayList<UserDetailedDTO>();
-		for (UserSimpleDTO u : data) {
-			User user = new User();
-			user.setId(u.getId());
-			user.setUsername(u.getUsername());
-			user.setEmail(u.getEmail());
-			user.setPassword(null);
-			user.setPermissions(u.getPermissions());
-			// user.setPosts(null);
+		List<UserSimpleDTO> userData = new ArrayList<UserSimpleDTO>();
+		for (User u : data) {
+			UserSimpleDTO dto = UserSimpleDTO.fromUser(u);
+			userData.add(dto);
 		}
 		return userData;
 	}
