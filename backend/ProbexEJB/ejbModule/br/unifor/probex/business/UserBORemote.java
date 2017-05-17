@@ -4,16 +4,15 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Remote
 public interface UserBORemote {
 
-	public List<UserSimpleDTO> listUsers();
+	public List<User> listUsers();
 
 	public User findUserById(Long id);
-	
+
 	public User findUserByUsername(String username);
 
 	public User validateUserPassword(String username, String password);

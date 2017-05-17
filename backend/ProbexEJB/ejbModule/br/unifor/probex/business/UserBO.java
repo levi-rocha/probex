@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.unifor.probex.dao.UserDAO;
-import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -20,7 +19,7 @@ public class UserBO implements UserBORemote {
 	}
 
 	@Override
-	public List<UserSimpleDTO> listUsers() {
+	public List<User> listUsers() {
 		return this.userDAO.list();
 	}
 
@@ -28,7 +27,7 @@ public class UserBO implements UserBORemote {
 	public User findUserById(Long id) {
 		return this.userDAO.findById(id);
 	}
-	
+
 	@Override
 	public User findUserByUsername(String username) {
 		return this.userDAO.findByUsername(username);

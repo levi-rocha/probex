@@ -1,12 +1,11 @@
 package br.unifor.probex.business;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.unifor.probex.dao.PostDAO;
-import br.unifor.probex.dto.PostSimpleDTO;
 import br.unifor.probex.entity.Post;
 
 @Stateless
@@ -20,8 +19,13 @@ public class PostBO implements PostBORemote {
 	}
 
 	@Override
-	public Collection<PostSimpleDTO> listPosts() {
+	public List<Post> listPosts() {
 		return this.postDAO.list();
+	}
+
+	@Override
+	public List<Post> searchKeywords(List<String> keywords) {
+		return this.postDAO.searchKeywords(keywords);
 	}
 
 	@Override

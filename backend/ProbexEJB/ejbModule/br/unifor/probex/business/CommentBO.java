@@ -1,6 +1,6 @@
 package br.unifor.probex.business;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -24,7 +24,7 @@ public class CommentBO implements CommentBORemote {
 	}
 
 	@Override
-	public Collection<Comment> listComments() {
+	public List<Comment> listComments() {
 		return this.commentDAO.list();
 	}
 
