@@ -1,6 +1,7 @@
 package br.unifor.probex.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,9 +13,9 @@ import br.unifor.probex.entity.Post;
 
 @Stateless
 public class PostDAO {
-	
+
 	public static final String LATEST = " order by p.date desc";
-	public static final String POPULAR = " group by p.votes order by count(p.votes) desc";
+	public static final String POPULAR = " group by p, a order by count(v) desc)";
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -32,8 +33,34 @@ public class PostDAO {
 		String query = null;
 		if (orderBy == null) {
 			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes";
+		} else if (POPULAR.equals(orderBy)) {
+			// caso especial onde o HQL e complicado
+			List<Long> pids = new ArrayList<Long>();
+			// subquery pega os ids dos posts com mais votos, na ordem, com quantidade maxima
+			String subquery = "select distinct p.id, count(v.id) from Post p left join p.votes v group by p.id order by count(v.id) desc";
+			List<Object[]> list = manager.createQuery(subquery).getResultList();
+			for (Object[] ob : list) {
+				Long id = (Long) ob[0];
+				Long count = (Long) ob[1];
+				System.out.println("post id = " + id + " | count = " + count);
+				pids.add(id);
+			}
+			// query pega os posts cujos ips foram pegos pelo subquery. porem, o distinct desfaz a ordem
+			query = "select distinct p from Post p left join fetch p.author left join fetch p.votes where p.id in :pids";
+			List<Post> data = manager.createQuery(query, Post.class).setParameter("pids", pids).getResultList();
+			// posts adicionados a um map com seus ids para facilitar localizacao
+			HashMap<Long, Post> dataMap = new HashMap<Long, Post>();
+			for (Post p : data) {
+				dataMap.put(p.getId(), p);
+			}
+			// lista final de posts preenchida na ordem com os posts do map
+			List<Post> posts = new ArrayList<Post>();
+			for (Long id : pids) {
+				posts.add(dataMap.get(id));
+			}
+			return posts;
 		} else {
-			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes" + orderBy;
+			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author a LEFT JOIN FETCH p.votes v" + orderBy;
 		}
 		List<Post> posts = manager.createQuery(query, Post.class).getResultList();
 		return posts;
