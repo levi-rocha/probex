@@ -29,26 +29,34 @@ public class PostDAO {
 		}
 	}
 
-	public List<Post> list(String orderBy) {
+	public List<Post> list(String orderBy, int quantity) {
 		String query = null;
 		if (orderBy == null) {
 			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author LEFT JOIN FETCH p.votes";
 		} else if (POPULAR.equals(orderBy)) {
 			// caso especial onde o HQL e complicado
 			List<Long> pids = new ArrayList<Long>();
-			// subquery pega os ids dos posts com mais votos, na ordem, com quantidade maxima
+			// subquery pega os ids dos posts com mais votos, na ordem, com
+			// quantidade maxima
 			String subquery = "select distinct p.id, count(v.id) from Post p left join p.votes v group by p.id order by count(v.id) desc";
-			List<Object[]> list = manager.createQuery(subquery).getResultList();
+			List<Object[]> list;
+			if (quantity > 0) {
+				list = manager.createQuery(subquery).setMaxResults(quantity).getResultList();
+			} else {
+				list = manager.createQuery(subquery).getResultList();
+			}
 			for (Object[] ob : list) {
 				Long id = (Long) ob[0];
 				Long count = (Long) ob[1];
 				System.out.println("post id = " + id + " | count = " + count);
 				pids.add(id);
 			}
-			// query pega os posts cujos ips foram pegos pelo subquery. porem, o distinct desfaz a ordem
+			// query pega os posts cujos ips foram pegos pelo subquery. porem, o
+			// distinct desfaz a ordem
 			query = "select distinct p from Post p left join fetch p.author left join fetch p.votes where p.id in :pids";
 			List<Post> data = manager.createQuery(query, Post.class).setParameter("pids", pids).getResultList();
-			// posts adicionados a um map com seus ids para facilitar localizacao
+			// posts adicionados a um map com seus ids para facilitar
+			// localizacao
 			HashMap<Long, Post> dataMap = new HashMap<Long, Post>();
 			for (Post p : data) {
 				dataMap.put(p.getId(), p);
@@ -62,8 +70,12 @@ public class PostDAO {
 		} else {
 			query = "SELECT p FROM Post p LEFT JOIN FETCH p.author a LEFT JOIN FETCH p.votes v" + orderBy;
 		}
-		List<Post> posts = manager.createQuery(query, Post.class).getResultList();
-		return posts;
+		if (quantity > 0) {
+			return manager.createQuery(query, Post.class).setMaxResults(quantity).getResultList();
+		} else {
+			return manager.createQuery(query, Post.class).getResultList();
+		}
+
 	}
 
 	public Post findById(Long id) {
@@ -73,7 +85,7 @@ public class PostDAO {
 		return post;
 	}
 
-	public List<Post> searchKeywords(List<String> keywords, String orderBy) {
+	public List<Post> searchKeywords(List<String> keywords, String orderBy, int quantity) {
 		if (keywords.size() <= 0)
 			return null;
 		String query = null;
@@ -85,7 +97,7 @@ public class PostDAO {
 		}
 		List<Post> results = new ArrayList<Post>();
 		List<Post> searchResults = manager.createQuery(query, Post.class).setParameter("keyword", keywords.get(0))
-				.getResultList();
+				.setMaxResults(quantity).getResultList();
 		keywords.remove(0);
 		for (Post p : searchResults) {
 			boolean hit = true;

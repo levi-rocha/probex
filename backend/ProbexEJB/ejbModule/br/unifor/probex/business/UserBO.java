@@ -19,8 +19,13 @@ public class UserBO implements UserBORemote {
 	}
 
 	@Override
+	public List<User> listUsers(int quantity) {
+		return this.userDAO.list(quantity);
+	}
+
+	@Override
 	public List<User> listUsers() {
-		return this.userDAO.list();
+		return this.userDAO.list(0);
 	}
 
 	@Override
@@ -52,4 +57,5 @@ public class UserBO implements UserBORemote {
 	public String updateUser(User user) {
 		return this.userDAO.update(user);
 	}
+
 }

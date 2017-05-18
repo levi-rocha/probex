@@ -15,9 +15,13 @@ public class CommentDAO {
 	@PersistenceContext
 	private EntityManager manager;
 
-	public List<Comment> list() {
-		List<Comment> comments = manager.createQuery("SELECT c FROM Comment c", Comment.class).getResultList();
-		return comments;
+	public List<Comment> list(int quantity) {
+		if (quantity > 0) {
+			return manager.createQuery("SELECT c FROM Comment c", Comment.class).setMaxResults(quantity)
+					.getResultList();
+		} else {
+			return manager.createQuery("SELECT c FROM Comment c", Comment.class).getResultList();
+		}
 	}
 
 	public Comment findById(Long id) {

@@ -38,20 +38,25 @@ public class UserResource {
 
 	@GET
 	@Produces("application/json")
-	@SuppressWarnings("rawtypes")
-	public List listUsers(@QueryParam("q") int quantity, @QueryParam("u") String username, @QueryParam("s") int start) {
+	public List<UserSimpleDTO> listUsers(@QueryParam("q") int quantity, @QueryParam("u") String username,
+			@QueryParam("s") int start) {
 		if (username != null) {
 			User user = userBO.findUserByUsername(username);
-			UserDetailedDTO dto = UserDetailedDTO.fromUser(user);
-			List<UserDetailedDTO> data = new ArrayList<UserDetailedDTO>();
+			UserSimpleDTO dto = UserSimpleDTO.fromUser(user);
+			List<UserSimpleDTO> data = new ArrayList<UserSimpleDTO>();
 			data.add(dto);
 			return data;
 		}
-		List<User> data = userBO.listUsers();
+		if (start < 0)
+			start = 0;
+		List<User> data;
+		if (quantity > 0) {
+			data = userBO.listUsers(quantity + start);
+		} else {
+			data = userBO.listUsers();
+		}
 		if (quantity > 0) {
 			List<User> temp = new ArrayList<User>();
-			if (start < 0)
-				start = 0;
 			for (int i = start; i < start + quantity; i++) {
 				if (data.size() < i + 1) {
 					break;

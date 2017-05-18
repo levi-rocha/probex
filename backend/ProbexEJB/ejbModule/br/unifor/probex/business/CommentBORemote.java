@@ -10,6 +10,8 @@ import br.unifor.probex.entity.Comment;
 public interface CommentBORemote {
 
 	public List<Comment> listComments();
+	
+	public List<Comment> listComments(int quantity);
 
 	public Comment findCommentById(Long id);
 

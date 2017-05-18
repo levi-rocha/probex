@@ -11,6 +11,8 @@ public interface UserBORemote {
 
 	public List<User> listUsers();
 
+	public List<User> listUsers(int quantity);
+
 	public User findUserById(Long id);
 
 	public User findUserByUsername(String username);

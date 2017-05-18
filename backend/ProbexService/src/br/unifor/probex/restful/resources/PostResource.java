@@ -41,6 +41,8 @@ public class PostResource {
 	@Produces("application/json")
 	public List<PostSimpleDTO> listPosts(@QueryParam("q") int quantity, @QueryParam("c") String criteria,
 			@QueryParam("s") int start, @QueryParam("k") String keywords) {
+		if (start < 0)
+			start = 0;
 		String orderBy = null;
 		System.out.println("CRITERIA: " + criteria);
 		System.out.println("QUANTITY: " + quantity);
@@ -58,15 +60,21 @@ public class PostResource {
 			for (String key : keys) {
 				keyList.add(key);
 			}
-			data = postBO.searchKeywords(keyList, orderBy);
+			if (quantity > 0) {
+				data = postBO.searchKeywords(keyList, orderBy, quantity + start);
+			} else {
+				data = postBO.searchKeywords(keyList, orderBy);
+			}
 		} else {
-			data = postBO.listPosts(orderBy);
+			if (quantity > 0) {
+				data = postBO.listPosts(orderBy, quantity + start);
+			} else {
+				data = postBO.listPosts(orderBy);
+			}
 		}
 
 		if (quantity > 0) {
 			List<Post> temp = new ArrayList<Post>();
-			if (start < 0)
-				start = 0;
 			for (int i = start; i < start + quantity; i++) {
 				if (data.size() < i + 1) {
 					break;

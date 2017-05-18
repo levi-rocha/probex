@@ -12,10 +12,18 @@ public interface PostBORemote {
 	public List<Post> listPosts();
 	
 	public List<Post> listPosts(String orderBy);
+	
+	public List<Post> listPosts(int quantity);
+	
+	public List<Post> listPosts(String orderBy, int quantity);
 
 	public List<Post> searchKeywords(List<String> keywords);
 	
 	public List<Post> searchKeywords(List<String> keywords, String orderBy);
+	
+	public List<Post> searchKeywords(List<String> keywords, int quantity);
+	
+	public List<Post> searchKeywords(List<String> keywords, String orderBy, int quantity);
 
 	public String addPost(Post post);
 

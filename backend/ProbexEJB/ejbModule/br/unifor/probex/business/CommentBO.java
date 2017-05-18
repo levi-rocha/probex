@@ -19,13 +19,18 @@ public class CommentBO implements CommentBORemote {
 	}
 
 	@Override
-	public Comment findCommentById(Long id) {
-		return this.commentDAO.findById(id);
+	public List<Comment> listComments(int quantity) {
+		return this.commentDAO.list(quantity);
 	}
 
 	@Override
 	public List<Comment> listComments() {
-		return this.commentDAO.list();
+		return this.commentDAO.list(0);
+	}
+
+	@Override
+	public Comment findCommentById(Long id) {
+		return this.commentDAO.findById(id);
 	}
 
 	@Override

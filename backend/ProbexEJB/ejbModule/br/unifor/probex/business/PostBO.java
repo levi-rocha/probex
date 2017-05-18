@@ -19,23 +19,13 @@ public class PostBO implements PostBORemote {
 	}
 
 	@Override
-	public List<Post> listPosts() {
-		return this.postDAO.list(null);
+	public List<Post> listPosts(String orderBy, int quantity) {
+		return this.postDAO.list(orderBy, quantity);
 	}
 
 	@Override
-	public List<Post> listPosts(String orderBy) {
-		return this.postDAO.list(orderBy);
-	}
-
-	@Override
-	public List<Post> searchKeywords(List<String> keywords) {
-		return this.postDAO.searchKeywords(keywords, null);
-	}
-
-	@Override
-	public List<Post> searchKeywords(List<String> keywords, String orderBy) {
-		return this.postDAO.searchKeywords(keywords, orderBy);
+	public List<Post> searchKeywords(List<String> keywords, String orderBy, int quantity) {
+		return this.postDAO.searchKeywords(keywords, orderBy, quantity);
 	}
 
 	@Override
@@ -57,4 +47,37 @@ public class PostBO implements PostBORemote {
 	public String updatePost(Post post) {
 		return this.postDAO.update(post);
 	}
+
+	/* overloads */
+
+	@Override
+	public List<Post> listPosts() {
+		return this.postDAO.list(null, 0);
+	}
+
+	@Override
+	public List<Post> listPosts(String orderBy) {
+		return this.postDAO.list(orderBy, 0);
+	}
+
+	@Override
+	public List<Post> listPosts(int quantity) {
+		return this.postDAO.list(null, quantity);
+	}
+
+	@Override
+	public List<Post> searchKeywords(List<String> keywords) {
+		return this.postDAO.searchKeywords(keywords, null, 0);
+	}
+
+	@Override
+	public List<Post> searchKeywords(List<String> keywords, String orderBy) {
+		return this.postDAO.searchKeywords(keywords, orderBy, 0);
+	}
+
+	@Override
+	public List<Post> searchKeywords(List<String> keywords, int quantity) {
+		return this.postDAO.searchKeywords(keywords, null, quantity);
+	}
+
 }
