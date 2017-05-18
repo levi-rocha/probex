@@ -86,31 +86,80 @@ public class PostDAO {
 	}
 
 	public List<Post> searchKeywords(List<String> keywords, String orderBy, int quantity) {
-		if (keywords.size() <= 0)
-			return null;
-		String query = null;
-		if (orderBy == null) {
-			query = "select p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)";
-		} else {
-			query = "select p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword) order by "
-					+ orderBy;
-		}
 		List<Post> results = new ArrayList<Post>();
-		List<Post> searchResults = manager.createQuery(query, Post.class).setParameter("keyword", keywords.get(0))
-				.setMaxResults(quantity).getResultList();
-		keywords.remove(0);
-		for (Post p : searchResults) {
-			boolean hit = true;
-			for (String key : keywords) {
-				if (!p.getContent().toLowerCase().contains(key.toLowerCase())) {
-					hit = false;
-					break;
-				}
+		boolean sortPopular = false;
+		for (String keyword : keywords) {
+			String query = null;
+			if (orderBy == null) {
+				query = "select distinct p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)";
+			} else if (POPULAR.equals(orderBy)) {
+				sortPopular = true;
+				query = "select distinct p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)";
+			} else {
+				query = "select distinct p from Post p left join fetch p.author left join fetch p.votes where lower(p.content) like lower(:keyword)"
+						+ orderBy;
 			}
-			if (hit)
-				results.add(p);
+			List<Post> searchResults;
+			if (quantity > 0 && !sortPopular) {
+				searchResults = manager.createQuery(query, Post.class).setParameter("keyword", "%" + keyword + "%")
+						.setMaxResults(quantity).getResultList();
+			} else {
+				searchResults = manager.createQuery(query, Post.class).setParameter("keyword", "%" + keyword + "%")
+						.getResultList();
+			}
+			for (Post p : searchResults) {
+				boolean hit = true;
+				for (String key : keywords) {
+					if (!p.getContent().toLowerCase().contains(key.toLowerCase())) {
+						hit = false;
+						break;
+					}
+				}
+				if (hit && !results.contains(p))
+					results.add(p);
+			}
 		}
-		return results;
+		if (sortPopular) {
+			List<Long> ids = new ArrayList<Long>();
+			for (Post p : results) {
+				ids.add(p.getId());
+			}
+			// caso especial onde o HQL e complicado
+			List<Long> pids = new ArrayList<Long>();
+			// subquery pega os ids dos posts com mais votos, na ordem, com
+			// quantidade maxima
+			String subquery = "select distinct p.id, count(v.id) from Post p left join p.votes v where p.id in :ids group by p.id order by count(v.id) desc";
+			List<Object[]> list;
+			if (quantity > 0) {
+				list = manager.createQuery(subquery).setMaxResults(quantity).setParameter("ids", ids).getResultList();
+			} else {
+				list = manager.createQuery(subquery).setParameter("ids", ids).getResultList();
+			}
+			for (Object[] ob : list) {
+				Long id = (Long) ob[0];
+				Long count = (Long) ob[1];
+				System.out.println("post id = " + id + " | count = " + count);
+				pids.add(id);
+			}
+			// query pega os posts cujos ips foram pegos pelo subquery. porem, o
+			// distinct desfaz a ordem
+			String query = "select distinct p from Post p left join fetch p.author left join fetch p.votes where p.id in :pids";
+			List<Post> data = manager.createQuery(query, Post.class).setParameter("pids", pids).getResultList();
+			// posts adicionados a um map com seus ids para facilitar
+			// localizacao
+			HashMap<Long, Post> dataMap = new HashMap<Long, Post>();
+			for (Post p : data) {
+				dataMap.put(p.getId(), p);
+			}
+			// lista final de posts preenchida na ordem com os posts do map
+			List<Post> posts = new ArrayList<Post>();
+			for (Long id : pids) {
+				posts.add(dataMap.get(id));
+			}
+			return posts;
+		} else {
+			return results;
+		}
 	}
 
 	public String update(Post post) {

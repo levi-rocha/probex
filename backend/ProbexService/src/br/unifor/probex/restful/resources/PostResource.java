@@ -59,6 +59,7 @@ public class PostResource {
 			List<String> keyList = new ArrayList<String>();
 			for (String key : keys) {
 				keyList.add(key);
+				System.out.println("adding key: " + key);
 			}
 			if (quantity > 0) {
 				data = postBO.searchKeywords(keyList, orderBy, quantity + start);
