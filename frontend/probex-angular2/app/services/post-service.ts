@@ -5,9 +5,7 @@ import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class PostService {
-
     serviceUrl: string = "http://localhost:8080/ProbexService/rest/posts";
-
     constructor(private http: Http) {}
 
     listLast(number: number) {
@@ -21,5 +19,4 @@ export class PostService {
         let body = JSON.stringify(post);
         return this.http.post(this.serviceUrl, body, options).map(res => res.text());
     }
-
 }

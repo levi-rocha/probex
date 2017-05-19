@@ -18,20 +18,22 @@ var SigninService = (function () {
         this.serviceUrl = "http://localhost:8080/ProbexService/rest/signin";
         this.loggedUser = new Rx_1.BehaviorSubject("");
     }
-    SigninService.prototype.signIn = function (username, password) {
-        var _this = this;
-        this.validateAndGetUser(username, password).subscribe(function (data) {
-            _this.user = data;
-            if (_this.user != null) {
-                console.log("succesful");
-                sessionStorage['username'] = _this.user.username;
-                _this.loggedUser.next(_this.user.username);
-            }
-        }, function (error) {
-            _this.error = "Could not sign in";
-            console.log("could not sign in");
-        });
-    };
+    // signIn(username: string, password: string) {
+    //     this.validateAndGetUser(username, password).subscribe(
+    //         data => {
+    //             this.user = data;
+    //             if (this.user != null) {
+    //                 console.log("succesful");
+    //                 sessionStorage['username'] = this.user.username;
+    //                 this.loggedUser.next(this.user.username);
+    //             }
+    //         },
+    //         error => {
+    //             this.error = "Could not sign in";
+    //             console.log("could not sign in");
+    //         }
+    //     );
+    // }
     SigninService.prototype.signOut = function () {
         delete sessionStorage['username'];
         this.loggedUser.next("");
@@ -40,9 +42,11 @@ var SigninService = (function () {
     SigninService.signedIn = function () {
         return sessionStorage['username'] != null;
     };
-    SigninService.prototype.validateAndGetUser = function (username, password) {
-        var url = this.serviceUrl + "/u=" + username + "-p=" + username;
-        return this.http.get(url).map(function (res) { return res.json(); });
+    SigninService.prototype.signIn = function (username, password) {
+        return this.http
+            .post(this.serviceUrl, { username: username, password: password })
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || JSON.stringify(error.json())); });
     };
     return SigninService;
 }());

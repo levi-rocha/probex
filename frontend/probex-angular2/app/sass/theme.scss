@@ -9,8 +9,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$probex-primary: mat-palette($mat-orange);
-$probex-accent:  mat-palette($mat-deep-orange, A200, A100, A400);
+$probex-primary: mat-palette($mat-blue);
+$probex-accent:  mat-palette($mat-deep-purple, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $probex-warn:    mat-palette($mat-red);

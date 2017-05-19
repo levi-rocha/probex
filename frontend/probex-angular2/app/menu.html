@@ -1,31 +1,12 @@
-<!--<div class="bs-example" [hidden]="!signedIn">-->
-    <!--<nav id="myNavbar" class="navbar navbar-default" role="navigation">     -->
-        <!--<div class="container">                  -->
-            <!--<div class="collapse navbar-collapse">-->
-                <!--<ul class="nav navbar-nav">-->
-                    <!--<li>-->
-                        <!--<a [routerLink]="['/post-list']">Home</a>                       -->
-                    <!--</li>-->
-                    <!--<li class="dropdown" [hidden]="loggedUsername==''">-->
-                        <!--<a href="" data-toggle="dropdown" class="dropdown-toggle">{{loggedUsername}} <b class="caret"></b></a>-->
-                        <!--<ul class="dropdown-menu">-->
-                            <!--<li><a [routerLink]="['/signout']">Sign out</a></li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                <!--</ul>             -->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</nav>  -->
-<!--</div>-->
-
-<div>
-    <md-sidenav mode="side" class="app-sidenav"></md-sidenav>
+<div [hidden]="!isLogged()">
     <md-toolbar color="primary">
-        <button md-button class="app-icon-button" (click)="sidenav.toggle()">
-            <i class="material-icons app-toolbar-menu">menu</i>
-        </button>
-
         <button md-button [routerLink]="['/post-list']">Home</button>
+        <span class="mat-spacer"></span>
+        <button md-button [mdMenuTriggerFor]="menu" id="main-menu-toggle"><img src="http://lorempixel.com/36/36/animals"> {{loggedUsername()}} <b class="caret"></b></button>
+        <md-menu #menu="mdMenu">
+            <button md-menu-item><img src="http://lorempixel.com/36/36/animals"> {{loggedUsername()}}</button>
+            <button md-menu-item [routerLink]="['/signout']">Sair</button>
+        </md-menu>
     </md-toolbar>
 </div>
 

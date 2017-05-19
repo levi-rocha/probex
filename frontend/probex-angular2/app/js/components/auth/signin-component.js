@@ -12,11 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var signin_service_1 = require("../../services/signin-service");
+var material_1 = require("@angular/material");
 var SigninComponent = (function () {
-    function SigninComponent(router, signinService) {
+    function SigninComponent(router, signinService, snackBar) {
         var _this = this;
         this.router = router;
         this.signinService = signinService;
+        this.snackBar = snackBar;
         this.signinService.loggedUser.subscribe(function (value) {
             console.log(value);
             if (value != "") {
@@ -24,10 +26,19 @@ var SigninComponent = (function () {
             }
         }, function (error) {
             _this.error = "Could not log in";
+            _this.snackBar.open("Falha ao efetuar login", "OK");
         });
     }
     SigninComponent.prototype.signIn = function () {
-        this.signinService.signIn(this.username, this.password);
+        var _this = this;
+        this.signinService.signIn(this.username, this.password).subscribe(function (user) {
+            if (user != null) {
+                sessionStorage['username'] = user.username;
+                _this.router.navigate(['']);
+            }
+        }, function (error) {
+            _this.snackBar.open("Erro: " + error, "OK");
+        });
     };
     return SigninComponent;
 }());
@@ -35,9 +46,9 @@ SigninComponent = __decorate([
     core_1.Component({
         selector: 'signIn',
         templateUrl: 'app/views/signin.html',
-        providers: [signin_service_1.SigninService]
+        providers: [signin_service_1.SigninService, material_1.MdSnackBar]
     }),
-    __metadata("design:paramtypes", [router_1.Router, signin_service_1.SigninService])
+    __metadata("design:paramtypes", [router_1.Router, signin_service_1.SigninService, material_1.MdSnackBar])
 ], SigninComponent);
 exports.SigninComponent = SigninComponent;
 //# sourceMappingURL=signin-component.js.map

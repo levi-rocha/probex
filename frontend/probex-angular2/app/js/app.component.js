@@ -13,14 +13,20 @@ var core_1 = require("@angular/core");
 var signin_service_1 = require("./services/signin-service");
 var AppComponent = (function () {
     function AppComponent(signinService) {
-        var _this = this;
         this.signinService = signinService;
-        this.signedIn = this.loggedUsername != '' && this.loggedUsername != null;
-        this.signinService.loggedUser.subscribe(function (value) {
-            _this.loggedUsername = value;
-            console.log("loggedUser changed: " + value);
-        }, function (error) { return console.log("error"); });
+        // this.signinService.loggedUser.subscribe(
+        //   value => {
+        //     this.loggedUsername = value;
+        //     console.log("loggedUser changed: " + value);
+        //   }, error => console.log("error")
+        // );
     }
+    AppComponent.prototype.isLogged = function () {
+        return sessionStorage['username'] != null;
+    };
+    AppComponent.prototype.loggedUsername = function () {
+        return sessionStorage['username'] || '';
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([

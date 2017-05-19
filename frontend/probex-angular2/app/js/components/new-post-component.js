@@ -23,7 +23,10 @@ var NewPostComponent = (function () {
     };
     NewPostComponent.prototype.submit = function () {
         var _this = this;
-        this.postService.insert(this.post).subscribe(function (data) { return _this.router.navigate(['']); }, function (error) { return _this.error = "Could not save post"; });
+        this.postService.insert(this.post).subscribe(function (data) {
+            _this.post = null;
+            _this.router.navigate(['']);
+        }, function (error) { return _this.error = "Could not save post"; });
     };
     return NewPostComponent;
 }());

@@ -1,5 +1,17 @@
+body {
+    background-color: #f3f3f3;
+}
+
 .full-width {
     width: 100%;
+}
+
+.login md-card-header {
+    margin: 30px 20px;
+}
+
+.login .mat-card-header-text {
+    margin: 0;
 }
 
 .loader {
@@ -11,14 +23,50 @@
     animation: spin 2s linear infinite;
 }
 
+.margin-auto {
+    margin: auto;
+}
+
+#main-menu-toggle img {
+    border-radius: 50%;
+}
+
+.mat-spacer {
+    flex: 1 1 auto;
+}
+
+.post-list md-card {
+    margin: 15px;
+}
+
+.post-list md-card md-card-actions {
+    margin-bottom: 0;
+}
+
+.post-actions {
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 5px;
+    color: #999999;
+}
+
+.post-actions .material-icons {
+    margin: 0 10px;
+}
+
 .vertical-center {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */
     display: flex;
     align-items: center;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

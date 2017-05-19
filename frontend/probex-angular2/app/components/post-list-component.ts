@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Post } from '.././models/post';
 import { PostService } from '.././services/post-service';
 import { OnInit } from '@angular/core';
+import {NewPostComponent} from "./new-post-component";
 
 @Component({
 	selector: 'post-list',
 	templateUrl: 'app/views/post-list.html',
-	providers: [ PostService ]
+	providers: [PostService]
 })
 export class PostListComponent implements OnInit {
 

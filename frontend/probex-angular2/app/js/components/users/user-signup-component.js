@@ -9,15 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var common_1 = require("@angular/common");
 var core_1 = require("@angular/core");
-var user_1 = require("../.././models/user");
-var user_service_1 = require("../.././services/user-service");
+var user_1 = require("../../models/user");
+var user_service_1 = require("../../services/user-service");
 var router_1 = require("@angular/router");
 var UserSignupComponent = (function () {
-    function UserSignupComponent(router, userService) {
+    function UserSignupComponent(_location, router, userService) {
+        this._location = _location;
         this.router = router;
         this.userService = userService;
     }
+    UserSignupComponent.prototype.goBack = function () {
+        this._location.back();
+    };
     UserSignupComponent.prototype.ngOnInit = function () {
         this.user = new user_1.User();
     };
@@ -33,7 +38,7 @@ UserSignupComponent = __decorate([
         templateUrl: 'app/views/users/signup.html',
         providers: [user_service_1.UserService]
     }),
-    __metadata("design:paramtypes", [router_1.Router, user_service_1.UserService])
+    __metadata("design:paramtypes", [common_1.Location, router_1.Router, user_service_1.UserService])
 ], UserSignupComponent);
 exports.UserSignupComponent = UserSignupComponent;
 //# sourceMappingURL=user-signup-component.js.map

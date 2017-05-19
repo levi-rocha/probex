@@ -1,24 +1,13 @@
-<h1>New Post</h1>
-
-<div class="well">
-    <form role="form">
-        <div class="form-group">
-            <label class="control-label" for="title">Title</label>
-            <input type="text" class="form-control" name="title" 
-                id="title" [(ngModel)]="post.title">
+<md-card>
+    <md-card-content>
+        <md-input-container class="full-width">
+            <h4><input mdInput name="title" [(ngModel)]="post.title" placeholder="Qual o seu problema?"></h4>
+        </md-input-container>
+        <div [hidden]="!post.title">
+            <md-input-container class="full-width">
+                <textarea mdInput name="content" [(ngModel)]="post.content" placeholder="Descreva o seu problema" rows="4"></textarea>
+            </md-input-container>
+            <button md-raised-button color="primary" class="full-width" (click)="submit()">Reclamar</button>
         </div>
-        <div class="form-group">
-            <label class="control-label" for="content">Text</label>
-            <textarea class="form-control" name="content" 
-                id="content" [(ngModel)]="post.content"></textarea>
-        </div>
-        <div class="form-group text-center">
-            <button class="btn btn-success" (click)="submit()">
-                Submit
-            </button>
-			<a class="btn btn-default" [routerLink]="['/post-list']">
-                Back
-            </a>
-        </div>
-    </form>
-</div>
+    </md-card-content>
+</md-card>

@@ -1,9 +1,12 @@
 <div class="vertical-center">
     <div class="col-xs-12 col-sm-12 col-md-12 col-sm-offset-0 col-lg-4 col-lg-offset-4">
-        <md-card>
+        <md-card class="login">
             <md-card-header>
-                <h2>Criar usuário</h2>
+                <img src="http://placehold.it/200" class="margin-auto">
             </md-card-header>
+            <md-card-subtitle>
+                <h3 class="text-center">Criar usuário</h3>
+            </md-card-subtitle>
             <md-card-content>
                 <div>
                     <md-input-container class="full-width">
@@ -22,8 +25,12 @@
                 </div>
             </md-card-content>
             <md-card-actions>
-                <button md-raised-button color="primary" (click)="signUp()">Cadastrar</button>
-                <button md-button>Voltar</button>
+                <div>
+                    <button md-button class="full-width" (click)="_location.back()">Voltar</button>
+                </div>
+                <div>
+                    <button md-raised-button class="full-width" color="primary" (click)="signUp()">Cadastrar</button>
+                </div>
             </md-card-actions>
         </md-card>
     </div>

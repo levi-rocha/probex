@@ -1,31 +1,36 @@
-import { Component } from '@angular/core';
-import { User } from '../.././models/user';
-import { UserService } from '../.././services/user-service';
-import { OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Location} from '@angular/common';
+import {Component} from '@angular/core';
+import {User} from '../../models/user';
+import {UserService} from '../../services/user-service';
+import {OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
-	selector: 'user-signup',
-	templateUrl: 'app/views/users/signup.html',
-	providers: [ UserService ]
+    selector: 'user-signup',
+    templateUrl: 'app/views/users/signup.html',
+    providers: [UserService]
 })
 export class UserSignupComponent implements OnInit {
 
-	private user: User;
+    private user: User;
 
-	error: string;
+    error: string;
 
-	constructor(private router: Router, private userService: UserService) {
-	}
+    constructor(private _location: Location, private router: Router, private userService: UserService) {
+    }
 
-	ngOnInit() {
-		this.user = new User();
-	}
+    goBack(){
+        this._location.back();
+    }
 
-	signUp() {
-		this.userService.insert(this.user).subscribe(
-			data => this.router.navigate(['/user-list']),
-			error => this.error = "Could not save user"
-		);
-	}
+    ngOnInit() {
+        this.user = new User();
+    }
+
+    signUp() {
+        this.userService.insert(this.user).subscribe(
+            data => this.router.navigate(['/user-list']),
+            error => this.error = "Could not save user"
+        );
+    }
 }

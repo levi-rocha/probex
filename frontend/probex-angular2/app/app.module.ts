@@ -15,12 +15,17 @@ import {SigninComponent} from "./components/auth/signin-component";
 import {PostListComponent} from "./components/post-list-component";
 import {AuthGuard} from "./auth-guard";
 import {SigninService} from "./services/signin-service";
-import {MdButtonModule, MdCardModule, MdInputModule, MdSidenavModule, MdToolbarModule} from "@angular/material";
+import {
+    MdButtonModule, MdCardModule, MdInputModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSidenavModule,
+    MdSnackBarModule,
+    MdToolbarModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES, AUTH_PROVIDERS), FormsModule, HttpModule,
-        MdButtonModule, MdSidenavModule, MdToolbarModule, MdCardModule, MdInputModule, BrowserAnimationsModule],
+        MdButtonModule, MdSidenavModule, MdToolbarModule, MdCardModule, MdInputModule, BrowserAnimationsModule,
+        MdSnackBarModule, MdMenuModule, MdProgressBarModule, MdListModule],
     declarations: [AppComponent, UserListComponent, UserSignupComponent, UserEditComponent, UserViewComponent,
         SigninComponent, NewPostComponent, PostListComponent],
     providers: [AuthGuard, SigninService],

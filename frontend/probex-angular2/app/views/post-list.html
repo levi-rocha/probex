@@ -1,20 +1,33 @@
-<h1>Latest Posts</h1>
+<div class="post-list">
+    <new-post></new-post>
+    <md-card *ngFor="let post of posts">
+        <md-card-header>
+            <md-card-title><h3>{{ post.title }}</h3></md-card-title>
+        </md-card-header>
+        <md-card-content>{{ post.content }}</md-card-content>
+        <md-card-actions>
+            <div class="post-actions post-likes-container">
+                <i class="material-icons md-18">thumb_up</i>
+                <div>{{post.voteIds.length}}</div>
+            </div>
+            <div class="post-actions post-comments-summary">
+                <i class="material-icons md-18">question_answer</i>
+                <div></div>
+            </div>
+            <div class="post-actions post-details">
+                <i class="material-icons md-18">record_voice_over</i>
+                <div>{{post.userName}}</div>
+            </div>
+        </md-card-actions>
+        <!--<md-card-content>-->
+            <!--<p md-line>Donec eu rutrum turpis. Maecenas a nisl est. Vivamus sit amet erat dignissim erat dapibus mattis-->
+                <!--in eget felis. Integer nulla lorem</p>-->
+        <!--</md-card-content>-->
+        <!--<md-card-footer>-->
+            <!--<div class="post-comments">-->
+                <!--<md-progress-bar mode="indeterminate"></md-progress-bar>-->
 
-<div>
-    <table class="table table-striped">
-        <tr>
-            <th>Title</th>
-            <th>Text</th>
-            <th class="text-right">
-                <a class="btn btn-success" 
-                    [routerLink]="['/new-post']">
-                    New Post
-                </a>
-            </th>
-        </tr>
-        <tr *ngFor="let post of posts">
-            <td>{{ post.title }}</td>
-            <td>{{ post.content }}</td>
-        </tr>
-    </table>
+            <!--</div>-->
+        <!--</md-card-footer>-->
+    </md-card>
 </div>
