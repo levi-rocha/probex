@@ -2,12 +2,14 @@ package br.unifor.probex.restful.resources;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import br.unifor.probex.business.UserBORemote;
+import br.unifor.probex.dto.UserDetailedDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -17,11 +19,13 @@ public class SigninResource {
 	@EJB
 	private UserBORemote userBO;
 
-	@Path("u={username}-p={password}")
-	@GET
-	@Produces("application/json")
-	public User validateUserPassword(@PathParam("username") String username, @PathParam("password") String password) {
-		return userBO.validateUserPassword(username, password);
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserDetailedDTO validate(User user) {
+		User data = (User) userBO.validateUserPassword(user.getUsername(), user.getPassword());
+		UserDetailedDTO dto = UserDetailedDTO.fromUser(data);
+		return dto;
 	}
 
 }

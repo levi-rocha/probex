@@ -1,12 +1,11 @@
 package br.unifor.probex.business;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.unifor.probex.dao.UserDAO;
-import br.unifor.probex.dto.UserPermissionsDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -20,13 +19,23 @@ public class UserBO implements UserBORemote {
 	}
 
 	@Override
-	public Collection<UserPermissionsDTO> listUsers() {
-		return this.userDAO.list();
+	public List<User> listUsers(int quantity) {
+		return this.userDAO.list(quantity);
+	}
+
+	@Override
+	public List<User> listUsers() {
+		return this.userDAO.list(0);
 	}
 
 	@Override
 	public User findUserById(Long id) {
 		return this.userDAO.findById(id);
+	}
+
+	@Override
+	public User findUserByUsername(String username) {
+		return this.userDAO.findByUsername(username);
 	}
 
 	@Override
@@ -48,4 +57,5 @@ public class UserBO implements UserBORemote {
 	public String updateUser(User user) {
 		return this.userDAO.update(user);
 	}
+
 }

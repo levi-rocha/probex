@@ -1,6 +1,6 @@
 package br.unifor.probex.business;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -19,13 +19,18 @@ public class CommentBO implements CommentBORemote {
 	}
 
 	@Override
-	public Comment findCommentById(Long id) {
-		return this.commentDAO.findById(id);
+	public List<Comment> listComments(int quantity) {
+		return this.commentDAO.list(quantity);
 	}
 
 	@Override
-	public Collection<Comment> listComments() {
-		return this.commentDAO.list();
+	public List<Comment> listComments() {
+		return this.commentDAO.list(0);
+	}
+
+	@Override
+	public Comment findCommentById(Long id) {
+		return this.commentDAO.findById(id);
 	}
 
 	@Override

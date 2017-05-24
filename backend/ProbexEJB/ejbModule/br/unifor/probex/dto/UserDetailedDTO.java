@@ -1,0 +1,76 @@
+package br.unifor.probex.dto;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import br.unifor.probex.entity.Permission;
+import br.unifor.probex.entity.Post;
+import br.unifor.probex.entity.User;
+
+public class UserDetailedDTO implements Serializable {
+
+	private static final long serialVersionUID = -4334805450243911807L;
+
+	private Long id;
+	private String username;
+	private String email;
+	private Set<Permission> permissions;
+	private Set<PostSimpleDTO> posts;
+
+	public static UserDetailedDTO fromUser(User user) {
+		UserDetailedDTO dto = new UserDetailedDTO();
+		dto.setId(user.getId());
+		dto.setUsername(user.getUsername());
+		dto.setEmail(user.getEmail());
+		dto.setPermissions(user.getPermissions());
+		Set<PostSimpleDTO> posts = new HashSet<PostSimpleDTO>();
+		for (Post p : user.getPosts()) {
+			PostSimpleDTO pdto = PostSimpleDTO.fromPost(p);
+			posts.add(pdto);
+		}
+		dto.setPosts(posts);
+		return dto;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Set<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
+	}
+
+	public Set<PostSimpleDTO> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<PostSimpleDTO> posts) {
+		this.posts = posts;
+	}
+
+}

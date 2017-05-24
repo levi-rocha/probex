@@ -1,7 +1,7 @@
 package br.unifor.probex.restful.resources;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -13,9 +13,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import br.unifor.probex.business.UserBORemote;
-import br.unifor.probex.dto.UserPermissionsDTO;
+import br.unifor.probex.dto.UserDetailedDTO;
+import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 
 @Stateless
@@ -28,18 +30,47 @@ public class UserResource {
 	@Path("{id}")
 	@GET
 	@Produces("application/json")
-	public User findUserById(@PathParam("id") Long id) {
-		return userBO.findUserById(id);
+	public UserDetailedDTO findUserById(@PathParam("id") Long id) {
+		User user = userBO.findUserById(id);
+		UserDetailedDTO dto = UserDetailedDTO.fromUser(user);
+		return dto;
 	}
 
 	@GET
 	@Produces("application/json")
-	public Collection<UserPermissionsDTO> listUsers() {
-		Collection<UserPermissionsDTO> data = userBO.listUsers();
-		for (UserPermissionsDTO u : data) {
-			u.setPassword(null);
+	public List<UserSimpleDTO> listUsers(@QueryParam("q") int quantity, @QueryParam("u") String username,
+			@QueryParam("s") int start) {
+		if (username != null) {
+			User user = userBO.findUserByUsername(username);
+			UserSimpleDTO dto = UserSimpleDTO.fromUser(user);
+			List<UserSimpleDTO> data = new ArrayList<UserSimpleDTO>();
+			data.add(dto);
+			return data;
 		}
-		return data;
+		if (start < 0)
+			start = 0;
+		List<User> data;
+		if (quantity > 0) {
+			data = userBO.listUsers(quantity + start);
+		} else {
+			data = userBO.listUsers();
+		}
+		if (quantity > 0) {
+			List<User> temp = new ArrayList<User>();
+			for (int i = start; i < start + quantity; i++) {
+				if (data.size() < i + 1) {
+					break;
+				}
+				temp.add(data.get(i));
+			}
+			data = temp;
+		}
+		List<UserSimpleDTO> userData = new ArrayList<UserSimpleDTO>();
+		for (User u : data) {
+			UserSimpleDTO dto = UserSimpleDTO.fromUser(u);
+			userData.add(dto);
+		}
+		return userData;
 	}
 
 	@POST

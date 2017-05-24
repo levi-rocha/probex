@@ -4,27 +4,28 @@ import java.io.Serializable;
 import java.util.Set;
 
 import br.unifor.probex.entity.Permission;
+import br.unifor.probex.entity.User;
 
-public class UserPermissionsDTO implements Serializable {
+public class UserSimpleDTO implements Serializable {
 
 	private static final long serialVersionUID = 2839156404112207275L;
 
 	private Long id;
 	private String username;
-	private String password;
 	private String email;
 	private Set<Permission> permissions;
 
-	public UserPermissionsDTO() {
-
+	public static UserSimpleDTO fromUser(User user) {
+		UserSimpleDTO dto = new UserSimpleDTO();
+		dto.setId(user.getId());
+		dto.setUsername(user.getUsername());
+		dto.setEmail(user.getEmail());
+		dto.setPermissions(user.getPermissions());
+		return dto;
 	}
 
-	public UserPermissionsDTO(Long id, String username, String password, String email, Set<Permission> permissions) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.permissions = permissions;
+	public UserSimpleDTO() {
+
 	}
 
 	public Long getId() {
@@ -41,14 +42,6 @@ public class UserPermissionsDTO implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEmail() {
