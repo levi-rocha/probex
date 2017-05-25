@@ -35,6 +35,18 @@ body {
     flex: 1 1 auto;
 }
 
+md-card-header a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+md-card-header a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
 .post-list md-card {
     margin: 15px;
 }

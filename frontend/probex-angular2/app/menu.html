@@ -1,8 +1,9 @@
 <div [hidden]="!isLogged()">
-    <md-toolbar color="primary">
+    <md-toolbar color="primary" class="container">
         <button md-button [routerLink]="['/post-list']">Home</button>
         <span class="mat-spacer"></span>
-        <button md-button [mdMenuTriggerFor]="menu" id="main-menu-toggle"><img src="http://lorempixel.com/36/36/animals"> {{loggedUsername()}} <b class="caret"></b></button>
+        <button md-button [mdMenuTriggerFor]="menu" id="main-menu-toggle"><img
+                src="http://lorempixel.com/36/36/animals"> {{loggedUsername()}} <b class="caret"></b></button>
         <md-menu #menu="mdMenu">
             <button md-menu-item><img src="http://lorempixel.com/36/36/animals"> {{loggedUsername()}}</button>
             <button md-menu-item [routerLink]="['/signout']">Sair</button>
@@ -10,4 +11,6 @@
     </md-toolbar>
 </div>
 
-<router-outlet></router-outlet>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

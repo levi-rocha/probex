@@ -26,6 +26,10 @@ var PostService = (function () {
         var body = JSON.stringify(post);
         return this.http.post(this.serviceUrl, body, options).map(function (res) { return res.text(); });
     };
+    PostService.prototype.get = function (id) {
+        var url = this.serviceUrl + '/' + id;
+        return this.http.get(url).map(function (res) { return res.json(); });
+    };
     return PostService;
 }());
 PostService = __decorate([

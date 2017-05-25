@@ -19,4 +19,9 @@ export class PostService {
         let body = JSON.stringify(post);
         return this.http.post(this.serviceUrl, body, options).map(res => res.text());
     }
+
+    get(id: number) {
+        let url = this.serviceUrl + '/' + id;
+        return this.http.get(url).map(res => res.json());
+    }
 }

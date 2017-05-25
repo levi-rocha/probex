@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var new_post_component_1 = require("./new-post-component");
 var post_list_component_1 = require("./post-list-component");
 var auth_guard_1 = require("../auth-guard");
+var post_detail_component_1 = require("./post-detail/post-detail-component");
 exports.PostRoutes = [
     {
         path: 'new-post',
@@ -12,6 +13,11 @@ exports.PostRoutes = [
     {
         path: 'post-list',
         component: post_list_component_1.PostListComponent,
+        canActivate: [auth_guard_1.AuthGuard]
+    },
+    {
+        path: 'post/:id',
+        component: post_detail_component_1.PostDetailComponent,
         canActivate: [auth_guard_1.AuthGuard]
     },
     {

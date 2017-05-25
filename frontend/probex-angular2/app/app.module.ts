@@ -21,13 +21,14 @@ import {
     MdToolbarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PostDetailComponent} from "./components/post-detail/post-detail-component";
 
 @NgModule({
     imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES, AUTH_PROVIDERS), FormsModule, HttpModule,
         MdButtonModule, MdSidenavModule, MdToolbarModule, MdCardModule, MdInputModule, BrowserAnimationsModule,
         MdSnackBarModule, MdMenuModule, MdProgressBarModule, MdListModule],
     declarations: [AppComponent, UserListComponent, UserSignupComponent, UserEditComponent, UserViewComponent,
-        SigninComponent, NewPostComponent, PostListComponent],
+        SigninComponent, NewPostComponent, PostListComponent, PostDetailComponent],
     providers: [AuthGuard, SigninService],
     bootstrap: [AppComponent]
 })

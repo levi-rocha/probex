@@ -25,6 +25,7 @@ var auth_guard_1 = require("./auth-guard");
 var signin_service_1 = require("./services/signin-service");
 var material_1 = require("@angular/material");
 var animations_1 = require("@angular/platform-browser/animations");
+var post_detail_component_1 = require("./components/post-detail/post-detail-component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -36,7 +37,7 @@ AppModule = __decorate([
             material_1.MdButtonModule, material_1.MdSidenavModule, material_1.MdToolbarModule, material_1.MdCardModule, material_1.MdInputModule, animations_1.BrowserAnimationsModule,
             material_1.MdSnackBarModule, material_1.MdMenuModule, material_1.MdProgressBarModule, material_1.MdListModule],
         declarations: [app_component_1.AppComponent, user_list_component_1.UserListComponent, user_signup_component_1.UserSignupComponent, user_edit_component_1.UserEditComponent, user_view_component_1.UserViewComponent,
-            signin_component_1.SigninComponent, new_post_component_1.NewPostComponent, post_list_component_1.PostListComponent],
+            signin_component_1.SigninComponent, new_post_component_1.NewPostComponent, post_list_component_1.PostListComponent, post_detail_component_1.PostDetailComponent],
         providers: [auth_guard_1.AuthGuard, signin_service_1.SigninService],
         bootstrap: [app_component_1.AppComponent]
     })

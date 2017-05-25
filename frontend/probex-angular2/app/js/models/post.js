@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Post = (function () {
-    function Post(title, content, author) {
+    function Post(id, title, content, userName, voteIds) {
+        this.id = id;
         this.title = title;
         this.content = content;
-        this.author = author;
+        this.userName = userName;
+        this.voteIds = voteIds;
     }
     return Post;
 }());
