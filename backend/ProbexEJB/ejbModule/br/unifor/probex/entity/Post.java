@@ -3,7 +3,9 @@ package br.unifor.probex.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -50,7 +52,7 @@ public class Post implements Serializable {
 	private Set<User> votes;
 
 	@OneToMany(mappedBy = "post")
-	private Set<Comment> comments;
+	private List<Comment> comments;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -106,11 +108,11 @@ public class Post implements Serializable {
 		this.votes = votes;
 	}
 
-	public Set<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 

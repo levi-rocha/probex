@@ -1,9 +1,9 @@
 package br.unifor.probex.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.Post;
@@ -19,7 +19,7 @@ public class PostDetailedDTO extends PostSimpleDTO implements Serializable {
 	private Date date;
 	private String authorUsername;
 	private Set<Long> voteIds;
-	private Set<CommentDTO> comments;
+	private List<CommentDTO> comments;
 
 	public static PostDetailedDTO fromPost(Post post) {
 		PostDetailedDTO dto = new PostDetailedDTO();
@@ -33,7 +33,7 @@ public class PostDetailedDTO extends PostSimpleDTO implements Serializable {
 			voteIds.add(u.getId());
 		}
 		dto.setVoteIds(voteIds);
-		Set<CommentDTO> comments = new HashSet<CommentDTO>();
+		List<CommentDTO> comments = new ArrayList<>();
 		for (Comment c : post.getComments()) {
 			CommentDTO cdto = CommentDTO.fromComment(c);
 			comments.add(cdto);
@@ -90,11 +90,11 @@ public class PostDetailedDTO extends PostSimpleDTO implements Serializable {
 		this.voteIds = voteIds;
 	}
 
-	public Set<CommentDTO> getComments() {
+	public List<CommentDTO> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<CommentDTO> comments) {
+	public void setComments(List<CommentDTO> comments) {
 		this.comments = comments;
 	}
 

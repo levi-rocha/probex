@@ -67,6 +67,18 @@ md-card-header a:visited {
     color: #999999;
 }
 
+.post-actions a {
+    color: inherit;
+}
+
+.post-actions a:hover {
+    color: inherit;
+}
+
+.post-actions a:visited {
+    color: inherit;
+}
+
 .post-actions .material-icons {
     margin: 0 10px;
 }

@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b1db9e3-9d0d-4fa3-aba9-1981960983bd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/compiler.xml" afterPath="$PROJECT_DIR$/../../.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexEJB/ProbexEJB.iml" afterPath="$PROJECT_DIR$/../../backend/ProbexEJB/ProbexEJB.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexEJB/ejbModule/br/unifor/probex/dto/PostDetailedDTO.java" afterPath="$PROJECT_DIR$/../../backend/ProbexEJB/ejbModule/br/unifor/probex/dto/PostDetailedDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexEJB/pom.xml" afterPath="$PROJECT_DIR$/../../backend/ProbexEJB/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexService/src/br/unifor/probex/restful/resources/SigninResource.java" afterPath="$PROJECT_DIR$/../../backend/ProbexService/src/br/unifor/probex/restful/resources/SigninResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/site.css" afterPath="$PROJECT_DIR$/app/css/site.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,8 +44,8 @@
           <file leaf-file-name="post-list.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/post-list.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+                <state relative-caret-position="306">
+                  <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -132,7 +139,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/post/detail.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="170">
@@ -152,11 +159,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="site.css" pinned="false" current-in-tab="false">
+          <file leaf-file-name="site.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/css/site.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="816">
-                  <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+                <state relative-caret-position="316">
+                  <caret line="77" column="23" lean-forward="false" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
@@ -226,8 +233,8 @@
         <option value="$PROJECT_DIR$/app/services/post-service.ts" />
         <option value="$PROJECT_DIR$/app/components/post-detail/post-detail-component.ts" />
         <option value="$PROJECT_DIR$/app/views/post-list.html" />
-        <option value="$PROJECT_DIR$/app/css/site.css" />
         <option value="$PROJECT_DIR$/app/views/post/detail.html" />
+        <option value="$PROJECT_DIR$/app/css/site.css" />
       </list>
     </option>
   </component>
@@ -668,10 +675,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="npm.lite" />
-        <item index="1" class="java.lang.String" itemvalue="npm.start" />
-        <item index="2" class="java.lang.String" itemvalue="npm.postinstall" />
-        <item index="3" class="java.lang.String" itemvalue="npm.tsc" />
+        <item index="0" class="java.lang.String" itemvalue="npm.tsc" />
+        <item index="1" class="java.lang.String" itemvalue="npm.lite" />
+        <item index="2" class="java.lang.String" itemvalue="npm.start" />
+        <item index="3" class="java.lang.String" itemvalue="npm.postinstall" />
         <item index="4" class="java.lang.String" itemvalue="npm.build-css" />
       </list>
     </recent_temporary>
@@ -713,7 +720,7 @@
       <workItem from="1495606033717" duration="6124000" />
       <workItem from="1495765075125" duration="43000" />
       <workItem from="1495775986004" duration="10492000" />
-      <workItem from="1495827927353" duration="249000" />
+      <workItem from="1495827927353" duration="1814000" />
     </task>
     <task id="LOCAL-00001" summary="Atualizando Angular, Incluindo AngularMaterial e Ajustando alterações">
       <created>1493444411818</created>
@@ -764,22 +771,37 @@
       <option name="project" value="LOCAL" />
       <updated>1495828144457</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adicionando funcionalidade de comentário nos posts">
+      <created>1495828186189</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1495828186189</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Ajustando workspace">
+      <created>1495828208875</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1495828208875</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95577000" />
+    <option name="totallyTimeSpent" value="97142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21443625" sideWeight="0.6463246" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21443625" sideWeight="0.6448" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.50421494" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21885157" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21443625" sideWeight="0.35367545" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3238512" sideWeight="0.49209693" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21885157" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21443625" sideWeight="0.3552" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32286024" sideWeight="0.49209693" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49578503" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17462687" sideWeight="0.21116506" order="2" side_tool="true" content_ui="tabs" />
@@ -817,7 +839,8 @@
     <MESSAGE value="Ajustes" />
     <MESSAGE value="Atualizando pacotes" />
     <MESSAGE value="Adicionando funcionalidade de comentário nos posts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionando funcionalidade de comentário nos posts" />
+    <MESSAGE value="Ajustando workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustando workspace" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1165,26 +1188,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/post-list.html">
+    <entry file="file://$PROJECT_DIR$/app/views/post/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state relative-caret-position="323">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/css/site.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="316">
+          <caret line="77" column="23" lean-forward="false" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/post/detail.html">
+    <entry file="file://$PROJECT_DIR$/app/views/post-list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="306">
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
           <folding />
         </state>
       </provider>

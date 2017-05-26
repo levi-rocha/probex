@@ -18,10 +18,10 @@ public class CommentDAO {
 
 	public List<Comment> list(int quantity) {
 		if (quantity > 0) {
-			return manager.createQuery("SELECT c FROM Comment c", Comment.class).setMaxResults(quantity)
+			return manager.createQuery("SELECT c FROM Comment c ORDER BY c.date ASC", Comment.class).setMaxResults(quantity)
 					.getResultList();
 		} else {
-			return manager.createQuery("SELECT c FROM Comment c", Comment.class).getResultList();
+			return manager.createQuery("SELECT c FROM Comment c ORDER BY c.date ASC", Comment.class).getResultList();
 		}
 	}
 
