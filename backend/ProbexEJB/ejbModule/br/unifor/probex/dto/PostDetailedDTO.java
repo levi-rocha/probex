@@ -3,7 +3,6 @@ package br.unifor.probex.dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.Post;

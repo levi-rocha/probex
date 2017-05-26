@@ -10,8 +10,8 @@
         <module name="ProbexService" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ProbexEJB" target="1.8" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="ProbexEJB" target="1.7" />
       <module name="ProbexService" target="1.5" />
     </bytecodeTargetLevel>
   </component>
