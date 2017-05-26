@@ -3,6 +3,8 @@ import {Post} from '.././models/post';
 import {PostService} from '.././services/post-service';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AppComponent} from "../app.component";
+import {User} from "../models/user";
 
 @Component({
     selector: 'new-post',
@@ -21,6 +23,8 @@ export class NewPostComponent implements OnInit {
     }
 
     submit() {
+        this.post.author = new User();
+        this.post.author.username = AppComponent.loggedUsername();
         this.postService.insert(this.post).subscribe(
             data => {
                 this.post = null;

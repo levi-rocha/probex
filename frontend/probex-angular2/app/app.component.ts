@@ -17,12 +17,19 @@ export class AppComponent {
         // );
     }
 
-    isLogged(): boolean {
+    static isLogged(): boolean {
         return sessionStorage['username'] != null;
     }
 
-    loggedUsername(): string {
+    isLogged(): boolean {
+        return AppComponent.isLogged();
+    }
+
+    static loggedUsername(): string {
         return sessionStorage['username'] || '';
     }
 
+    loggedUsername(): string {
+        return AppComponent.loggedUsername();
+    }
 }

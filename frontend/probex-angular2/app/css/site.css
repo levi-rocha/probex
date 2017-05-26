@@ -47,6 +47,10 @@ md-card-header a:visited {
     cursor: auto;
 }
 
+.no-padding {
+    padding: 0;
+}
+
 .post-list md-card {
     margin: 15px;
 }

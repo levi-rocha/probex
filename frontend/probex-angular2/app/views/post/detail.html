@@ -7,26 +7,38 @@
         <md-card-actions>
             <div class="post-actions post-likes-container">
                 <i class="material-icons md-18">thumb_up</i>
-                <div>{{post.voteIds != null ? post.voteIds.length : 0}}</div>
-            </div>
-            <div class="post-actions post-comments-summary">
-                <i class="material-icons md-18">question_answer</i>
-                <div></div>
+                <div>{{post.voteCount}}</div>
             </div>
             <div class="post-actions post-details">
                 <i class="material-icons md-18">record_voice_over</i>
-                <div>{{post.userName}}</div>
+                <div>{{post.authorUsername}}</div>
             </div>
         </md-card-actions>
-        <!--<md-card-content>-->
-        <!--<p md-line>Donec eu rutrum turpis. Maecenas a nisl est. Vivamus sit amet erat dignissim erat dapibus mattis-->
-        <!--in eget felis. Integer nulla lorem</p>-->
-        <!--</md-card-content>-->
-        <!--<md-card-footer>-->
-        <!--<div class="post-comments">-->
-        <!--<md-progress-bar mode="indeterminate"></md-progress-bar>-->
-
-        <!--</div>-->
-        <!--</md-card-footer>-->
+        <md-card-content>
+            <md-list>
+                <md-divider></md-divider>
+                <div *ngFor="let comment of post.comments">
+                    <md-list-item>
+                        <div>{{comment.content}}</div>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </div>
+                <md-list-item>
+                    <div class="row full-width">
+                        <div class="col-xs-9 col-md-11 no-padding" style="margin-top: 30px;">
+                            <md-input-container class="full-width">
+                        <textarea mdInput name="content" [(ngModel)]="newComment" placeholder="Insira um comentário"
+                                  rows="1" class="col-xs-11"></textarea>
+                            </md-input-container>
+                        </div>
+                        <div class="col-xs-3 col-md-1" style="margin-top: 30px;">
+                            <button md-raised-button color="primary" (click)="newComment && submitNewComment()">
+                                <i class="material-icons md-18">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-card-content>
     </md-card>
 </div>

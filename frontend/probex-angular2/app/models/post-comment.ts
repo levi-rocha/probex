@@ -1,13 +1,12 @@
-import { User } from "./user";
+import {User} from "./user";
+import {Post} from "./post";
 
-export class Post {
+export class PostComment {
     constructor(
         public id?: number,
-        public title?: string,
         public content?: string,
         public author?: User,
         public authorUsername?: string,
-        public voteCount?: number,
-        public comments?: Comment[]
+        public post?: Post
     ){}
 }

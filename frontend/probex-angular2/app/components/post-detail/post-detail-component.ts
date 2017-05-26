@@ -4,6 +4,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {error} from "util";
 import {Post} from "../../models/post";
 import {MdSnackBar} from "@angular/material";
+import {PostComment} from "../../models/post-comment";
+import {AppComponent} from "../../app.component";
+import {User} from "../../models/user";
 @Component({
     selector: 'post-detail',
     templateUrl: 'app/views/post/detail.html',
@@ -11,6 +14,7 @@ import {MdSnackBar} from "@angular/material";
 })
 export class PostDetailComponent implements OnInit {
     private post: Post = new Post;
+    private newComment: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -20,10 +24,31 @@ export class PostDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.post.id =  +this.route.snapshot.params['id'];
+        this.reloadPost();
+    }
+
+    private reloadPost() {
+        this.post.id = +this.route.snapshot.params['id'];
         this.postService.get(this.post.id).subscribe(
             data => this.post = data,
             error => this.snackBar.open("Não foi possível carregar o post", "OK")
         );
+    }
+
+    submitNewComment(): void {
+        let user = new User;
+        user.username = AppComponent.loggedUsername();
+        let comment = new PostComment();
+        comment.content = this.newComment;
+        comment.author = user;
+        comment.post = this.post;
+        this.postService.addComment(comment).subscribe(
+            data => {
+                this.newComment = null;
+                this.snackBar.open("Comentário incluído com sucesso", "OK");
+                this.reloadPost();
+            },
+            error => this.snackBar.open("Erro ao enviar comentário", "OK")
+        )
     }
 }

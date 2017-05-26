@@ -16,7 +16,9 @@ import {PostListComponent} from "./components/post-list-component";
 import {AuthGuard} from "./auth-guard";
 import {SigninService} from "./services/signin-service";
 import {
-    MdButtonModule, MdCardModule, MdInputModule, MdListModule, MdMenuModule, MdProgressBarModule, MdSidenavModule,
+    MdButtonModule, MdCardModule, MdDividerCssMatStyler, MdInputModule, MdListDivider, MdListModule, MdMenuModule,
+    MdProgressBarModule,
+    MdSidenavModule,
     MdSnackBarModule,
     MdToolbarModule
 } from "@angular/material";
