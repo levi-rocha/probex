@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ProbexService:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProbexService</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ProbexService" />
+          <element id="module-output" name="ProbexEJB" />
+          <element id="jpa-descriptors" facet="ProbexEJB/jpa/JPA" />
+        </element>
+        <element id="directory" name="lib" />
+      </element>
+      <element id="javaee-facet-resources" facet="ProbexService/web/Web" />
+      <element id="javaee-facet-resources" facet="ProbexService/ejb/EJB" />
+    </root>
+  </artifact>
+</component>

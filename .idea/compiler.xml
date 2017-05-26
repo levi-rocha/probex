@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ProbexEAR" />
+        <module name="ProbexEJB" />
+        <module name="ProbexService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ProbexEAR" target="1.5" />
+      <module name="ProbexEJB" target="1.5" />
+      <module name="ProbexService" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
