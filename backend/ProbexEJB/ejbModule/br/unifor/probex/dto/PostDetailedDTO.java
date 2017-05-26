@@ -9,7 +9,7 @@ import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.Post;
 import br.unifor.probex.entity.User;
 
-public class PostDetailedDTO implements Serializable {
+public class PostDetailedDTO extends PostSimpleDTO implements Serializable {
 
 	private static final long serialVersionUID = -6083320017667645716L;
 

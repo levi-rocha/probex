@@ -8,8 +8,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.criteria.CriteriaQuery;
 
 import br.unifor.probex.entity.Post;
+import br.unifor.probex.entity.User;
 
 @Stateless
 public class PostDAO {
@@ -22,6 +24,9 @@ public class PostDAO {
 
 	public String insert(Post post) {
 		try {
+			post.setAuthor((User) manager.createQuery("SELECT u FROM User u WHERE u.username = :username")
+					.setParameter("username", post.getAuthor().getUsername())
+					.getSingleResult());
 			manager.persist(post);
 			return post.getTitle() + " inserted";
 		} catch (PersistenceException e) {

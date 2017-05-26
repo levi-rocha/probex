@@ -51,5 +51,6 @@
     <orderEntry type="library" name="Maven: javax.ejb:ejb-api:3.0-alpha-1" level="project" />
     <orderEntry type="library" name="Maven: javax.transaction:transaction-api:1.1" level="project" />
     <orderEntry type="library" name="Maven: javax.xml:jaxrpc-api:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.8" level="project" />
   </component>
 </module>

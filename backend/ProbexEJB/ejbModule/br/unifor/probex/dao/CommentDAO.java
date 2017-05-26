@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import br.unifor.probex.entity.Comment;
+import br.unifor.probex.entity.User;
 
 @Stateless
 public class CommentDAO {
@@ -34,6 +35,9 @@ public class CommentDAO {
 
 	public String insert(Comment comment) {
 		try {
+			comment.setAuthor((User) manager.createQuery("SELECT u FROM User u WHERE u.username = :username")
+					.setParameter("username", comment.getAuthor().getUsername())
+					.getSingleResult());
 			manager.persist(comment);
 			return comment.getContent() + " inserted";
 		} catch (PersistenceException e) {

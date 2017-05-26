@@ -17,6 +17,7 @@ import javax.ws.rs.Produces;
 import br.unifor.probex.business.CommentBORemote;
 import br.unifor.probex.dto.CommentDTO;
 import br.unifor.probex.entity.Comment;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Stateless
 @Path("/comments")
@@ -49,7 +50,7 @@ public class CommentResource {
 	@POST
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public String addComment(Comment comment) {
+	public String addComment( Comment comment) {
 		return commentBO.addComment(comment);
 	}
 

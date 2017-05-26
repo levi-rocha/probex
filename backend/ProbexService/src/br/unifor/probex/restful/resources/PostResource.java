@@ -40,8 +40,7 @@ public class PostResource {
 	@GET
 	@Produces("application/json")
 	public List<PostSimpleDTO> listPosts(@QueryParam("q") int quantity, @QueryParam("c") String criteria,
-			@QueryParam("s") int start, @QueryParam("k") String keywords) {
-		if (start < 0)
+			@QueryParam("s") int start, @QueryParam("k") String keywords) {if (start < 0)
 			start = 0;
 		String orderBy = null;
 		System.out.println("CRITERIA: " + criteria);
