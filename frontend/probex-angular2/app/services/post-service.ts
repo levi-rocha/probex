@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Post } from '../models/post';
-import {Http, Headers, RequestOptions } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Post} from '../models/post';
+import {Http, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {PostComment} from "../models/post-comment";
 
@@ -8,18 +8,23 @@ import {PostComment} from "../models/post-comment";
 export class PostService {
     serviceUrl: string = "http://localhost:8080/ProbexService/rest/posts";
     commentsUrl: string = "http://localhost:8080/ProbexService/rest/comments";
-    constructor(private http: Http) {}
+
+    constructor(private http: Http) {
+    }
 
     listLast(number: number) {
         let url = this.serviceUrl + '/q=' + number;
         return this.http.get(this.serviceUrl).map(res => res.json());
     }
 
-    insert(post: Post) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+    insert(post: Post): Observable<Post> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(post);
-        return this.http.post(this.serviceUrl, body, options).map(res => res.text());
+        return this.http
+            .post(this.serviceUrl, body, options)
+            .map((res) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || JSON.stringify(error.json())));
     }
 
     get(id: number) {
@@ -28,8 +33,8 @@ export class PostService {
     }
 
     addComment(comment: PostComment) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(comment);
         return this.http.post(this.commentsUrl, body, options).map(res => res.text());
     }

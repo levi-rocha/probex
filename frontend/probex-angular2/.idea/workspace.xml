@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b1db9e3-9d0d-4fa3-aba9-1981960983bd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/compiler.xml" afterPath="$PROJECT_DIR$/../../.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/probex.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexEJB/ProbexEJB.iml" afterPath="$PROJECT_DIR$/../../backend/ProbexEJB/ProbexEJB.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexEJB/ejbModule/br/unifor/probex/dto/PostDetailedDTO.java" afterPath="$PROJECT_DIR$/../../backend/ProbexEJB/ejbModule/br/unifor/probex/dto/PostDetailedDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexEJB/pom.xml" afterPath="$PROJECT_DIR$/../../backend/ProbexEJB/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backend/ProbexService/src/br/unifor/probex/restful/resources/SigninResource.java" afterPath="$PROJECT_DIR$/../../backend/ProbexService/src/br/unifor/probex/restful/resources/SigninResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/site.css" afterPath="$PROJECT_DIR$/app/css/site.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.component.ts" afterPath="$PROJECT_DIR$/app/app.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/new-post-component.ts" afterPath="$PROJECT_DIR$/app/components/new-post-component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/menu.html" afterPath="$PROJECT_DIR$/app/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/post-service.ts" afterPath="$PROJECT_DIR$/app/services/post-service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/signin.html" afterPath="$PROJECT_DIR$/app/views/signin.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,34 +31,44 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+          <file leaf-file-name="post-service.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/services/post-service.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="30" column="73" lean-forward="false" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post-list.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/views/post-list.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post-comment.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/post-comment.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+                <state relative-caret-position="192">
+                  <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
                   <folding>
-                    <element signature="e#0#28#0" expanded="true" />
+                    <element signature="e#0#41#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signin.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/signin.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signup.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/views/users/signup.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user-service.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/services/user-service.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -66,30 +76,8 @@
           <file leaf-file-name="post.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/post.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post-detail-component.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/components/post-detail/post-detail-component.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="714">
-                  <caret line="50" column="66" lean-forward="false" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
-                  <folding>
-                    <element signature="e#0#48#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post-service.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/services/post-service.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+                <state relative-caret-position="119">
+                  <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -105,31 +93,43 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="new-post-component.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/components/new-post-component.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/user.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/app.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="15" column="45" lean-forward="false" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+                <state relative-caret-position="240">
+                  <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="post-list-component.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/post-list-component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="289">
+                  <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signin-routes.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/auth/signin-routes.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="48" lean-forward="false" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="new-post-component.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/new-post-component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="29" column="43" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
@@ -139,31 +139,33 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/post/detail.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="new-post.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/new-post.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="site.css" pinned="false" current-in-tab="true">
+          <file leaf-file-name="site.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/css/site.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="316">
-                  <caret line="77" column="23" lean-forward="false" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
+                <state relative-caret-position="282">
+                  <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signin-service.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/services/signin-service.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="107">
+                  <caret line="31" column="42" lean-forward="true" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signin-component.ts" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/components/auth/signin-component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="289">
+                  <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -210,8 +212,6 @@
         <option value="$PROJECT_DIR$/app/main.ts" />
         <option value="$PROJECT_DIR$/app/sass/theme.scss" />
         <option value="$PROJECT_DIR$/app/components/users/user-signup-component.ts" />
-        <option value="$PROJECT_DIR$/app/views/signin.html" />
-        <option value="$PROJECT_DIR$/app/views/users/signup.html" />
         <option value="$PROJECT_DIR$/app/components/users/user.ts" />
         <option value="$PROJECT_DIR$/app/components/auth/signin-component.ts" />
         <option value="$PROJECT_DIR$/app/services/signin-service.ts" />
@@ -221,20 +221,22 @@
         <option value="$PROJECT_DIR$/app/components/post-routes.ts" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="/AngularJS Fragment (menu.html:328).js" />
-        <option value="$PROJECT_DIR$/app/menu.html" />
-        <option value="$PROJECT_DIR$/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/app/components/new-post-component.ts" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/systemjs.config.js" />
         <option value="$PROJECT_DIR$/app/models/post.ts" />
         <option value="$PROJECT_DIR$/app/app.module.ts" />
         <option value="$PROJECT_DIR$/app/models/comment.ts" />
         <option value="$PROJECT_DIR$/app/models/post-comment.ts" />
-        <option value="$PROJECT_DIR$/app/services/post-service.ts" />
         <option value="$PROJECT_DIR$/app/components/post-detail/post-detail-component.ts" />
         <option value="$PROJECT_DIR$/app/views/post-list.html" />
         <option value="$PROJECT_DIR$/app/views/post/detail.html" />
         <option value="$PROJECT_DIR$/app/css/site.css" />
+        <option value="$PROJECT_DIR$/app/menu.html" />
+        <option value="$PROJECT_DIR$/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/app/components/new-post-component.ts" />
+        <option value="$PROJECT_DIR$/app/services/post-service.ts" />
+        <option value="$PROJECT_DIR$/app/views/signin.html" />
+        <option value="$PROJECT_DIR$/app/views/users/signup.html" />
       </list>
     </option>
   </component>
@@ -298,224 +300,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="post" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="post-detail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probex-angular2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -526,9 +310,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="SearchEverywhereHistoryKey" value="polis&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post-list.html&#10;podec&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;posdeta&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;postcomp&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;module&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;appc&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.component.ts&#10;new&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/new-post.html&#10;deta&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post/detail.html&#10;post&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post-list.html&#10;postlist&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post-list.html&#10;menu&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/menu.html&#10;newpos&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;postserv&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/services/post-service.ts&#10;de&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post/detail.html&#10;post.ts&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/models/post.ts&#10;css&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/css/site.css&#10;menuht&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/menu.html&#10;postde&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;inde&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/index.html&#10;appmod&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;posdetcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;signincom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/auth/signin-component.ts&#10;signupcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/users/user-signup-component.ts&#10;signup&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/users/signup.html&#10;app.mod&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;site&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/css/site.css&#10;policom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-list-component.ts&#10;newpost&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;posthtml&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/new-post.html&#10;sign&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/signin.html&#10;app.&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;index&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/index.html&#10;signin&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/signin.html&#10;signcomp&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/auth/signin-component.ts&#10;usicomp&#9;null&#9;null&#10;service&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/services/signin-service.ts&#10;uservice&#9;null&#9;null&#10;theme&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/sass/theme.scss&#10;pac&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/package.json&#10;apmod&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;loggedUsername&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="sig&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/views/users/signup.html&#10;sign&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/views/signin.html&#10;signincom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/auth/signin-component.ts&#10;postser&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/services/post-service.ts&#10;newpos&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;newpostcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;post&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/models/post.ts&#10;poserv&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/services/post-service.ts&#10;signservi&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/services/signin-service.ts&#10;userser&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/services/user-service.ts&#10;new&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;postcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/post-list-component.ts&#10;appcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/app.component.ts&#10;routes&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/auth/signin-routes.ts&#10;signin&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/components/auth/signin-component.ts&#10;menu&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/menu.html&#10;login&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/pino/probex/frontend/probex-angular2/app/js/app/components/autenticacao/login-component.js.map&#10;polis&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post-list.html&#10;podec&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;posdeta&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;postcomp&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;module&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;appc&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.component.ts&#10;deta&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post/detail.html&#10;postlist&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post-list.html&#10;postserv&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/services/post-service.ts&#10;de&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/post/detail.html&#10;post.ts&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/models/post.ts&#10;css&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/css/site.css&#10;menuht&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/menu.html&#10;postde&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;inde&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/index.html&#10;appmod&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;posdetcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-detail/post-detail-component.ts&#10;signupcom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/users/user-signup-component.ts&#10;signup&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/users/signup.html&#10;app.mod&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;site&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/css/site.css&#10;policom&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/post-list-component.ts&#10;newpost&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/new-post-component.ts&#10;posthtml&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/views/new-post.html&#10;app.&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts&#10;index&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/index.html&#10;signcomp&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/components/auth/signin-component.ts&#10;usicomp&#9;null&#9;null&#10;service&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/services/signin-service.ts&#10;uservice&#9;null&#9;null&#10;theme&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/sass/theme.scss&#10;pac&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/package.json&#10;apmod&#9;FILE&#9;file://C:/Users/keven/IdeaProjects/probex/frontend/probex-angular2/app/app.module.ts" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\keven\IdeaProjects\pino\probex\frontend\probex-angular2\app\img" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -720,7 +509,7 @@
       <workItem from="1495606033717" duration="6124000" />
       <workItem from="1495765075125" duration="43000" />
       <workItem from="1495775986004" duration="10492000" />
-      <workItem from="1495827927353" duration="1814000" />
+      <workItem from="1495827927353" duration="5851000" />
     </task>
     <task id="LOCAL-00001" summary="Atualizando Angular, Incluindo AngularMaterial e Ajustando alterações">
       <created>1493444411818</created>
@@ -789,7 +578,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97142000" />
+    <option name="totallyTimeSpent" value="101179000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -805,7 +594,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49578503" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17462687" sideWeight="0.21116506" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39824945" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39761648" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -844,7 +633,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -882,16 +671,6 @@
         <state relative-caret-position="238">
           <caret line="14" column="61" lean-forward="true" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app/components/autenticacao/login-component.js.map">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="sourcemapFileViewerProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/services/aluno-service.ts">
@@ -959,13 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/user-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/sass/theme.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -981,38 +753,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/users/user.ts" />
-    <entry file="file://$PROJECT_DIR$/app/services/signin-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="47" column="62" lean-forward="true" selection-start-line="47" selection-start-column="62" selection-end-line="47" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/signin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="67" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/auth/signin-routes.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="39" lean-forward="false" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/users/user-list-component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/post-list-component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1030,24 +774,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="51" lean-forward="false" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/users/user-signup-component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/auth/signin-component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="105" lean-forward="false" selection-start-line="17" selection-start-column="78" selection-end-line="17" selection-end-column="105" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1055,22 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="68" lean-forward="false" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/post-routes.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="77" lean-forward="false" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -1106,14 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="45" lean-forward="false" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1129,28 +836,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/new-post-component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/post.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/post-comment.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1162,14 +853,6 @@
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/post-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,6 +871,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/post-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/app/components/autenticacao/login-component.js.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/post-routes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/auth/signin-routes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="48" lean-forward="false" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/post/detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1196,18 +932,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/site.css">
+    <entry file="file://$PROJECT_DIR$/app/components/post-list-component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="77" column="23" lean-forward="false" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
+        <state relative-caret-position="289">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/post-list.html">
+    <entry file="file://$PROJECT_DIR$/app/services/user-service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="323">
+          <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/post.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/new-post-component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="43" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/signin-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="31" column="42" lean-forward="true" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/auth/signin-component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/post-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/signin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
           <folding />
         </state>
       </provider>

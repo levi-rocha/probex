@@ -7,11 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f32bbaec-13ee-467b-bec8-220c90846d96" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/img/probex.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/ProbexEJB/ejbModule/br/unifor/probex/business/PostBO.java" afterPath="$PROJECT_DIR$/backend/ProbexEJB/ejbModule/br/unifor/probex/business/PostBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/ProbexEJB/ejbModule/br/unifor/probex/business/PostBORemote.java" afterPath="$PROJECT_DIR$/backend/ProbexEJB/ejbModule/br/unifor/probex/business/PostBORemote.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/ProbexEJB/ejbModule/br/unifor/probex/dao/PostDAO.java" afterPath="$PROJECT_DIR$/backend/ProbexEJB/ejbModule/br/unifor/probex/dao/PostDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/ProbexService/src/br/unifor/probex/restful/resources/PostResource.java" afterPath="$PROJECT_DIR$/backend/ProbexService/src/br/unifor/probex/restful/resources/PostResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/probex-angular2/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/app/app.component.ts" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/app.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/app/components/new-post-component.ts" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/components/new-post-component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/app/menu.html" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/app/services/post-service.ts" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/services/post-service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/app/views/signin.html" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/views/signin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/probex-angular2/app/views/users/signup.html" afterPath="$PROJECT_DIR$/frontend/probex-angular2/app/views/users/signup.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/backend/ProbexService/target/" />
@@ -886,7 +890,7 @@
       <option name="presentableId" value="Default" />
       <updated>1495765441880</updated>
       <workItem from="1495765443354" duration="7887000" />
-      <workItem from="1495774186739" duration="16562000" />
+      <workItem from="1495774186739" duration="17205000" />
     </task>
     <task id="LOCAL-00001" summary="Ajustando projeto">
       <created>1495776275540</created>
@@ -909,14 +913,22 @@
       <option name="project" value="LOCAL" />
       <updated>1495830791692</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ajustes na criação de posts">
+      <created>1495854170853</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1495854170853</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24449000" />
+    <option name="totallyTimeSpent" value="25092000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -931,14 +943,14 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997833" sideWeight="0.4978678" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.4978678" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24946696" sideWeight="0.5056543" order="2" side_tool="true" content_ui="tabs" />
@@ -967,7 +979,8 @@
     <MESSAGE value="Ajustando projeto" />
     <MESSAGE value="Ajustando funcionalidades para inclusão de comentários" />
     <MESSAGE value="Comentários sendo retornado por data de criação" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comentários sendo retornado por data de criação" />
+    <MESSAGE value="Ajustes na criação de posts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes na criação de posts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

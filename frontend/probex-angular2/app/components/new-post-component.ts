@@ -27,10 +27,9 @@ export class NewPostComponent implements OnInit {
         this.post.author.username = AppComponent.loggedUsername();
         this.postService.insert(this.post).subscribe(
             data => {
-                this.post = null;
-                this.router.navigate(['']);
+                this.router.navigate(['/post/' + data.id])
             },
-            error => this.error = "Could not save post"
+            error => {alert(error)}
         );
     }
 }

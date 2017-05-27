@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {SigninService} from './services/signin-service';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'meu-app',
@@ -8,7 +9,7 @@ import {SigninService} from './services/signin-service';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    constructor(private signinService: SigninService) {
+    constructor(private signinService: SigninService, private router: Router) {
         // this.signinService.loggedUser.subscribe(
         //   value => {
         //     this.loggedUsername = value;
@@ -31,5 +32,10 @@ export class AppComponent {
 
     loggedUsername(): string {
         return AppComponent.loggedUsername();
+    }
+
+    signOut(): void{
+        sessionStorage.clear();
+        this.router.navigate(['/signIn']);
     }
 }
