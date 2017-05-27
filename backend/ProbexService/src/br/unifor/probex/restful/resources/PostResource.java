@@ -92,9 +92,12 @@ public class PostResource {
 
 	@POST
 	@Consumes("application/json")
-	@Produces("text/plain")
-	public String addPost(Post post) {
-		return postBO.addPost(post);
+	@Produces("application/json")
+	public Post addPost(Post post)
+	{
+		Post inserted = postBO.addPost(post);
+		inserted.setAuthor(null);
+		return inserted;
 	}
 
 	@PUT

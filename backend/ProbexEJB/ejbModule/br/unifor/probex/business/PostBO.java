@@ -34,7 +34,7 @@ public class PostBO implements PostBORemote {
 	}
 
 	@Override
-	public String addPost(Post post) {
+	public Post addPost(Post post) {
 		return this.postDAO.insert(post);
 	}
 

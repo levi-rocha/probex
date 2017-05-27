@@ -25,7 +25,7 @@ public interface PostBORemote {
 	
 	public List<Post> searchKeywords(List<String> keywords, String orderBy, int quantity);
 
-	public String addPost(Post post);
+	public Post addPost(Post post);
 
 	public Post findPostById(Long id);
 
