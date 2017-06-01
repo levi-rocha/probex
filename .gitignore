@@ -8,7 +8,7 @@ node_modules/
 *.ear
 *.class
 .idea/workspace.xml 
-.idea/tasks.xm
+.idea/tasks.xml
 
 
 
