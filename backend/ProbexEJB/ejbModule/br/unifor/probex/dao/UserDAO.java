@@ -38,7 +38,8 @@ public class UserDAO {
 
 	public User findByUsernameAndPassword(String username, String password) {
 		Query query = manager.createQuery(
-				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.username = :username AND a.password = :password");
+				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
+						"a.comments WHERE a.username = :username AND a.password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		User user;
@@ -53,14 +54,16 @@ public class UserDAO {
 
 	public User findById(Long id) {
 		User user = (User) manager.createQuery(
-				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.id = :id",
+				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
+                        "a.comments WHERE a.id = :id",
 				User.class).setParameter("id", id).getSingleResult();
 		return user;
 	}
 
 	public User findByUsername(String username) {
 		User user = (User) manager.createQuery(
-				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH a.comments WHERE a.username = :username",
+				"SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
+                        "a.comments WHERE a.username = :username",
 				User.class).setParameter("username", username).getSingleResult();
 		return user;
 	}

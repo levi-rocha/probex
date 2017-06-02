@@ -3,12 +3,16 @@ package br.unifor.probex.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
+import br.unifor.probex.dto.VoteDTO;
 import br.unifor.probex.entity.Post;
 import br.unifor.probex.entity.User;
 
@@ -180,6 +184,22 @@ public class PostDAO {
         } catch (PersistenceException e) {
             return "could not update data " + e;
         }
+    }
+
+    public String voteOnPost(VoteDTO vote) {
+        Post detached = manager.find(Post.class, vote.getPostId());
+        User user = manager.createQuery(
+                "SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
+                        "a.comments WHERE a.username = :username",
+                User.class).setParameter("username", vote.getUsername()).getSingleResult();
+        Post managed = manager.merge(detached);
+        Set<User> votes = managed.getVotes();
+        if (votes.contains(user))
+            return user.getUsername() + " already voted on post: " + managed
+                    .getTitle();
+        votes.add(user);
+        managed.setVotes(votes);
+        return user.getUsername() + " voted on post: " + managed.getTitle();
     }
 
     public String remove(Long id) {

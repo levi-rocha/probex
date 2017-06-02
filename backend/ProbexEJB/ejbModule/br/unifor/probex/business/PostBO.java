@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.unifor.probex.dao.PostDAO;
+import br.unifor.probex.dto.VoteDTO;
 import br.unifor.probex.entity.Post;
 
 @Stateless
@@ -46,6 +47,11 @@ public class PostBO implements PostBORemote {
 	@Override
 	public String updatePost(Post post) {
 		return this.postDAO.update(post);
+	}
+
+	@Override
+	public String voteOnPost(VoteDTO vote) {
+		return this.postDAO.voteOnPost(vote);
 	}
 
 	/* overloads */

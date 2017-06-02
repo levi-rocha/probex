@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import br.unifor.probex.dto.VoteDTO;
 import br.unifor.probex.entity.Post;
 
 @Remote
@@ -32,4 +33,6 @@ public interface PostBORemote {
 	public String removePost(Long id);
 
 	public String updatePost(Post post);
+
+	public String voteOnPost(VoteDTO vote);
 }
