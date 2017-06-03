@@ -177,8 +177,6 @@ public class PostDAO {
 
             managed.setTitle(post.getTitle());
             managed.setContent(post.getContent());
-            managed.setComments(post.getComments());
-            managed.setVotes(post.getVotes());
 
             return post.getTitle() + " updated";
         } catch (PersistenceException e) {
@@ -189,7 +187,7 @@ public class PostDAO {
     public String voteOnPost(VoteDTO vote) {
         Post detached = manager.find(Post.class, vote.getPostId());
         User user = manager.createQuery(
-                "SELECT a FROM User a LEFT JOIN FETCH a.permissions LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
+                "SELECT a FROM User a LEFT JOIN FETCH a.permission LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
                         "a.comments WHERE a.username = :username",
                 User.class).setParameter("username", vote.getUsername()).getSingleResult();
         Post managed = manager.merge(detached);

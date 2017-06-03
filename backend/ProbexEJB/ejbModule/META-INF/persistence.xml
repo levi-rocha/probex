@@ -5,7 +5,7 @@
     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
     version="2.0">
     <persistence-unit name="ProbexPU">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/ProbexDS</jta-data-source>
         <class>br.unifor.probex.entity.User</class>
         <class>br.unifor.probex.entity.Permission</class>
@@ -13,9 +13,11 @@
         <class>br.unifor.probex.entity.Comment</class>
         <class>br.unifor.probex.entity.Report</class>       
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
             <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.import_files"
+                      value="/import.sql"/>
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.use_sql_comments" value="false" />
         </properties>

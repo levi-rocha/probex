@@ -13,14 +13,14 @@ public class UserSimpleDTO implements Serializable {
 	private Long id;
 	private String username;
 	private String email;
-	private Set<Permission> permissions;
+	private Permission permission;
 
 	public static UserSimpleDTO fromUser(User user) {
 		UserSimpleDTO dto = new UserSimpleDTO();
 		dto.setId(user.getId());
 		dto.setUsername(user.getUsername());
 		dto.setEmail(user.getEmail());
-		dto.setPermissions(user.getPermissions());
+		dto.setPermission(user.getPermission());
 		return dto;
 	}
 
@@ -52,12 +52,11 @@ public class UserSimpleDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Set<Permission> getPermissions() {
-		return permissions;
+	public Permission getPermission() {
+		return permission;
 	}
 
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
-
 }
