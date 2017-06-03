@@ -28,18 +28,22 @@ public class UserDAO {
 
 	public List<User> list(int quantity) {
 		if (quantity > 0) {
-			return manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permission", User.class)
+			return manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH " +
+					"a.permission", User.class)
 					.setMaxResults(quantity).getResultList();
 		} else {
-			return manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH a.permission", User.class)
+			return manager.createQuery("SELECT a FROM User a LEFT JOIN FETCH " +
+					"a.permission", User.class)
 					.getResultList();
 		}
 	}
 
 	public User findByUsernameAndPassword(String username, String password) {
 		Query query = manager.createQuery(
-				"SELECT a FROM User a LEFT JOIN FETCH a.permission LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
-						"a.comments WHERE a.username = :username AND a.password = :password");
+				"SELECT a FROM User a LEFT JOIN FETCH a.permission " +
+						"LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
+						"a.comments WHERE a.username = :username AND " +
+						"a.password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		User user;
