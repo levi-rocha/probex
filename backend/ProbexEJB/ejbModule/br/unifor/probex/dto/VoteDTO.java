@@ -1,7 +1,9 @@
 package br.unifor.probex.dto;
 
 
-public class VoteDTO {
+import java.io.Serializable;
+
+public class VoteDTO implements Serializable {
 
     private Long postId;
     private String username;
