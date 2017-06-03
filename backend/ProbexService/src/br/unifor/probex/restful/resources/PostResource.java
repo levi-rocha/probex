@@ -46,10 +46,6 @@ public class PostResource {
 			@QueryParam("s") int start, @QueryParam("k") String keywords) {if (start < 0)
 			start = 0;
 		String orderBy = null;
-		System.out.println("CRITERIA: " + criteria);
-		System.out.println("QUANTITY: " + quantity);
-		System.out.println("START: " + start);
-		System.out.println("KEYWORDS: " + keywords);
 		if (criteria != null && criteria.equals("popular")) {
 			orderBy = PostDAO.POPULAR;
 		} else {
@@ -96,11 +92,10 @@ public class PostResource {
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Post addPost(Post post)
+	public PostDetailedDTO addPost(Post post)
 	{
 		Post inserted = postBO.addPost(post);
-		inserted.setAuthor(null);
-		return inserted;
+		return PostDetailedDTO.fromPost(inserted);
 	}
 
 	@PUT

@@ -3,4 +3,5 @@ INSERT INTO users (id, email, password, username, permission_id) VALUES (4,'fula
 INSERT INTO users (id, email, password, username, permission_id) VALUES (5,'admin@online.com','admin','admin',3);
 INSERT INTO posts (id, content, date, title, author_id) VALUES (6,'content',now(),'title',5);
 INSERT INTO votes (user_id, post_id) VALUES (4, 6);
+INSERT INTO reports (id, description, author_id, post_id) VALUES (7,'nao gostei',4,6);
 ALTER SEQUENCE hibernate_sequence RESTART WITH 101;
