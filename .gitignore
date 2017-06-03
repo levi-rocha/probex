@@ -9,6 +9,9 @@ node_modules/
 *.class
 .idea/workspace.xml 
 .idea/tasks.xml
-
+out/
+.idea/codeStyleSettings.xml
+.idea/dataSources*
+.idea/dictionaries/
 
 

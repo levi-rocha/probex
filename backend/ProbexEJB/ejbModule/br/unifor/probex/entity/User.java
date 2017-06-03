@@ -3,14 +3,7 @@ package br.unifor.probex.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -31,8 +24,8 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String email;
 
-	@ManyToMany
-	private Set<Permission> permissions;
+	@ManyToOne
+	private Permission permission;
 
 	@OneToMany(mappedBy = "author")
 	private Set<Post> posts;
@@ -42,12 +35,12 @@ public class User implements Serializable {
 
 	/* getters and setters */
 
-	public Set<Permission> getPermissions() {
-		return permissions;
+	public Permission getPermission() {
+		return permission;
 	}
 
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
 
 	public Set<Post> getPosts() {

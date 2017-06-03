@@ -7,9 +7,9 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="Entities" />
-          <factory-entry name="ProbexPU" />
+          <factory-entry name="ProbexPU" value="143cb227-4b25-41a7-a4b4-db0bb3ba1ca2" />
         </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/target/classes/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/ejbModule/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>

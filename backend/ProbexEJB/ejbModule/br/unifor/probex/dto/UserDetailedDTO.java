@@ -15,7 +15,7 @@ public class UserDetailedDTO implements Serializable {
 	private Long id;
 	private String username;
 	private String email;
-	private Set<Permission> permissions;
+	private Permission permission;
 	private Set<PostSimpleDTO> posts;
 
 	public static UserDetailedDTO fromUser(User user) {
@@ -23,7 +23,7 @@ public class UserDetailedDTO implements Serializable {
 		dto.setId(user.getId());
 		dto.setUsername(user.getUsername());
 		dto.setEmail(user.getEmail());
-		dto.setPermissions(user.getPermissions());
+		dto.setPermission(user.getPermission());
 		Set<PostSimpleDTO> posts = new HashSet<PostSimpleDTO>();
 		for (Post p : user.getPosts()) {
 			PostSimpleDTO pdto = PostSimpleDTO.fromPost(p);
@@ -57,12 +57,12 @@ public class UserDetailedDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Set<Permission> getPermissions() {
-		return permissions;
+	public Permission getPermission() {
+		return permission;
 	}
 
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
 
 	public Set<PostSimpleDTO> getPosts() {

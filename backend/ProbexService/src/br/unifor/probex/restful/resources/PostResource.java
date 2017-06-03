@@ -1,5 +1,6 @@
 package br.unifor.probex.restful.resources;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 import br.unifor.probex.business.PostBORemote;
 import br.unifor.probex.dao.PostDAO;
 import br.unifor.probex.dto.PostDetailedDTO;
 import br.unifor.probex.dto.PostSimpleDTO;
+import br.unifor.probex.dto.VoteDTO;
 import br.unifor.probex.entity.Post;
 
 @Stateless
@@ -43,10 +46,6 @@ public class PostResource {
 			@QueryParam("s") int start, @QueryParam("k") String keywords) {if (start < 0)
 			start = 0;
 		String orderBy = null;
-		System.out.println("CRITERIA: " + criteria);
-		System.out.println("QUANTITY: " + quantity);
-		System.out.println("START: " + start);
-		System.out.println("KEYWORDS: " + keywords);
 		if (criteria != null && criteria.equals("popular")) {
 			orderBy = PostDAO.POPULAR;
 		} else {
@@ -93,11 +92,10 @@ public class PostResource {
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Post addPost(Post post)
+	public PostDetailedDTO addPost(Post post)
 	{
 		Post inserted = postBO.addPost(post);
-		inserted.setAuthor(null);
-		return inserted;
+		return PostDetailedDTO.fromPost(inserted);
 	}
 
 	@PUT
@@ -112,6 +110,14 @@ public class PostResource {
 	@Produces("text/plain")
 	public String removePost(@PathParam("id") Long id) {
 		return postBO.removePost(id);
+	}
+
+	@Path("/vote")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String voteOnPost(VoteDTO vote) {
+		return postBO.voteOnPost(vote);
 	}
 
 }
