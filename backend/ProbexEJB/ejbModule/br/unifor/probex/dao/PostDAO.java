@@ -30,6 +30,7 @@ public class PostDAO {
                 .setParameter("username", post.getAuthor().getUsername())
                 .getSingleResult());
         manager.persist(post);
+        manager.flush();
         return post;
     }
 
