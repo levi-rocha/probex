@@ -9,7 +9,7 @@ import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.Post;
 import br.unifor.probex.entity.User;
 
-public class PostDetailedDTO extends PostSimpleDTO implements Serializable {
+public class PostDetailedDTO implements Serializable {
 
 	private static final long serialVersionUID = -6083320017667645716L;
 
@@ -29,14 +29,18 @@ public class PostDetailedDTO extends PostSimpleDTO implements Serializable {
 		dto.setAuthorUsername(post.getAuthor().getUsername());
 		dto.setContent(post.getContent());
 		Set<Long> voteIds = new HashSet<Long>();
-		for (User u : post.getVotes()) {
-			voteIds.add(u.getId());
+		if (post.getVotes() != null) {
+			for (User u : post.getVotes()) {
+				voteIds.add(u.getId());
+			}
 		}
 		dto.setVoteIds(voteIds);
 		List<CommentDTO> comments = new ArrayList<>();
-		for (Comment c : post.getComments()) {
-			CommentDTO cdto = CommentDTO.fromComment(c);
-			comments.add(cdto);
+		if (post.getComments() != null) {
+			for (Comment c : post.getComments()) {
+				CommentDTO cdto = CommentDTO.fromComment(c);
+				comments.add(cdto);
+			}
 		}
 		dto.setComments(comments);
 		return dto;
