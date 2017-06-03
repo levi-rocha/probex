@@ -29,7 +29,7 @@ public class Post implements Serializable {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 9999)
 	private String content;
 
 	@ManyToOne

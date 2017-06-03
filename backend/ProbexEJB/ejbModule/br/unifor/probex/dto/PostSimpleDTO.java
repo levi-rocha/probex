@@ -14,6 +14,7 @@ public class PostSimpleDTO implements Serializable {
 	private String authorUsername;
 	private int voteCount;
 	private Date date;
+	private String contentPreview;
 
 	public static PostSimpleDTO fromPost(Post post) {
 		PostSimpleDTO dto = new PostSimpleDTO();
@@ -22,6 +23,7 @@ public class PostSimpleDTO implements Serializable {
 		dto.setDate(post.getDate());
 		dto.setAuthorUsername(post.getAuthor().getUsername());
 		dto.setVoteCount(post.getVotes().size());
+		dto.setContentPreview(post.getContent());
 		return dto;
 	}
 
@@ -65,4 +67,14 @@ public class PostSimpleDTO implements Serializable {
 		this.voteCount = voteCount;
 	}
 
+	public String getContentPreview() {
+		return contentPreview;
+	}
+
+	public void setContentPreview(String contentPreview) {
+		if (contentPreview.length() > 140)
+			this.contentPreview = contentPreview.substring(0, 137) + "...";
+		else
+			this.contentPreview = contentPreview;
+	}
 }
