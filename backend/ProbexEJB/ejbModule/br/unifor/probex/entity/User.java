@@ -33,6 +33,9 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "author")
 	private Set<Comment> comments;
 
+	@OneToMany(mappedBy = "author")
+	private Set<Solution> solutions;
+
 	/* getters and setters */
 
 	public Permission getPermission() {
@@ -91,4 +94,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	public Set<Solution> getSolutions() {
+		return solutions;
+	}
+
+	public void setSolutions(Set<Solution> solutions) {
+		this.solutions = solutions;
+	}
 }

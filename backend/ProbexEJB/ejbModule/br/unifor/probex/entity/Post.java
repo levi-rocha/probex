@@ -1,18 +1,13 @@
 package br.unifor.probex.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
-
 @Entity
 @Table(name = "posts")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Post implements Serializable {
 
 	private static final long serialVersionUID = 8029789922827771935L;
@@ -51,6 +46,9 @@ public class Post implements Serializable {
 
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
+
+	@OneToMany(mappedBy = "post")
+	private List<Solution> solutions;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -114,4 +112,11 @@ public class Post implements Serializable {
 		this.comments = comments;
 	}
 
+	public List<Solution> getSolutions() {
+		return solutions;
+	}
+
+	public void setSolutions(List<Solution> solutions) {
+		this.solutions = solutions;
+	}
 }
