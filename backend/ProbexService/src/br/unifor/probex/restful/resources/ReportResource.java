@@ -22,19 +22,13 @@ public class ReportResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public ReportDTO findReportById(@PathParam("id") Long id) {
-        Report report = reportBO.findById(id);
-        return ReportDTO.fromReport(report);
+        return reportBO.findById(id);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ReportDTO> listReports(@QueryParam("q") int quantity) {
-        List<ReportDTO> dtos = new ArrayList<ReportDTO>();
-        List<Report> data = reportBO.listReports(quantity);
-        for (Report report : data) {
-            dtos.add(ReportDTO.fromReport(report));
-        }
-        return dtos;
+        return reportBO.listReports(quantity);
     }
 
     @POST
