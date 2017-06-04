@@ -13,6 +13,7 @@ public class CommentDTO implements Serializable {
 	private String content;
 	private Date date;
 	private String authorUsername;
+	private Long postId;
 
 	public static CommentDTO fromComment(Comment comment) {
 		CommentDTO dto = new CommentDTO();
@@ -20,6 +21,7 @@ public class CommentDTO implements Serializable {
 		dto.setContent(comment.getContent());
 		dto.setDate(comment.getDate());
 		dto.setAuthorUsername(comment.getAuthor().getUsername());
+		dto.setPostId(comment.getPost().getId());
 		return dto;
 	}
 
@@ -55,4 +57,11 @@ public class CommentDTO implements Serializable {
 		this.authorUsername = authorUsername;
 	}
 
+	public Long getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Long postId) {
+		this.postId = postId;
+	}
 }

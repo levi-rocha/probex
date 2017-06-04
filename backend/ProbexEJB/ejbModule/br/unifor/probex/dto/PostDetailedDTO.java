@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.Post;
+import br.unifor.probex.entity.Solution;
 import br.unifor.probex.entity.User;
 
 public class PostDetailedDTO implements Serializable {
@@ -20,6 +21,7 @@ public class PostDetailedDTO implements Serializable {
 	private String authorUsername;
 	private Set<Long> voteIds;
 	private List<CommentDTO> comments;
+	private List<SolutionDTO> solutions;
 
 	public static PostDetailedDTO fromPost(Post post) {
 		PostDetailedDTO dto = new PostDetailedDTO();
@@ -38,11 +40,17 @@ public class PostDetailedDTO implements Serializable {
 		List<CommentDTO> comments = new ArrayList<>();
 		if (post.getComments() != null) {
 			for (Comment c : post.getComments()) {
-				CommentDTO cdto = CommentDTO.fromComment(c);
-				comments.add(cdto);
+				comments.add(CommentDTO.fromComment(c));
 			}
 		}
 		dto.setComments(comments);
+		List<SolutionDTO> solutions = new ArrayList<>();
+		if (post.getSolutions() != null) {
+			for (Solution s : post.getSolutions()) {
+				solutions.add(SolutionDTO.fromSolution(s));
+			}
+		}
+		dto.setSolutions(solutions);
 		return dto;
 	}
 
@@ -102,4 +110,11 @@ public class PostDetailedDTO implements Serializable {
 		this.comments = comments;
 	}
 
+	public List<SolutionDTO> getSolutions() {
+		return solutions;
+	}
+
+	public void setSolutions(List<SolutionDTO> solutions) {
+		this.solutions = solutions;
+	}
 }
