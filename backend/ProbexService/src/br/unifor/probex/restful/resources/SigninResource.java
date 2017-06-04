@@ -23,8 +23,8 @@ public class SigninResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserDetailedDTO validate(User user) {
-		return UserDetailedDTO.fromUser(userBO.validateUserPassword(
-				user.getUsername(), user.getPassword()));
+		return userBO.validateUserPassword(user.getUsername(),
+				user.getPassword());
 	}
 
 }

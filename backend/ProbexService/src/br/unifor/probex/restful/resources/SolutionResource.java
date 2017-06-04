@@ -27,32 +27,27 @@ public class SolutionResource {
     @GET
     @Produces("application/json")
     public List<SolutionDTO> listSolutions(@QueryParam("q") int quantity) {
-        List<SolutionDTO> dtos = new ArrayList<SolutionDTO>();
-        for (Solution s : solutionBO.listSolutions(quantity)) {
-            SolutionDTO dto = SolutionDTO.fromSolution(s);
-            dtos.add(dto);
-        }
-        return dtos;
+        return solutionBO.listSolutions(quantity);
     }
 
     @POST
     @Consumes("application/json")
     @Produces("text/plain")
-    public String addSolution(Solution solution) {
+    public SolutionDTO addSolution(Solution solution) {
         return solutionBO.addSolution(solution);
     }
 
     @PUT
     @Consumes("application/json")
     @Produces("text/plain")
-    public String updateSolution(Solution solution) {
+    public SolutionDTO updateSolution(Solution solution) {
         return solutionBO.updateSolution(solution);
     }
 
     @Path("{id}")
     @DELETE
     @Produces("text/plain")
-    public String removeSolution(@PathParam("id") Long id) {
+    public SolutionDTO removeSolution(@PathParam("id") Long id) {
         return solutionBO.removeSolution(id);
     }
 

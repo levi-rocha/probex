@@ -10,7 +10,8 @@ import br.unifor.probex.entity.Post;
 @Remote
 public interface PostBORemote {
 
-	public List<Post> listPosts();
+	public List<Post> listPosts(int quantity, int start, String criteria,
+                                String keywords);
 	
 	public List<Post> listPosts(String orderBy);
 	

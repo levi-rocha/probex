@@ -23,41 +23,33 @@ public class CommentResource {
 	@GET
 	@Produces("application/json")
 	public CommentDTO findCommentById(@PathParam("id") Long id) {
-		Comment comment = commentBO.findCommentById(id);
-		CommentDTO dto = CommentDTO.fromComment(comment);
-		return dto;
+		return commentBO.findCommentById(id);
 	}
 
 	@GET
 	@Produces("application/json")
 	public List<CommentDTO> listComments(@QueryParam("q") int quantity) {
-		List<Comment> comments = commentBO.listComments(quantity);
-		List<CommentDTO> dtos = new ArrayList<CommentDTO>();
-		for (Comment c : comments) {
-			CommentDTO dto = CommentDTO.fromComment(c);
-			dtos.add(dto);
-		}
-		return dtos;
+		return commentBO.listComments(quantity);
 	}
 
 	@POST
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public String addComment(Comment comment) {
+	public CommentDTO addComment(Comment comment) {
 		return commentBO.addComment(comment);
 	}
 
 	@PUT
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public String updateComment(Comment comment) {
+	public CommentDTO updateComment(Comment comment) {
 		return commentBO.updateComment(comment);
 	}
 
 	@Path("{id}")
 	@DELETE
 	@Produces("text/plain")
-	public String removeComment(@PathParam("id") Long id) {
+	public CommentDTO removeComment(@PathParam("id") Long id) {
 		return commentBO.removeComment(id);
 	}
 

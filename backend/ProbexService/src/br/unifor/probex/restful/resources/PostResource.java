@@ -35,80 +35,34 @@ public class PostResource {
 	@GET
 	@Produces("application/json")
 	public PostDetailedDTO findPostById(@PathParam("id") Long id) {
-		Post post = postBO.findPostById(id);
-		PostDetailedDTO dto = PostDetailedDTO.fromPost(post);
-		return dto;
+		return postBO.findPostById(id);
 	}
 
 	@GET
 	@Produces("application/json")
 	public List<PostSimpleDTO> listPosts(@QueryParam("q") int quantity, @QueryParam("c") String criteria,
-			@QueryParam("s") int start, @QueryParam("k") String keywords) {if (start < 0)
-			start = 0;
-		String orderBy = null;
-		if (criteria != null && criteria.equals("popular")) {
-			orderBy = PostDAO.POPULAR;
-		} else {
-			orderBy = PostDAO.LATEST;
-		}
-		List<Post> data;
-		if (keywords != null && !"".equals(keywords)) {
-			String[] keys = keywords.split(",");
-			List<String> keyList = new ArrayList<String>();
-			for (String key : keys) {
-				keyList.add(key);
-				System.out.println("adding key: " + key);
-			}
-			if (quantity > 0) {
-				data = postBO.searchKeywords(keyList, orderBy, quantity + start);
-			} else {
-				data = postBO.searchKeywords(keyList, orderBy);
-			}
-		} else {
-			if (quantity > 0) {
-				data = postBO.listPosts(orderBy, quantity + start);
-			} else {
-				data = postBO.listPosts(orderBy);
-			}
-		}
-
-		if (quantity > 0) {
-			List<Post> temp = new ArrayList<Post>();
-			for (int i = start; i < start + quantity; i++) {
-				if (data.size() < i + 1) {
-					break;
-				}
-				temp.add(data.get(i));
-			}
-			data = temp;
-		}
-		List<PostSimpleDTO> dtos = new ArrayList<PostSimpleDTO>();
-		for (Post p : data) {
-			dtos.add(PostSimpleDTO.fromPost(p));
-		}
-		return dtos;
+			@QueryParam("s") int start, @QueryParam("k") String keywords) {
+		return postBO.listPosts(quantity, start, criteria, keywords);
 	}
 
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	public PostDetailedDTO addPost(Post post)
-	{
-		Post inserted = postBO.addPost(post);
-		return PostDetailedDTO.fromPost(inserted);
+	public PostDetailedDTO addPost(Post post) {
+		return postBO.addPost(post);
 	}
 
 	@PUT
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public String updatePost(Post post) {
+	public PostDetailedDTO updatePost(Post post) {
 		return postBO.updatePost(post);
 	}
 
 	@Path("{id}")
 	@DELETE
 	@Produces("text/plain")
-	public String removePost(@PathParam("id") Long id) {
+	public PostDetailedDTO removePost(@PathParam("id") Long id) {
 		return postBO.removePost(id);
 	}
 
@@ -116,7 +70,7 @@ public class PostResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String voteOnPost(VoteDTO vote) {
+	public PostDetailedDTO voteOnPost(VoteDTO vote) {
 		return postBO.voteOnPost(vote);
 	}
 

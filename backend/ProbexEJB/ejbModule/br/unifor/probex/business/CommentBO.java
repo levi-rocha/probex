@@ -1,5 +1,6 @@
 package br.unifor.probex.business;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.unifor.probex.dao.CommentDAO;
+import br.unifor.probex.dto.CommentDTO;
 import br.unifor.probex.entity.Comment;
 
 @Stateless
@@ -20,6 +22,14 @@ public class CommentBO implements CommentBORemote {
 	}
 
 	public List<Comment> listComments(int quantity) {
+		//TODO
+		List<Comment> comments = commentBO.listComments(quantity);
+		List<CommentDTO> dtos = new ArrayList<CommentDTO>();
+		for (Comment c : comments) {
+			CommentDTO dto = CommentDTO.fromComment(c);
+			dtos.add(dto);
+		}
+		return dtos;
 		return this.commentDAO.list(quantity);
 	}
 
