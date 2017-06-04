@@ -22,10 +22,9 @@ public class SigninResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User validate(User user) {
-		return userBO.validateUserPassword(user.getUsername(), user.getPassword());
-//		UserDetailedDTO dto = UserDetailedDTO.fromUser(data);
-//		return dto;
+	public UserDetailedDTO validate(User user) {
+		return UserDetailedDTO.fromUser(userBO.validateUserPassword(
+				user.getUsername(), user.getPassword()));
 	}
 
 }

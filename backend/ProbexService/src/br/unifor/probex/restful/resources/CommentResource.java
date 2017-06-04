@@ -5,14 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 
 import br.unifor.probex.business.CommentBORemote;
 import br.unifor.probex.dto.CommentDTO;
@@ -37,8 +30,8 @@ public class CommentResource {
 
 	@GET
 	@Produces("application/json")
-	public List<CommentDTO> listComments() {
-		List<Comment> comments = commentBO.listComments();
+	public List<CommentDTO> listComments(@QueryParam("q") int quantity) {
+		List<Comment> comments = commentBO.listComments(quantity);
 		List<CommentDTO> dtos = new ArrayList<CommentDTO>();
 		for (Comment c : comments) {
 			CommentDTO dto = CommentDTO.fromComment(c);
@@ -50,7 +43,7 @@ public class CommentResource {
 	@POST
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public String addComment( Comment comment) {
+	public String addComment(Comment comment) {
 		return commentBO.addComment(comment);
 	}
 
