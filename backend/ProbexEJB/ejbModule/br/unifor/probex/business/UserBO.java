@@ -80,9 +80,10 @@ public class UserBO implements UserBORemote {
 	}
 
 	@Override
-	public String removeUser(Long id) throws DatabaseException,
+	public UserSimpleDTO removeUser(Long id) throws DatabaseException,
             NotFoundException {
-		return this.userDAO.remove(id);
+		User user = this.userDAO.remove(id);
+		return UserSimpleDTO.fromUser(user);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public interface UserBORemote {
 	public UserDetailedDTO addUser(User user) throws InvalidUsernameException,
 			InvalidPasswordException, DatabaseException;
 
-	public String removeUser(Long id) throws DatabaseException,
+	public UserSimpleDTO removeUser(Long id) throws DatabaseException,
 			NotFoundException;
 
 	public UserDetailedDTO updateUser(User user) throws

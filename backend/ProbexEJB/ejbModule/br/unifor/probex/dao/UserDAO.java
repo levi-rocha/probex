@@ -77,13 +77,13 @@ public class UserDAO {
         return user;
 	}
 
-	public String remove(Long id) throws DatabaseException, NotFoundException {
+	public User remove(Long id) throws DatabaseException, NotFoundException {
 		try {
 			User user = manager.find(User.class, id);
             if (user == null)
                 throw new NotFoundException("User not found");
 			manager.remove(user);
-			return user.getUsername() + " removed";
+			return user;
 		} catch (PersistenceException e) {
 			throw new DatabaseException("Could not remove user with id " + id);
 		}

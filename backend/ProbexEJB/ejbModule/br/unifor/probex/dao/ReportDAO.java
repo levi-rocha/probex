@@ -2,6 +2,8 @@ package br.unifor.probex.dao;
 
 import br.unifor.probex.entity.Report;
 import br.unifor.probex.entity.User;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,16 +17,17 @@ public class ReportDAO {
     @PersistenceContext
     private EntityManager manager;
 
-    public String insert(Report report) {
+    public Report insert(Report report) throws DatabaseException {
         try {
-            report.setAuthor(manager.createQuery("SELECT u FROM User u WHERE" +
-                    " u.username = :username", User.class)
-                    .setParameter("username", report.getAuthor().getUsername())
-                    .getSingleResult());
+            report.setAuthor(manager.createQuery("SELECT u FROM User u " +
+                    "WHERE u.username = :username", User.class)
+                    .setParameter("username", report.getAuthor()
+                            .getUsername()).getSingleResult());
             manager.persist(report);
-            return "report inserted";
+            manager.flush();
+            return report;
         } catch (PersistenceException e) {
-            return "could not insert report " + e;
+            throw new DatabaseException("Could not insert report");
         }
     }
 
@@ -42,38 +45,42 @@ public class ReportDAO {
         }
     }
 
-    public Report findById(Long id) {
-        Report report = manager.createQuery("SELECT r from Report r LEFT JOIN " +
-                "FETCH r.author LEFT JOIN FETCH r.post p LEFT JOIN FETCH p" +
-                ".votes WHERE r.id = :id", Report.class)
+    public Report findById(Long id) throws NotFoundException {
+        Report report = manager.createQuery("SELECT r from Report r " +
+                "LEFT JOIN FETCH r.author LEFT JOIN FETCH r.post p " +
+                "LEFT JOIN FETCH p.votes WHERE r.id = :id", Report.class)
                 .setParameter("id", id).getSingleResult();
+        if (report == null)
+            throw new NotFoundException(
+                    "No report found with id " + id);
         return report;
     }
 
-    public String remove(Long id) {
+    public Report remove(Long id) throws DatabaseException, NotFoundException {
         try {
             Report report = manager.find(Report.class, id);
+            if (report == null)
+                throw new NotFoundException(
+                        "No report found with id " + id);
             manager.remove(report);
-            return "report " + report.getId() + " removed";
+            return report;
         } catch (PersistenceException e) {
-            return "could not remove report! " + e;
+            throw new DatabaseException("Could not remove report");
         }
     }
 
-    public String update(Report report) {
+    public Report update(Report report) throws NotFoundException,
+            DatabaseException {
         try {
             Report detached = manager.find(Report.class, report.getId());
-
             if (detached == null)
-                return "no rerport found with id " + report.getId();
-
+                throw new NotFoundException(
+                        "No report found with id " + report.getId());
             Report managed = manager.merge(detached);
-
             managed.setDescription(report.getDescription());
-
-            return "report " + report.getId() + " updated";
+            return managed;
         } catch (PersistenceException e) {
-            return "could not update report! " + e;
+            throw new DatabaseException("Could not update report");
         }
     }
 }
