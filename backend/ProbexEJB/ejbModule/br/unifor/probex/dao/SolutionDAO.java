@@ -18,14 +18,11 @@ public class SolutionDAO {
     private EntityManager manager;
 
     public List<Solution> list(int quantity) {
-        if (quantity > 0) {
-            return manager.createQuery("SELECT s FROM Solution s " +
-                    "ORDER BY s.date ASC", Solution.class)
-                    .setMaxResults(quantity).getResultList();
-        } else {
-            return manager.createQuery("SELECT s FROM Solution s " +
-                    "ORDER BY s.date ASC", Solution.class).getResultList();
-        }
+        if (quantity <= 0 || quantity > 100)
+            quantity = 100;
+        return manager.createQuery("SELECT s FROM Solution s " +
+                "ORDER BY s.date ASC", Solution.class)
+                .setMaxResults(quantity).getResultList();
     }
 
     public Solution findById(Long id) throws NotFoundException {

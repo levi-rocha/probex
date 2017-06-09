@@ -1,6 +1,10 @@
 package br.unifor.probex.business;
 
+import br.unifor.probex.dto.SolutionDTO;
 import br.unifor.probex.entity.Solution;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.InvalidSolutionException;
+import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -8,16 +12,16 @@ import java.util.List;
 @Remote
 public interface SolutionBORemote {
 
-    public List<Solution> listSolutions();
+    List<SolutionDTO> listSolutions(int quantity);
 
-    public List<Solution> listSolutions(int quantity);
+    SolutionDTO findSolutionById(Long id) throws NotFoundException;
 
-    public Solution findSolutionById(Long id);
+    SolutionDTO addSolution(Solution solution) throws DatabaseException, InvalidSolutionException;
 
-    public String addSolution(Solution solution);
+    SolutionDTO removeSolution(Long id) throws DatabaseException,
+            NotFoundException;
 
-    public String removeSolution(Long id);
-
-    public String updateSolution(Solution solution);
+    SolutionDTO updateSolution(Solution solution) throws NotFoundException,
+            DatabaseException, InvalidSolutionException;
 
 }

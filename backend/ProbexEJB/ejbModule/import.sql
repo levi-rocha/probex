@@ -7,4 +7,5 @@ INSERT INTO votes (user_id, post_id) VALUES (6, 7);
 INSERT INTO comments (id, content, date, author_id, post_id) VALUES (8,'voce tem razao!!!',now(),6,7);
 INSERT INTO solutions (id, content, date, author_id, post_id) VALUES (9,'resolvido',now(),5,7);
 INSERT INTO reports (id, description, author_id, post_id) VALUES (10,'nao gostei',4,7);
+INSERT INTO posts (id, content, date, title, author_id) VALUES (11,'no one likes this post',now(),'unpopular post',6);
 ALTER SEQUENCE hibernate_sequence RESTART WITH 101;

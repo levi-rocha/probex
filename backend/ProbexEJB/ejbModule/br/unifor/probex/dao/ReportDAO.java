@@ -32,17 +32,12 @@ public class ReportDAO {
     }
 
     public List<Report> list(int quantity) {
-        if (quantity > 0) {
-            return manager.createQuery("SELECT r from Report r LEFT JOIN " +
-                    "FETCH r.author LEFT JOIN FETCH r.post p LEFT JOIN FETCH " +
-                            "p.votes", Report.class)
-                    .setMaxResults(quantity).getResultList();
-        } else {
-            return manager.createQuery("SELECT r from Report r LEFT JOIN " +
-                    "FETCH r.author LEFT JOIN FETCH r.post p LEFT JOIN FETCH " +
-                    "p.votes", Report.class)
-                    .getResultList();
-        }
+        if (quantity <= 0 || quantity > 100)
+            quantity = 100;
+        return manager.createQuery("SELECT r from Report r LEFT JOIN " +
+                "FETCH r.author LEFT JOIN FETCH r.post p LEFT JOIN FETCH " +
+                "p.votes", Report.class)
+                .setMaxResults(quantity).getResultList();
     }
 
     public Report findById(Long id) throws NotFoundException {

@@ -15,8 +15,10 @@ public class ReportDTO implements Serializable {
         ReportDTO dto = new ReportDTO();
         dto.setId(report.getId());
         dto.setDescription(report.getDescription());
-        dto.setAuthorUsername(report.getAuthor().getUsername());
-        dto.setPost(PostSimpleDTO.fromPost(report.getPost()));
+        if (report.getAuthor() != null)
+            dto.setAuthorUsername(report.getAuthor().getUsername());
+        if (report.getPost() != null)
+            dto.setPost(PostSimpleDTO.fromPost(report.getPost()));
         return dto;
     }
 

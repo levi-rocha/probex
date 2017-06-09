@@ -19,14 +19,11 @@ public class CommentDAO {
 	private EntityManager manager;
 
 	public List<Comment> list(int quantity) {
-		if (quantity > 0) {
-			return manager.createQuery("SELECT c FROM Comment c " +
-					"ORDER BY c.date ASC", Comment.class)
-					.setMaxResults(quantity).getResultList();
-		} else {
-			return manager.createQuery("SELECT c FROM Comment c " +
-					"ORDER BY c.date ASC", Comment.class).getResultList();
-		}
+		if (quantity <= 0 || quantity > 100)
+			quantity = 100;
+		return manager.createQuery("SELECT c FROM Comment c " +
+				"ORDER BY c.date ASC", Comment.class)
+				.setMaxResults(quantity).getResultList();
 	}
 
 	public Comment findById(Long id) throws NotFoundException {

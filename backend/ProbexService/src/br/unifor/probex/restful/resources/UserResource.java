@@ -6,11 +6,9 @@ import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
 import br.unifor.probex.exception.*;
 import br.unifor.probex.exception.NotFoundException;
-import com.sun.deploy.net.HttpResponse;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -58,7 +56,7 @@ public class UserResource {
         try {
             UserDetailedDTO data = userBO.addUser(user);
             return Response.ok(data, MediaType.APPLICATION_JSON).build();
-        } catch (InvalidUsernameException|InvalidPasswordException e) {
+        } catch (InvalidArgumentException e) {
             return Response.status(422).entity(e.getMessage()).build();
         } catch (DatabaseException e) {
             return Response.serverError().entity(e.getMessage()).build();
@@ -72,7 +70,7 @@ public class UserResource {
         try {
             UserDetailedDTO data = userBO.updateUser(user);
             return Response.ok(data, MediaType.APPLICATION_JSON).build();
-        } catch (InvalidUsernameException|InvalidPasswordException e) {
+        } catch (InvalidArgumentException e) {
             return Response.status(422).entity(e.getMessage()).build();
         } catch (DatabaseException e) {
             return Response.serverError().entity(e.getMessage()).build();

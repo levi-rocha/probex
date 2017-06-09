@@ -34,12 +34,15 @@ public class PostDAO {
         return post;
     }
 
-    public Post findById(Long id) {
-        return manager.createQuery(
+    public Post findById(Long id) throws NotFoundException {
+        Post post = manager.createQuery(
                 "select p from Post p left join fetch p.author " +
                         "left join fetch p.votes left join fetch p.comments " +
                         "where p.id = :id", Post.class)
                 .setParameter("id", id).getSingleResult();
+        if (post == null)
+            throw new NotFoundException("Post not found");
+        return post;
     }
 
     private List<Post> getMostPopular(List<Long> ids, int quantity, int start) {
@@ -82,16 +85,15 @@ public class PostDAO {
 
     public List<Post> list(List<String> keywords, String orderBy, int quantity,
                            int start) {
-        if (start < 0 )
+        if (start < 0)
             start = 0;
         if (quantity <= 0 || quantity > 100)
             quantity = 100;
-        List<Post> results = new ArrayList<>();
         boolean sortPopular = false;
         if (POPULAR.equals(orderBy))
             sortPopular = true;
-
         if (keywords != null && keywords.size() > 0) {
+            List<Post> results = new ArrayList<>();
             String keyword = keywords.get(0);
             String query = "select distinct p from Post p " +
                     "left join fetch p.author left join fetch p.votes " +
@@ -127,7 +129,7 @@ public class PostDAO {
             }
         } else {
             if (sortPopular) {
-                getMostPopular(null, quantity, start);
+                return getMostPopular(null, quantity, start);
             } else {
                 String query = "select distinct p from Post p " +
                         "left join fetch p.author left join fetch p.votes" +
@@ -137,7 +139,6 @@ public class PostDAO {
                         .getResultList();
             }
         }
-        return results;
     }
 
     public Post update(Post post) throws NotFoundException, DatabaseException {

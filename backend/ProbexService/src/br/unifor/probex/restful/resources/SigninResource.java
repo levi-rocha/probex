@@ -26,8 +26,9 @@ public class SigninResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response validate(User user) {
 		try {
-			UserDetailedDTO dto = UserDetailedDTO.fromUser(userBO.validateUserPassword(
-					user.getUsername(), user.getPassword()));
+			UserDetailedDTO dto = UserDetailedDTO.fromUser(
+					userBO.validateUserPassword(user.getUsername(),
+							user.getPassword()));
 			return Response.ok(dto, MediaType.APPLICATION_JSON).build();
 		} catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
