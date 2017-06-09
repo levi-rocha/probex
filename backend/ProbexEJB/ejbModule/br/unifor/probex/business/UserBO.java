@@ -31,24 +31,21 @@ public class UserBO implements UserBORemote {
 	    // find by username
 		if (username != null) {
 			User user = userDAO.findByUsername(username);
-			List<UserSimpleDTO> data = new ArrayList<>();
+			List<UserSimpleDTO> dtos = new ArrayList<>();
 			if (user != null) {
 				UserSimpleDTO dto = UserSimpleDTO.fromUser(user);
-				data.add(dto);
+                dtos.add(dto);
 			}
-			return data;
+			return dtos;
 		}
-		if (start < 0)
-			start = 0;
-		if (quantity < 0)
-			quantity = 0;
-		List<User> data = userDAO.list(quantity, start);
-		List<UserSimpleDTO> userData = new ArrayList<>();
-		for (User u : data) {
+		// no username
+		List<User> users = userDAO.list(quantity, start);
+		List<UserSimpleDTO> dtos = new ArrayList<>();
+		for (User u : users) {
 			UserSimpleDTO dto = UserSimpleDTO.fromUser(u);
-			userData.add(dto);
+            dtos.add(dto);
 		}
-		return userData;
+		return dtos;
 	}
 
 	@Override
@@ -80,9 +77,10 @@ public class UserBO implements UserBORemote {
 	}
 
 	@Override
-	public String removeUser(Long id) throws DatabaseException,
+	public UserSimpleDTO removeUser(Long id) throws DatabaseException,
             NotFoundException {
-		return this.userDAO.remove(id);
+		User user = this.userDAO.remove(id);
+		return UserSimpleDTO.fromUser(user);
 	}
 
 	@Override

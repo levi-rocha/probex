@@ -9,6 +9,8 @@ import javax.persistence.PersistenceException;
 
 import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.User;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.NotFoundException;
 
 @Stateless
 public class CommentDAO {
@@ -17,58 +19,71 @@ public class CommentDAO {
 	private EntityManager manager;
 
 	public List<Comment> list(int quantity) {
-		if (quantity > 0) {
-			return manager.createQuery("SELECT c FROM Comment c ORDER BY c.date ASC", Comment.class).setMaxResults(quantity)
-					.getResultList();
-		} else {
-			return manager.createQuery("SELECT c FROM Comment c ORDER BY c.date ASC", Comment.class).getResultList();
-		}
+		if (quantity <= 0 || quantity > 100)
+			quantity = 100;
+		return manager.createQuery("SELECT c FROM Comment c " +
+				"ORDER BY c.date ASC", Comment.class)
+				.setMaxResults(quantity).getResultList();
 	}
 
-	public Comment findById(Long id) {
+	public Comment findById(Long id) throws NotFoundException {
 		Comment comment = manager
-				.createQuery("select c from Comment c left join fetch c.author left join fetch c.post where c.id = :id",
+				.createQuery("select c from Comment c " +
+								"left join fetch c.author " +
+								"left join fetch c.post where c.id = :id",
 						Comment.class)
 				.setParameter("id", id).getSingleResult();
+		if (comment == null)
+			throw new NotFoundException(
+					"No comment found with id " + id);
 		return comment;
 	}
 
-	public String insert(Comment comment) {
+	public Comment insert(Comment comment) throws DatabaseException,
+			NotFoundException {
 		try {
-			comment.setAuthor((User) manager.createQuery("SELECT u FROM User u WHERE u.username = :username")
-					.setParameter("username", comment.getAuthor().getUsername())
-					.getSingleResult());
+			User author = manager.createQuery("SELECT u " +
+					"FROM User u WHERE u.username = :username", User.class)
+					.setParameter("username", comment.getAuthor()
+							.getUsername()).getSingleResult();
+			if (author == null)
+				throw new NotFoundException(
+						"No user found with username " + comment.getAuthor()
+								.getUsername());
+			comment.setAuthor(author);
 			manager.persist(comment);
-			return comment.getContent() + " inserted";
+			manager.flush();
+			return comment;
 		} catch (PersistenceException e) {
-			return "could not insert data " + e;
+			throw new DatabaseException("Could not insert comment");
 		}
 	}
 
-	public String update(Comment comment) {
+	public Comment update(Comment comment) throws NotFoundException,
+			DatabaseException {
 		try {
 			Comment detached = manager.find(Comment.class, comment.getId());
-
 			if (detached == null)
-				return "no comment found with id " + comment.getId();
-
+				throw new NotFoundException(
+						"No comment found with id " + comment.getId());
 			Comment managed = manager.merge(detached);
-
 			managed.setContent(comment.getContent());
-
-			return comment.getContent() + " updated";
+			return managed;
 		} catch (PersistenceException e) {
-			return "could not update data " + e;
+			throw new DatabaseException("Could not update comment");
 		}
 	}
 
-	public String remove(Long id) {
+	public Comment remove(Long id) throws NotFoundException, DatabaseException {
 		try {
 			Comment comment = manager.find(Comment.class, id);
+			if (comment == null)
+				throw new NotFoundException(
+						"No comment found with id " + id);
 			manager.remove(comment);
-			return comment.getContent() + " removed";
+			return comment;
 		} catch (PersistenceException e) {
-			return "could not remove data " + e;
+			throw new DatabaseException("Could not remove comment");
 		}
 	}
 

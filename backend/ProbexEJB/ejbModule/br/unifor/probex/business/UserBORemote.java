@@ -15,22 +15,22 @@ import br.unifor.probex.exception.NotFoundException;
 @Remote
 public interface UserBORemote {
 
-	public List<UserSimpleDTO> listUsers(int quantity, int start,
-										 String username)
+	List<UserSimpleDTO> listUsers(int quantity, int start,
+								  String username)
 			throws NotFoundException;
 
-	public UserDetailedDTO findUserById(Long id) throws NotFoundException;
+	UserDetailedDTO findUserById(Long id) throws NotFoundException;
 
-	public User validateUserPassword(String username, String password)
+	User validateUserPassword(String username, String password)
 			throws NotFoundException;
 
-	public UserDetailedDTO addUser(User user) throws InvalidUsernameException,
+	UserDetailedDTO addUser(User user) throws InvalidUsernameException,
 			InvalidPasswordException, DatabaseException;
 
-	public String removeUser(Long id) throws DatabaseException,
+	UserSimpleDTO removeUser(Long id) throws DatabaseException,
 			NotFoundException;
 
-	public UserDetailedDTO updateUser(User user) throws
+	UserDetailedDTO updateUser(User user) throws
 			InvalidUsernameException, InvalidPasswordException,
 			DatabaseException, NotFoundException;
 }

@@ -20,8 +20,10 @@ public class CommentDTO implements Serializable {
 		dto.setId(comment.getId());
 		dto.setContent(comment.getContent());
 		dto.setDate(comment.getDate());
-		dto.setAuthorUsername(comment.getAuthor().getUsername());
-		dto.setPostId(comment.getPost().getId());
+		if (comment.getAuthor() != null)
+			dto.setAuthorUsername(comment.getAuthor().getUsername());
+		if (comment.getPost() != null)
+			dto.setPostId(comment.getPost().getId());
 		return dto;
 	}
 

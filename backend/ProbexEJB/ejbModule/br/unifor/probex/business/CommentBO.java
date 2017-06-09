@@ -1,15 +1,16 @@
 package br.unifor.probex.business;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
 import br.unifor.probex.dao.CommentDAO;
 import br.unifor.probex.dto.CommentDTO;
 import br.unifor.probex.entity.Comment;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.InvalidCommentException;
+import br.unifor.probex.exception.NotFoundException;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class CommentBO implements CommentBORemote {
@@ -21,36 +22,37 @@ public class CommentBO implements CommentBORemote {
 
 	}
 
-	public List<Comment> listComments(int quantity) {
-		//TODO
-		List<Comment> comments = commentBO.listComments(quantity);
-		List<CommentDTO> dtos = new ArrayList<CommentDTO>();
-		for (Comment c : comments) {
-			CommentDTO dto = CommentDTO.fromComment(c);
-			dtos.add(dto);
+	public List<CommentDTO> listComments(int quantity) {
+		List<CommentDTO> dtos = new ArrayList<>();
+		for (Comment c : this.commentDAO.list(quantity)) {
+			dtos.add(CommentDTO.fromComment(c));
 		}
 		return dtos;
-		return this.commentDAO.list(quantity);
 	}
 
-	public List<Comment> listComments() {
-		return this.commentDAO.list(0);
+	public CommentDTO findCommentById(Long id) throws NotFoundException {
+		return CommentDTO.fromComment(this.commentDAO.findById(id));
 	}
 
-	public Comment findCommentById(Long id) {
-		return this.commentDAO.findById(id);
+	public CommentDTO addComment(Comment comment) throws DatabaseException,
+            NotFoundException, InvalidCommentException {
+        if (comment.getContent() == null || comment.getContent().length() < 5)
+            throw new InvalidCommentException("Comment content must be " +
+                    "longer than 5");
+		return CommentDTO.fromComment(this.commentDAO.insert(comment));
 	}
 
-	public String addComment(Comment comment) {
-		return this.commentDAO.insert(comment);
+	public CommentDTO removeComment(Long id) throws NotFoundException,
+			DatabaseException {
+		return CommentDTO.fromComment(this.commentDAO.remove(id));
 	}
 
-	public String removeComment(Long id) {
-		return this.commentDAO.remove(id);
-	}
-
-	public String updateComment(Comment comment) {
-		return this.commentDAO.update(comment);
+	public CommentDTO updateComment(Comment comment) throws NotFoundException,
+            DatabaseException, InvalidCommentException {
+        if (comment.getContent() == null || comment.getContent().length() < 5)
+            throw new InvalidCommentException("Comment content must be " +
+                    "longer than 5");
+		return CommentDTO.fromComment(this.commentDAO.update(comment));
 	}
 
 }

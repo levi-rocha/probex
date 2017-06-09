@@ -1,9 +1,7 @@
 package br.unifor.probex.dto;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import br.unifor.probex.entity.Comment;
 import br.unifor.probex.entity.Post;
@@ -30,7 +28,7 @@ public class PostDetailedDTO implements Serializable {
 		dto.setDate(post.getDate());
 		dto.setAuthorUsername(post.getAuthor().getUsername());
 		dto.setContent(post.getContent());
-		Set<Long> voteIds = new HashSet<Long>();
+		Set<Long> voteIds = new HashSet<>();
 		if (post.getVotes() != null) {
 			for (User u : post.getVotes()) {
 				voteIds.add(u.getId());

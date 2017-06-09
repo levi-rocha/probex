@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -26,16 +25,14 @@ public class UserDAO {
 	}
 
 	public List<User> list(int quantity, int start) {
-		if (quantity > 0) {
-			return manager.createQuery("SELECT a FROM User a " +
-					"LEFT JOIN FETCH a.permission", User.class)
-					.setFirstResult(start).setMaxResults(quantity)
-					.getResultList();
-		} else {
-			return manager.createQuery("SELECT a FROM User a " +
-					"LEFT JOIN FETCH a.permission", User.class)
-					.setFirstResult(start).getResultList();
-		}
+		if (start < 0)
+			start = 0;
+		if (quantity <= 0 || quantity > 100)
+			quantity = 100;
+        return manager.createQuery("SELECT a FROM User a " +
+                "LEFT JOIN FETCH a.permission", User.class)
+                .setFirstResult(start).setMaxResults(quantity)
+                .getResultList();
 	}
 
 	public User findByUsernameAndPassword(String username, String password)
@@ -54,7 +51,7 @@ public class UserDAO {
 	}
 
 	public User findById(Long id) throws NotFoundException {
-		User user = (User) manager.createQuery(
+		User user = manager.createQuery(
 				"SELECT a FROM User a LEFT JOIN FETCH a.permission " +
 						"LEFT JOIN FETCH a.posts p LEFT JOIN FETCH " +
                         "a.comments LEFT JOIN FETCH p.votes WHERE a.id = :id",
@@ -65,7 +62,7 @@ public class UserDAO {
 	}
 
 	public User findByUsername(String username) throws NotFoundException {
-		User user = (User) manager.createQuery(
+		User user = manager.createQuery(
 				"SELECT a FROM User a LEFT JOIN FETCH a.permission " +
 						"LEFT JOIN FETCH a.posts p LEFT JOIN FETCH " +
                         "a.comments LEFT JOIN FETCH p.votes " +
@@ -77,13 +74,13 @@ public class UserDAO {
         return user;
 	}
 
-	public String remove(Long id) throws DatabaseException, NotFoundException {
+	public User remove(Long id) throws DatabaseException, NotFoundException {
 		try {
 			User user = manager.find(User.class, id);
             if (user == null)
                 throw new NotFoundException("User not found");
 			manager.remove(user);
-			return user.getUsername() + " removed";
+			return user;
 		} catch (PersistenceException e) {
 			throw new DatabaseException("Could not remove user with id " + id);
 		}
