@@ -55,8 +55,11 @@ public class PostResource {
 			return Response.ok(data, MediaType.APPLICATION_JSON).build();
 		} catch (InvalidArgumentException e) {
 			return Response.status(422).entity(e.getMessage()).build();
-		}
-	}
+		} catch (NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+        }
+    }
 
 	@PUT
 	@Consumes("application/json")
@@ -68,7 +71,7 @@ public class PostResource {
 		} catch (NotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity(e.getMessage()).build();
-		} catch (DatabaseException e) {
+		} catch (ServerException e) {
 			return Response.serverError().entity(e.getMessage()).build();
 		} catch (InvalidArgumentException e) {
 			return Response.status(422).entity(e.getMessage()).build();
@@ -85,7 +88,7 @@ public class PostResource {
 		} catch (NotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity(e.getMessage()).build();
-		} catch (DatabaseException e) {
+		} catch (ServerException e) {
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
@@ -101,7 +104,7 @@ public class PostResource {
 		} catch (NotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity(e.getMessage()).build();
-		} catch (DatabaseException e) {
+		} catch (ServerException e) {
 			return Response.serverError().entity(e.getMessage()).build();
 		} catch (InvalidArgumentException e) {
 			return Response.status(422).entity(e.getMessage()).build();

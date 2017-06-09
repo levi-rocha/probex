@@ -19,7 +19,7 @@ public interface PostBORemote {
 	List<PostSimpleDTO> listPosts(int quantity, int start, String criteria,
 								  String keywords);
 
-	PostDetailedDTO addPost(Post post) throws InvalidPostException;
+	PostDetailedDTO addPost(Post post) throws InvalidPostException, NotFoundException;
 
 	PostDetailedDTO findPostById(Long id) throws NotFoundException;
 

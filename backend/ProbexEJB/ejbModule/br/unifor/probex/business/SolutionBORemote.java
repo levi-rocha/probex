@@ -16,7 +16,7 @@ public interface SolutionBORemote {
 
     SolutionDTO findSolutionById(Long id) throws NotFoundException;
 
-    SolutionDTO addSolution(Solution solution) throws DatabaseException, InvalidSolutionException;
+    SolutionDTO addSolution(Solution solution) throws DatabaseException, InvalidSolutionException, NotFoundException;
 
     SolutionDTO removeSolution(Long id) throws DatabaseException,
             NotFoundException;
