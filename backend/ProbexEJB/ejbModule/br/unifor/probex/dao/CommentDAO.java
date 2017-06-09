@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
@@ -27,16 +28,16 @@ public class CommentDAO {
 	}
 
 	public Comment findById(Long id) throws NotFoundException {
-		Comment comment = manager
-				.createQuery("select c from Comment c " +
-								"left join fetch c.author " +
-								"left join fetch c.post where c.id = :id",
-						Comment.class)
-				.setParameter("id", id).getSingleResult();
-		if (comment == null)
-			throw new NotFoundException(
-					"No comment found with id " + id);
-		return comment;
+		try {
+            return manager
+                    .createQuery("select c from Comment c " +
+                                    "left join fetch c.author " +
+                                    "left join fetch c.post where c.id = :id",
+                            Comment.class)
+                    .setParameter("id", id).getSingleResult();
+		} catch (NoResultException e) {
+			throw new NotFoundException("Comment not found");
+		}
 	}
 
 	public Comment insert(Comment comment) throws DatabaseException,
@@ -46,15 +47,13 @@ public class CommentDAO {
 					"FROM User u WHERE u.username = :username", User.class)
 					.setParameter("username", comment.getAuthor()
 							.getUsername()).getSingleResult();
-			if (author == null)
-				throw new NotFoundException(
-						"No user found with username " + comment.getAuthor()
-								.getUsername());
 			comment.setAuthor(author);
 			manager.persist(comment);
 			manager.flush();
 			return comment;
-		} catch (PersistenceException e) {
+		} catch (NoResultException e) {
+            throw new NotFoundException("Author not found");
+        } catch (PersistenceException e) {
 			throw new DatabaseException("Could not insert comment");
 		}
 	}
@@ -63,13 +62,12 @@ public class CommentDAO {
 			DatabaseException {
 		try {
 			Comment detached = manager.find(Comment.class, comment.getId());
-			if (detached == null)
-				throw new NotFoundException(
-						"No comment found with id " + comment.getId());
 			Comment managed = manager.merge(detached);
 			managed.setContent(comment.getContent());
 			return managed;
-		} catch (PersistenceException e) {
+		} catch (NoResultException e) {
+            throw new NotFoundException("Comment not found");
+        } catch (PersistenceException e) {
 			throw new DatabaseException("Could not update comment");
 		}
 	}
@@ -77,12 +75,11 @@ public class CommentDAO {
 	public Comment remove(Long id) throws NotFoundException, DatabaseException {
 		try {
 			Comment comment = manager.find(Comment.class, id);
-			if (comment == null)
-				throw new NotFoundException(
-						"No comment found with id " + id);
 			manager.remove(comment);
 			return comment;
-		} catch (PersistenceException e) {
+		} catch (NoResultException e) {
+            throw new NotFoundException("Comment not found");
+        } catch (PersistenceException e) {
 			throw new DatabaseException("Could not remove comment");
 		}
 	}

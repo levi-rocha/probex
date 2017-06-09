@@ -13,6 +13,7 @@ import br.unifor.probex.business.UserBORemote;
 import br.unifor.probex.dto.UserDetailedDTO;
 import br.unifor.probex.entity.User;
 import br.unifor.probex.exception.NotFoundException;
+import br.unifor.probex.exception.ServerException;
 
 @Stateless
 @Path("/signin")
@@ -33,6 +34,8 @@ public class SigninResource {
 		} catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(e.getMessage()).build();
+        } catch (ServerException e) {
+            return Response.serverError().entity(e.getMessage()).build();
         }
     }
 

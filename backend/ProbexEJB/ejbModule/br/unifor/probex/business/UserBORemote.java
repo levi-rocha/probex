@@ -7,10 +7,7 @@ import javax.ejb.Remote;
 import br.unifor.probex.dto.UserDetailedDTO;
 import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
-import br.unifor.probex.exception.DatabaseException;
-import br.unifor.probex.exception.InvalidPasswordException;
-import br.unifor.probex.exception.InvalidUsernameException;
-import br.unifor.probex.exception.NotFoundException;
+import br.unifor.probex.exception.*;
 
 @Remote
 public interface UserBORemote {
@@ -22,15 +19,15 @@ public interface UserBORemote {
 	UserDetailedDTO findUserById(Long id) throws NotFoundException;
 
 	User validateUserPassword(String username, String password)
-			throws NotFoundException;
+            throws NotFoundException, ServerException;
 
 	UserDetailedDTO addUser(User user) throws InvalidUsernameException,
-			InvalidPasswordException, DatabaseException;
+            InvalidPasswordException, DatabaseException, ServerException;
 
 	UserSimpleDTO removeUser(Long id) throws DatabaseException,
 			NotFoundException;
 
 	UserDetailedDTO updateUser(User user) throws
 			InvalidUsernameException, InvalidPasswordException,
-			DatabaseException, NotFoundException;
+			DatabaseException, NotFoundException, ServerException;
 }

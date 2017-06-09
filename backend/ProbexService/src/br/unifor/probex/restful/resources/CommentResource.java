@@ -3,9 +3,9 @@ package br.unifor.probex.restful.resources;
 import br.unifor.probex.business.CommentBORemote;
 import br.unifor.probex.dto.CommentDTO;
 import br.unifor.probex.entity.Comment;
-import br.unifor.probex.exception.DatabaseException;
 import br.unifor.probex.exception.InvalidArgumentException;
 import br.unifor.probex.exception.NotFoundException;
+import br.unifor.probex.exception.ServerException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -51,7 +51,7 @@ public class CommentResource {
         } catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(e.getMessage()).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         } catch (InvalidArgumentException e) {
             return Response.status(422).entity(e.getMessage()).build();
@@ -68,7 +68,7 @@ public class CommentResource {
 		} catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(e.getMessage()).build();
-		} catch (DatabaseException e) {
+		} catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
 		} catch (InvalidArgumentException e) {
             return Response.status(422).entity(e.getMessage()).build();
@@ -85,7 +85,7 @@ public class CommentResource {
         } catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(e.getMessage()).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         }
     }

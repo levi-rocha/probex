@@ -4,13 +4,12 @@ import br.unifor.probex.dao.UserDAO;
 import br.unifor.probex.dto.UserDetailedDTO;
 import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
-import br.unifor.probex.exception.DatabaseException;
-import br.unifor.probex.exception.InvalidPasswordException;
-import br.unifor.probex.exception.InvalidUsernameException;
-import br.unifor.probex.exception.NotFoundException;
+import br.unifor.probex.exception.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,17 +57,23 @@ public class UserBO implements UserBORemote {
 
 	@Override
 	public User validateUserPassword(String username, String password)
-            throws NotFoundException {
-		return this.userDAO.findByUsernameAndPassword(username, password);
+            throws NotFoundException, ServerException {
+	    String encryptedPass = encryptPassword(password);
+		return this.userDAO.findByUsernameAndPassword(username, encryptedPass);
 	}
 
 	@Override
 	public UserDetailedDTO addUser(User user) throws InvalidUsernameException,
-            InvalidPasswordException, DatabaseException {
-        if (user.getUsername().length() < 3)
-            throw new InvalidUsernameException("Username is too short");
-        if (user.getPassword().length() < 3)
-            throw new InvalidPasswordException("Password is too short");
+            InvalidPasswordException, ServerException {
+        System.out.println("******************************************");
+	    System.out.println("fulano encrypted: " + encryptPassword("fulano"));
+        System.out.println("beltrano encrypted: " +
+                encryptPassword("beltrano"));
+        System.out.println("admin encrypted: " + encryptPassword("admin"));
+        System.out.println("******************************************");
+        validateUsername(user.getUsername());
+        validatePassword(user.getPassword());
+        user.setPassword(encryptPassword(user.getPassword()));
 	    User inserted = this.userDAO.insert(user);
 	    if (inserted == null)
             throw new DatabaseException("Could not insert user " +
@@ -86,16 +91,41 @@ public class UserBO implements UserBORemote {
 	@Override
 	public UserDetailedDTO updateUser(User user) throws
             InvalidUsernameException, InvalidPasswordException,
-            DatabaseException, NotFoundException {
-        if (user.getUsername().length() < 3)
-            throw new InvalidUsernameException("Username is too short");
-        if (user.getPassword().length() < 3)
-            throw new InvalidPasswordException("Password is too short");
+            NotFoundException, ServerException {
+        validateUsername(user.getUsername());
+        validatePassword(user.getPassword());
+        user.setPassword(encryptPassword(user.getPassword()));
         User updated = this.userDAO.update(user);
         if (updated == null)
             throw new DatabaseException("Could not insert user " +
                     user.getUsername());
         return UserDetailedDTO.fromUser(updated);
 	}
+
+    private void validateUsername(String username) throws
+            InvalidUsernameException {
+        if (username == null || username.length() < 3 || username.length() > 20)
+            throw new InvalidUsernameException("Username must be between " +
+                    "4 and 20 characters");
+    }
+
+    private void validatePassword(String password) throws
+            InvalidPasswordException {
+        if (password == null || password.length() < 3 || password.length() > 20)
+            throw new InvalidPasswordException("Password must be between " +
+                    "4 and 20 characters");
+    }
+
+    private String encryptPassword(String password) throws ServerException {
+        try {
+            byte[] passBytes = password.getBytes("UTF-8");
+            byte[] encryptedBytes = MessageDigest.getInstance("MD5")
+                    .digest(passBytes);
+            return new String(encryptedBytes,
+                    StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new ServerException("Encoding error!");
+        }
+    }
 
 }
