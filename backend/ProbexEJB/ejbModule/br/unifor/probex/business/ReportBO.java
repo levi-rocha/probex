@@ -1,10 +1,14 @@
 package br.unifor.probex.business;
 
 import br.unifor.probex.dao.ReportDAO;
+import br.unifor.probex.dto.ReportDTO;
 import br.unifor.probex.entity.Report;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -18,32 +22,33 @@ public class ReportBO implements ReportBORemote{
     }
 
     @Override
-    public List<Report> listReports() {
-        return reportDAO.list(0);
+    public List<ReportDTO> listReports(int quantity) {
+        List<ReportDTO> dtos = new ArrayList<>();
+        for (Report r : reportDAO.list(quantity)) {
+            dtos.add(ReportDTO.fromReport(r));
+        }
+        return dtos;
     }
 
     @Override
-    public List<Report> listReports(int quantity) {
-        return reportDAO.list(quantity);
+    public ReportDTO addReport(Report report) throws DatabaseException {
+        return ReportDTO.fromReport(reportDAO.insert(report));
     }
 
     @Override
-    public String addReport(Report report) {
-        return reportDAO.insert(report);
+    public ReportDTO findById(Long id) throws NotFoundException {
+        return ReportDTO.fromReport(reportDAO.findById(id));
     }
 
     @Override
-    public Report findById(Long id) {
-        return reportDAO.findById(id);
+    public ReportDTO removeReport(Long id) throws DatabaseException,
+            NotFoundException {
+        return ReportDTO.fromReport(reportDAO.remove(id));
     }
 
     @Override
-    public String removeReport(Long id) {
-        return reportDAO.remove(id);
-    }
-
-    @Override
-    public String updateReport(Report report) {
-        return reportDAO.update(report);
+    public ReportDTO updateReport(Report report) throws NotFoundException,
+            DatabaseException {
+        return ReportDTO.fromReport(reportDAO.update(report));
     }
 }

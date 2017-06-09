@@ -2,9 +2,10 @@ package br.unifor.probex.dto;
 
 import br.unifor.probex.entity.Solution;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SolutionDTO {
+public class SolutionDTO implements Serializable {
 
     private Long id;
     private String content;
@@ -17,8 +18,10 @@ public class SolutionDTO {
         dto.setId(solution.getId());
         dto.setContent(solution.getContent());
         dto.setDate(solution.getDate());
-        dto.setAuthorUsername(solution.getAuthor().getUsername());
-        dto.setPostId(solution.getPost().getId());
+        if (solution.getAuthor() != null)
+            dto.setAuthorUsername(solution.getAuthor().getUsername());
+        if (solution.getPost() != null)
+            dto.setPostId(solution.getPost().getId());
         return dto;
     }
 

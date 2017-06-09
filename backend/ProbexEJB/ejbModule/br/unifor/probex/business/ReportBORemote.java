@@ -1,7 +1,9 @@
 package br.unifor.probex.business;
 
+import br.unifor.probex.dto.ReportDTO;
 import br.unifor.probex.entity.Report;
-import com.sun.org.apache.regexp.internal.RE;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -9,16 +11,14 @@ import java.util.List;
 @Remote
 public interface ReportBORemote {
 
-    public List<Report> listReports();
+    List<ReportDTO> listReports(int quantity);
 
-    public List<Report> listReports(int quantity);
+    ReportDTO addReport(Report report) throws DatabaseException;
 
-    public String addReport(Report report);
+    ReportDTO findById(Long id) throws NotFoundException;
 
-    public Report findById(Long id);
+    ReportDTO removeReport(Long id) throws DatabaseException, NotFoundException;
 
-    public String removeReport(Long id);
-
-    public String updateReport(Report report);
+    ReportDTO updateReport(Report report) throws NotFoundException, DatabaseException;
 
 }

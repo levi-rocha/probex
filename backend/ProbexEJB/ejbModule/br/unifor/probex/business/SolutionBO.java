@@ -1,49 +1,62 @@
 package br.unifor.probex.business;
 
 import br.unifor.probex.dao.SolutionDAO;
+import br.unifor.probex.dto.SolutionDTO;
 import br.unifor.probex.entity.Solution;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.InvalidSolutionException;
+import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
 public class SolutionBO implements SolutionBORemote {
 
     @EJB
-    SolutionDAO solutionDAO;
+    private SolutionDAO solutionDAO;
 
     public SolutionBO() {
 
     }
 
     @Override
-    public List<Solution> listSolutions() {
-        return solutionDAO.list(0);
+    public List<SolutionDTO> listSolutions(int quantity) {
+        List<SolutionDTO> dtos = new ArrayList<>();
+        for (Solution s : solutionDAO.list(quantity)) {
+            dtos.add(SolutionDTO.fromSolution(s));
+        }
+        return dtos;
     }
 
     @Override
-    public List<Solution> listSolutions(int quantity) {
-        return solutionDAO.list(quantity);
+    public SolutionDTO findSolutionById(Long id) throws NotFoundException {
+        return SolutionDTO.fromSolution(solutionDAO.findById(id));
     }
 
     @Override
-    public Solution findSolutionById(Long id) {
-        return solutionDAO.findById(id);
+    public SolutionDTO addSolution(Solution solution) throws DatabaseException,
+            InvalidSolutionException {
+        if (solution.getContent() == null || solution.getContent().length() < 5)
+            throw new InvalidSolutionException("Solution content must be " +
+                    "longer than 5");
+        return SolutionDTO.fromSolution(solutionDAO.insert(solution));
     }
 
     @Override
-    public String addSolution(Solution solution) {
-        return solutionDAO.insert(solution);
+    public SolutionDTO removeSolution(Long id) throws DatabaseException,
+            NotFoundException {
+        return SolutionDTO.fromSolution(solutionDAO.remove(id));
     }
 
     @Override
-    public String removeSolution(Long id) {
-        return solutionDAO.remove(id);
-    }
-
-    @Override
-    public String updateSolution(Solution solution) {
-        return solutionDAO.update(solution);
+    public SolutionDTO updateSolution(Solution solution) throws
+            NotFoundException, DatabaseException, InvalidSolutionException {
+        if (solution.getContent() == null || solution.getContent().length() < 5)
+            throw new InvalidSolutionException("Solution content must be " +
+                    "longer than 5");
+        return SolutionDTO.fromSolution(solutionDAO.update(solution));
     }
 }

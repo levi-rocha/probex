@@ -1,7 +1,6 @@
 package br.unifor.probex.dto;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import br.unifor.probex.entity.Permission;
 import br.unifor.probex.entity.User;

@@ -24,10 +24,12 @@ public class UserDetailedDTO implements Serializable {
 		dto.setUsername(user.getUsername());
 		dto.setEmail(user.getEmail());
 		dto.setPermission(user.getPermission());
-		Set<PostSimpleDTO> posts = new HashSet<PostSimpleDTO>();
-		for (Post p : user.getPosts()) {
-			PostSimpleDTO pdto = PostSimpleDTO.fromPost(p);
-			posts.add(pdto);
+		Set<PostSimpleDTO> posts = new HashSet<>();
+		if (user.getPosts() != null) {
+			for (Post p : user.getPosts()) {
+				PostSimpleDTO pdto = PostSimpleDTO.fromPost(p);
+				posts.add(pdto);
+			}
 		}
 		dto.setPosts(posts);
 		return dto;

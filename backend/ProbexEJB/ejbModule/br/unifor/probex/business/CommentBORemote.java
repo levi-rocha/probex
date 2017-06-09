@@ -4,20 +4,22 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import br.unifor.probex.dto.CommentDTO;
 import br.unifor.probex.entity.Comment;
+import br.unifor.probex.exception.DatabaseException;
+import br.unifor.probex.exception.InvalidCommentException;
+import br.unifor.probex.exception.NotFoundException;
 
 @Remote
 public interface CommentBORemote {
-
-	public List<Comment> listComments();
 	
-	public List<Comment> listComments(int quantity);
+	List<CommentDTO> listComments(int quantity);
 
-	public Comment findCommentById(Long id);
+	CommentDTO findCommentById(Long id) throws NotFoundException;
 
-	public String addComment(Comment comment);
+	CommentDTO addComment(Comment comment) throws DatabaseException, NotFoundException, InvalidCommentException;
 
-	public String removeComment(Long id);
+	CommentDTO removeComment(Long id) throws NotFoundException, DatabaseException;
 
-	public String updateComment(Comment comment);
+	CommentDTO updateComment(Comment comment) throws NotFoundException, DatabaseException, InvalidCommentException;
 }
