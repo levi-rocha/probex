@@ -38,7 +38,7 @@ public class SolutionBO implements SolutionBORemote {
 
     @Override
     public SolutionDTO addSolution(Solution solution) throws DatabaseException,
-            InvalidSolutionException {
+            InvalidSolutionException, NotFoundException {
         if (solution.getContent() == null || solution.getContent().length() < 5)
             throw new InvalidSolutionException("Solution content must be " +
                     "longer than 5");

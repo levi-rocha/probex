@@ -58,7 +58,7 @@ public class UserResource {
             return Response.ok(data, MediaType.APPLICATION_JSON).build();
         } catch (InvalidArgumentException e) {
             return Response.status(422).entity(e.getMessage()).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         }
     }
@@ -72,7 +72,7 @@ public class UserResource {
             return Response.ok(data, MediaType.APPLICATION_JSON).build();
         } catch (InvalidArgumentException e) {
             return Response.status(422).entity(e.getMessage()).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         } catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
@@ -87,7 +87,7 @@ public class UserResource {
         try {
             UserSimpleDTO data = userBO.removeUser(id);
             return Response.ok(data, MediaType.APPLICATION_JSON).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         } catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)

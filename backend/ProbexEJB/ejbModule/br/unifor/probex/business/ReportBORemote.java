@@ -13,7 +13,7 @@ public interface ReportBORemote {
 
     List<ReportDTO> listReports(int quantity);
 
-    ReportDTO addReport(Report report) throws DatabaseException;
+    ReportDTO addReport(Report report) throws DatabaseException, NotFoundException;
 
     ReportDTO findById(Long id) throws NotFoundException;
 

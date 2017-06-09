@@ -51,7 +51,8 @@ public class PostBO implements PostBORemote {
 	}
 
 	@Override
-	public PostDetailedDTO addPost(Post post) throws InvalidPostException {
+	public PostDetailedDTO addPost(Post post) throws InvalidPostException,
+            NotFoundException {
         if (post.getTitle() == null || post.getTitle().length() < 5)
             throw new InvalidPostException("Post title must be longer than " +
                     "5 characters");

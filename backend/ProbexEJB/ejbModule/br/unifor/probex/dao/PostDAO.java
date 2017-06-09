@@ -9,6 +9,7 @@ import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
@@ -24,25 +25,30 @@ public class PostDAO {
 
     @PersistenceContext
     private EntityManager manager;
-    public Post insert(Post post) {
-        post.setAuthor((User) manager.createQuery("SELECT u FROM User u " +
-                "WHERE u.username = :username")
-                .setParameter("username", post.getAuthor().getUsername())
-                .getSingleResult());
-        manager.persist(post);
-        manager.flush();
-        return post;
+    public Post insert(Post post) throws NotFoundException {
+        try {
+            post.setAuthor((User) manager.createQuery("SELECT u FROM User u " +
+                    "WHERE u.username = :username")
+                    .setParameter("username", post.getAuthor().getUsername())
+                    .getSingleResult());
+            manager.persist(post);
+            manager.flush();
+            return post;
+        } catch (NoResultException e) {
+            throw new NotFoundException("Author not found");
+        }
     }
 
     public Post findById(Long id) throws NotFoundException {
-        Post post = manager.createQuery(
-                "select p from Post p left join fetch p.author " +
-                        "left join fetch p.votes left join fetch p.comments " +
-                        "where p.id = :id", Post.class)
-                .setParameter("id", id).getSingleResult();
-        if (post == null)
+        try {
+            return manager.createQuery(
+                    "select p from Post p left join fetch p.author " +
+                            "left join fetch p.votes left join fetch p.comments " +
+                            "where p.id = :id", Post.class)
+                    .setParameter("id", id).getSingleResult();
+        } catch (NoResultException e) {
             throw new NotFoundException("Post not found");
-        return post;
+        }
     }
 
     private List<Post> getMostPopular(List<Long> ids, int quantity, int start) {
@@ -144,13 +150,12 @@ public class PostDAO {
     public Post update(Post post) throws NotFoundException, DatabaseException {
         try {
             Post detached = manager.find(Post.class, post.getId());
-            if (detached == null)
-                throw new NotFoundException(
-                        "No post found with id " + post.getId());
             Post managed = manager.merge(detached);
             managed.setTitle(post.getTitle());
             managed.setContent(post.getContent());
             return managed;
+        } catch (NoResultException e) {
+            throw new NotFoundException("Post not found");
         } catch (PersistenceException e) {
             throw new DatabaseException("Could not update post");
         }
@@ -158,20 +163,24 @@ public class PostDAO {
 
     public Post voteOnPost(VoteDTO vote) throws NotFoundException,
             InvalidVoteException, DatabaseException {
+        Post detached;
         try {
-            Post detached = manager.find(Post.class, vote.getPostId());
-            if (detached == null)
-                throw new NotFoundException(
-                        "No post found with id " + vote.getPostId());
-            User user = manager.createQuery(
+            detached = manager.find(Post.class, vote.getPostId());
+        } catch (NoResultException e) {
+            throw new NotFoundException("Post not found");
+        }
+        User user;
+        try {
+            user = manager.createQuery(
                     "SELECT a FROM User a LEFT JOIN FETCH a.permission " +
                             "LEFT JOIN FETCH a.posts LEFT JOIN FETCH " +
                             "a.comments WHERE a.username = :username",
                     User.class).setParameter("username", vote.getUsername())
                     .getSingleResult();
-            if (user == null)
-                throw new NotFoundException(
-                        "No user found with username " + vote.getUsername());
+        } catch (NoResultException e) {
+            throw new NotFoundException("User not found");
+        }
+        try {
             Post managed = manager.merge(detached);
             Set<User> votes = managed.getVotes();
             if (votes.contains(user))
@@ -188,12 +197,11 @@ public class PostDAO {
     public Post remove(Long id) throws NotFoundException, DatabaseException {
         try {
             Post post = manager.find(Post.class, id);
-            if (post == null)
-                throw new NotFoundException(
-                        "No post found with id " + id);
             manager.remove(post);
             manager.flush();
             return post;
+        } catch (NoResultException e) {
+            throw new NotFoundException("Post not found");
         } catch (PersistenceException e) {
             throw new DatabaseException("Could not remove post");
         }

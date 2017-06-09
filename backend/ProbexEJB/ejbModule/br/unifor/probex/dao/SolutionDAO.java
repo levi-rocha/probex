@@ -7,6 +7,7 @@ import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import java.util.List;
@@ -26,18 +27,19 @@ public class SolutionDAO {
     }
 
     public Solution findById(Long id) throws NotFoundException {
-        Solution solution = manager
-                .createQuery("select s from Solution s left join fetch s" +
-                                ".author left join fetch s.post where s.id = " +
-                                ":id", Solution.class)
-                .setParameter("id", id).getSingleResult();
-        if (solution == null)
-            throw new NotFoundException(
-                    "No solution found with id " + id);
-        return solution;
+        try {
+            return manager.createQuery("select s from Solution s " +
+                    "left join fetch s.author left join fetch s.post " +
+                    "where s.id = :id", Solution.class)
+                    .setParameter("id", id).getSingleResult();
+        } catch (NoResultException e) {
+            throw new NotFoundException("Solution not found");
+        }
+
     }
 
-    public Solution insert(Solution solution) throws DatabaseException {
+    public Solution insert(Solution solution) throws DatabaseException,
+            NotFoundException {
         try {
             solution.setAuthor((User) manager.createQuery("SELECT u FROM " +
                     "User u WHERE u.username = :username")
@@ -46,6 +48,8 @@ public class SolutionDAO {
             manager.persist(solution);
             manager.flush();
             return solution;
+        } catch (NoResultException e) {
+            throw new NotFoundException("Author not found");
         } catch (PersistenceException e) {
             throw new DatabaseException("Could not insert solution");
         }
@@ -55,12 +59,11 @@ public class SolutionDAO {
             DatabaseException {
         try {
             Solution detached = manager.find(Solution.class, solution.getId());
-            if (detached == null)
-                throw new NotFoundException(
-                        "No solution found with id " + solution.getId());
             Solution managed = manager.merge(detached);
             managed.setContent(solution.getContent());
             return managed;
+        } catch (NoResultException e) {
+            throw new NotFoundException("Solution not found");
         } catch (PersistenceException e) {
             throw new DatabaseException("Could not update solution");
         }
@@ -70,11 +73,10 @@ public class SolutionDAO {
             NotFoundException {
         try {
             Solution solution = manager.find(Solution.class, id);
-            if (solution == null)
-                throw new NotFoundException(
-                        "No solution found with id " + id);
             manager.remove(solution);
             return solution;
+        } catch (NoResultException e) {
+            throw new NotFoundException("Solution not found");
         } catch (PersistenceException e) {
             throw new DatabaseException("Could not remove solution");
         }

@@ -31,7 +31,8 @@ public class ReportBO implements ReportBORemote{
     }
 
     @Override
-    public ReportDTO addReport(Report report) throws DatabaseException {
+    public ReportDTO addReport(Report report) throws DatabaseException,
+            NotFoundException {
         return ReportDTO.fromReport(reportDAO.insert(report));
     }
 

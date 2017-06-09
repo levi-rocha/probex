@@ -3,8 +3,8 @@ package br.unifor.probex.restful.resources;
 import br.unifor.probex.business.ReportBORemote;
 import br.unifor.probex.dto.ReportDTO;
 import br.unifor.probex.entity.Report;
-import br.unifor.probex.exception.DatabaseException;
 import br.unifor.probex.exception.NotFoundException;
+import br.unifor.probex.exception.ServerException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -47,8 +47,11 @@ public class ReportResource {
         try {
             ReportDTO data = reportBO.addReport(report);
             return Response.ok(data, MediaType.APPLICATION_JSON).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
+        } catch (NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
         }
     }
 
@@ -62,7 +65,7 @@ public class ReportResource {
         } catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(e.getMessage()).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         }
     }
@@ -77,7 +80,7 @@ public class ReportResource {
         } catch (NotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(e.getMessage()).build();
-        } catch (DatabaseException e) {
+        } catch (ServerException e) {
             return Response.serverError().entity(e.getMessage()).build();
         }
     }
