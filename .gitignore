@@ -1,6 +1,6 @@
 #frontend
 node_modules/
-*app/js/
+frontend/probex-angular2/app/js/
 
 #backend
 *target*
