@@ -49,6 +49,6 @@ export class SigninService {
         return this.http
             .post(this.serviceUrl, {username: username, password: password})
             .map((res) => res.json())
-            .catch((error:any) => Observable.throw(error.json().error || JSON.stringify(error.json())));
+            .catch((error:any) => Observable.throw(error._body));
     }
 }
