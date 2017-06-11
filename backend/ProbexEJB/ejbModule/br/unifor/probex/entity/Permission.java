@@ -1,5 +1,7 @@
 package br.unifor.probex.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "permissions")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Permission implements Serializable {
 
 	private static final long serialVersionUID = -6331748582983397498L;

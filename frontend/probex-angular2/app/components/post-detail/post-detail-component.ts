@@ -36,12 +36,12 @@ export class PostDetailComponent implements OnInit {
     }
 
     submitNewComment(): void {
-        let user = new User;
-        user.username = AppComponent.loggedUsername();
         let comment = new PostComment();
         comment.content = this.newComment;
-        comment.author = user;
-        comment.post = this.post;
+        comment.author = new User();
+        comment.author.username = AppComponent.loggedUsername();
+        comment.post = new Post();
+        comment.post.id = this.post.id;
         this.postService.addComment(comment).subscribe(
             data => {
                 this.newComment = null;
