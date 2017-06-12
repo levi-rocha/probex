@@ -51,4 +51,17 @@ export class PostDetailComponent implements OnInit {
             error => this.snackBar.open("Erro ao enviar comentário", "OK")
         )
     }
+
+    voteOnPost() {
+        this.postService.addVote(sessionStorage['username'], this.post.id).subscribe(
+          data => this.reloadPost(),
+            error => this.snackBar.open('Erro:' + error, "OK")
+        );
+    }
+
+    getVotes(): number {
+        if (this.post.voteIds != null)
+            return this.post.voteIds.length;
+        return 0;
+    }
 }
