@@ -52,7 +52,12 @@ md-card-header a:visited {
 }
 
 .post-list md-card {
-    margin: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.post-list md-card.mat-card {
+    padding-top: 4px !important;
 }
 
 .post-list md-card md-card-actions {
