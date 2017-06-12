@@ -1,14 +1,13 @@
-import {Component} from '@angular/core';
-import {Post} from '.././models/post';
-import {PostService} from '.././services/post-service';
-import {OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {AppComponent} from "../app.component";
-import {User} from "../models/user";
+import {Component, OnInit} from "@angular/core";
+import {Post} from "../../models/post";
+import {PostService} from "../../services/post-service";
+import {Router} from "@angular/router";
+import {AppComponent} from "../../app.component";
+import {User} from "../../models/user";
 
 @Component({
     selector: 'new-post',
-    templateUrl: 'app/views/new-post.html',
+    templateUrl: 'app/views/post/new-post.html',
     providers: [PostService]
 })
 export class NewPostComponent implements OnInit {
