@@ -4,6 +4,7 @@ import {User} from '../../models/user';
 import {UserService} from '../../services/user-service';
 import {OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {MdSnackBar} from "@angular/material";
 
 @Component({
     selector: 'user-signup',
@@ -16,7 +17,11 @@ export class UserSignupComponent implements OnInit {
 
     error: string;
 
-    constructor(private _location: Location, private router: Router, private userService: UserService) {
+    constructor(private _location: Location,
+                private router: Router,
+                private userService:
+                    UserService,
+                public snackBar: MdSnackBar) {
     }
 
     goBack(){
@@ -29,8 +34,11 @@ export class UserSignupComponent implements OnInit {
 
     signUp() {
         this.userService.insert(this.user).subscribe(
-            data => this.router.navigate(['/user-list']),
-            error => this.error = "Could not save user"
+            data => {
+                this.snackBar.open("Usuario cadastrado com suceso", "OK");
+                this.router.navigate(['/user-list']);
+            },
+            error => this.snackBar.open("Erro: " + error._body, "OK")
         );
     }
 }
