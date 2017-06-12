@@ -46,7 +46,6 @@ export class PostDetailComponent implements OnInit {
         this.postService.addComment(comment).subscribe(
             data => {
                 this.newComment = null;
-                this.snackBar.open("Comentário incluído com sucesso", "OK");
                 this.reloadPost();
             },
             error => this.snackBar.open("Erro ao enviar comentário", "OK")

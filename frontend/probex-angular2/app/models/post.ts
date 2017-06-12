@@ -7,6 +7,7 @@ export class Post {
         public content?: string,
         public author?: User,
         public authorUsername?: string,
+        public contentPreview?: string,
         public voteCount?: number,
         public comments?: Comment[]
     ){}
