@@ -2,6 +2,18 @@ body {
     background-color: #f3f3f3;
 }
 
+.top-fixed {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+}
+
+.top-margin {
+    margin-top: 60px;
+}
+
 .full-width {
     width: 100%;
 }
