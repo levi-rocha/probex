@@ -2,6 +2,18 @@ body {
     background-color: #f3f3f3;
 }
 
+.top-fixed {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+}
+
+.top-margin {
+    margin-top: 60px;
+}
+
 .full-width {
     width: 100%;
 }
@@ -52,7 +64,12 @@ md-card-header a:visited {
 }
 
 .post-list md-card {
-    margin: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.post-list md-card.mat-card {
+    padding-top: 4px !important;
 }
 
 .post-list md-card md-card-actions {

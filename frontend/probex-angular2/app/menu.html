@@ -1,4 +1,4 @@
-<div [hidden]="!isLogged()">
+<div [hidden]="!isLogged()" class="top-fixed">
     <md-toolbar color="primary" class="container">
         <button md-button [routerLink]="['/post-list']">Home</button>
         <span class="mat-spacer"></span>
@@ -10,6 +10,8 @@
         </md-menu>
     </md-toolbar>
 </div>
+
+<div class="top-margin" [hidden]="!isLogged()"></div>
 
 <div class="container">
     <router-outlet></router-outlet>
