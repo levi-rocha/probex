@@ -8,6 +8,7 @@ export class Post {
         public author?: User,
         public authorUsername?: string,
         public contentPreview?: string,
+        public voteIds?: number[],
         public voteCount?: number,
         public comments?: Comment[]
     ){}

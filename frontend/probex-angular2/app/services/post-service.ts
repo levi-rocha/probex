@@ -24,7 +24,7 @@ export class PostService {
         return this.http
             .post(this.serviceUrl, body, options)
             .map((res) => res.json())
-            .catch((error:any) => Observable.throw(error.json().error || JSON.stringify(error.json())));
+            .catch((error:any) => Observable.throw(error._body));
     }
 
     get(id: number) {
@@ -37,5 +37,16 @@ export class PostService {
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(comment);
         return this.http.post(this.commentsUrl, body, options).map(res => res.text());
+    }
+
+    addVote(username: string, postId: number) {
+        let url = this.serviceUrl + '/vote';
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        let body = JSON.stringify({username: username, postId: postId});
+        return this.http
+            .post(url, body, options)
+            .map((res) => res.json())
+            .catch((error:any) => Observable.throw(error._body));
     }
 }
