@@ -2,6 +2,7 @@
 node_modules/
 frontend/probex-angular2/app/js/
 frontend/probex-angular2/app/css/theme.css
+frontend/probex-angular2/firefox_root/
 
 #backend
 *target*
