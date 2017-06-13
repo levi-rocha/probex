@@ -66,7 +66,7 @@ export class PostDetailComponent implements OnInit {
     }
 
     userHasVoted(): boolean {
-        if (this.post.voteIds != null && this.post.voteIds.indexOf(sessionStorage['userid']) >= 0)
+        if (this.post.voteIds != null && this.post.voteIds.indexOf(+sessionStorage['userid']) >= 0)
             return true;
         return false;
     }

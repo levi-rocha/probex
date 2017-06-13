@@ -5,8 +5,8 @@
         </md-card-header>
         <md-card-content>{{ post.content }}</md-card-content>
         <md-card-actions>
-            <div class="post-actions post-likes-container" (click)="voteOnPost()" [ngSwitch]="userHasVoted()">
-                <i *ngSwitchCase="false" class="material-icons md-18">thumb_up</i>
+            <div class="post-actions post-likes-container" [ngSwitch]="userHasVoted()">
+                <i *ngSwitchCase="false" class="material-icons md-18" (click)="voteOnPost()">thumb_up</i>
                 <i *ngSwitchCase="true" class="material-icons md-18 filled-icon">thumb_up</i>
                 <div>{{getVotes()}}</div>
             </div>
