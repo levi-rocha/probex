@@ -40,4 +40,9 @@ export class UserService {
         return this.http.get(url).map(res => res.json());
     }
 
+    findByUsername(username: string) {
+        let url = this.serviceUrl + '?u=' + username;
+        return this.http.get(url).map(res => res.json());
+    }
+
 }

@@ -17,6 +17,8 @@ export class UserSignupComponent implements OnInit {
 
     error: string;
 
+    private usernameTaken: boolean;
+
     constructor(private _location: Location,
                 private router: Router,
                 private userService:
@@ -30,6 +32,7 @@ export class UserSignupComponent implements OnInit {
 
     ngOnInit() {
         this.user = new User();
+        this.usernameTaken = false;
     }
 
     signUp() {
@@ -39,6 +42,17 @@ export class UserSignupComponent implements OnInit {
                 this.router.navigate(['/user-list']);
             },
             error => this.snackBar.open("Erro: " + error._body, "OK")
+        );
+    }
+
+    onBlur() {
+        this.userService.findByUsername(this.user.username).subscribe(
+          data => {
+              this.usernameTaken = true;
+          },
+            error => {
+                this.usernameTaken = false;
+            }
         );
     }
 }

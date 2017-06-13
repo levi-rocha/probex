@@ -10,6 +10,10 @@ body {
     z-index: 99;
 }
 
+.mat-input-error {
+    margin-bottom: 8px;
+}
+
 .top-margin {
     margin-top: 60px;
 }
