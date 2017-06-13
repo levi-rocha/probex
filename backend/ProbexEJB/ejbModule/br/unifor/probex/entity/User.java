@@ -1,19 +1,15 @@
 package br.unifor.probex.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -257217306721236466L;
@@ -22,7 +18,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String username;
 
 	@Column(nullable = false)
@@ -31,8 +27,8 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String email;
 
-	@ManyToMany
-	private Set<Permission> permissions;
+	@ManyToOne
+	private Permission permission;
 
 	@OneToMany(mappedBy = "author")
 	private Set<Post> posts;
@@ -40,14 +36,17 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "author")
 	private Set<Comment> comments;
 
+	@OneToMany(mappedBy = "author")
+	private Set<Solution> solutions;
+
 	/* getters and setters */
 
-	public Set<Permission> getPermissions() {
-		return permissions;
+	public Permission getPermission() {
+		return permission;
 	}
 
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
 
 	public Set<Post> getPosts() {
@@ -98,4 +97,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	public Set<Solution> getSolutions() {
+		return solutions;
+	}
+
+	public void setSolutions(Set<Solution> solutions) {
+		this.solutions = solutions;
+	}
 }

@@ -2,13 +2,18 @@ package br.unifor.probex.restful.resources;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import br.unifor.probex.business.UserBORemote;
+import br.unifor.probex.dto.UserDetailedDTO;
 import br.unifor.probex.entity.User;
+import br.unifor.probex.exception.NotFoundException;
+import br.unifor.probex.exception.ServerException;
 
 @Stateless
 @Path("/signin")
@@ -17,11 +22,21 @@ public class SigninResource {
 	@EJB
 	private UserBORemote userBO;
 
-	@Path("u={username}-p={password}")
-	@GET
-	@Produces("application/json")
-	public User validateUserPassword(@PathParam("username") String username, @PathParam("password") String password) {
-		return userBO.validateUserPassword(username, password);
-	}
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response validate(User user) {
+		try {
+			UserDetailedDTO dto = UserDetailedDTO.fromUser(
+					userBO.validateUserPassword(user.getUsername(),
+							user.getPassword()));
+			return Response.ok(dto, MediaType.APPLICATION_JSON).build();
+		} catch (NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+        } catch (ServerException e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
+    }
 
 }

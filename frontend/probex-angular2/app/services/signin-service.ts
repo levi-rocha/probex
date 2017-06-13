@@ -1,54 +1,54 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/user';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import {Injectable} from '@angular/core';
+import {User} from '../models/user';
+import {Http, Headers, RequestOptions} from '@angular/http';
+import {Observable, BehaviorSubject} from 'rxjs/Rx';
 import {Router} from "@angular/router";
 
 @Injectable()
 export class SigninService {
 
-	serviceUrl: string = "http://localhost:8080/ProbexService/rest/signin";
+    serviceUrl: string = "http://localhost:8080/ProbexService/rest/signin";
 
-	private user: User;
+    private user: User;
 
-	error: string;
+    error: string;
 
-	loggedUser = new BehaviorSubject("");
-	private router: Router;
+    loggedUser = new BehaviorSubject("");
+    private router: Router;
 
-	constructor(private http: Http) {
+    constructor(private http: Http) {}
 
-	}
+    // signIn(username: string, password: string) {
+    //     this.validateAndGetUser(username, password).subscribe(
+    //         data => {
+    //             this.user = data;
+    //             if (this.user != null) {
+    //                 console.log("succesful");
+    //                 sessionStorage['username'] = this.user.username;
+    //                 this.loggedUser.next(this.user.username);
+    //             }
+    //         },
+    //         error => {
+    //             this.error = "Could not sign in";
+    //             console.log("could not sign in");
+    //         }
+    //     );
+    // }
 
-	signIn(username: string, password: string) {
-		this.validateAndGetUser(username, password).subscribe(
-			data => {
-				this.user = data;
-				if (this.user != null) {
-					console.log("succesful");
-					sessionStorage['username'] = this.user.username
-					this.loggedUser.next(this.user.username);
-				}
-			},
-			error => {
-				this.error = "Could not sign in";
-				console.log("could not sign in");
-			}
-		);
-	}
+    signOut() {
+        delete sessionStorage['username'];
+        this.loggedUser.next("");
+        this.router.navigate(['/signIn']);
+    }
 
-	signOut() {
-		delete sessionStorage['username'];
-		this.loggedUser.next("");
-		this.router.navigate(['/signIn']);
-	}
+    static signedIn() {
+        return sessionStorage['username'] != null;
+    }
 
-	static signedIn() {
-		return sessionStorage['username'] != null;
-	}
-
-	private validateAndGetUser(username: string, password: string) {
-		let url = this.serviceUrl + "/u="+username+"-p="+username;
-		return this.http.get(url).map(res => res.json());
-	}
+    signIn(username: string, password: string) : Observable<User> {
+        return this.http
+            .post(this.serviceUrl, {username: username, password: password})
+            .map((res) => res.json())
+            .catch((error:any) => Observable.throw(error._body));
+    }
 }

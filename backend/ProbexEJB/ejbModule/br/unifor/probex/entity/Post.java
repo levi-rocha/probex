@@ -1,25 +1,24 @@
 package br.unifor.probex.entity;
 
-import java.io.Serializable;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Post implements Serializable {
 
 	private static final long serialVersionUID = 8029789922827771935L;
+
+	@PrePersist
+	protected void onCreate() {
+		date = new Date();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,20 +27,45 @@ public class Post implements Serializable {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 9999)
 	private String content;
 
 	@ManyToOne
 	private User author;
 
 	@ManyToMany
-	@JoinTable(name = "votes")
+	@JoinTable(
+			name = "votes",
+			joinColumns = @JoinColumn(
+					name = "post_id",
+					referencedColumnName = "id"
+			),
+			inverseJoinColumns = @JoinColumn(
+					name = "user_id",
+					referencedColumnName = "id"
+			)
+	)
 	private Set<User> votes;
 
 	@OneToMany(mappedBy = "post")
-	private Set<Comment> comments;
+	private List<Comment> comments;
+
+	@OneToMany(mappedBy = "post")
+	private List<Solution> solutions;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
 	/* getters and setters */
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public Long getId() {
 		return id;
@@ -83,12 +107,19 @@ public class Post implements Serializable {
 		this.votes = votes;
 	}
 
-	public Set<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 
+	public List<Solution> getSolutions() {
+		return solutions;
+	}
+
+	public void setSolutions(List<Solution> solutions) {
+		this.solutions = solutions;
+	}
 }

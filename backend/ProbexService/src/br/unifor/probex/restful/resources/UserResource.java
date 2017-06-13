@@ -1,22 +1,18 @@
 package br.unifor.probex.restful.resources;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import br.unifor.probex.business.UserBORemote;
+import br.unifor.probex.dto.UserDetailedDTO;
+import br.unifor.probex.dto.UserSimpleDTO;
+import br.unifor.probex.entity.User;
+import br.unifor.probex.exception.*;
+import br.unifor.probex.exception.NotFoundException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-
-import br.unifor.probex.business.UserBORemote;
-import br.unifor.probex.dto.UserPermissionsDTO;
-import br.unifor.probex.entity.User;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Stateless
 @Path("/users")
@@ -27,40 +23,76 @@ public class UserResource {
 
 	@Path("{id}")
 	@GET
-	@Produces("application/json")
-	public User findUserById(@PathParam("id") Long id) {
-		return userBO.findUserById(id);
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findUserById(@PathParam("id") Long id)  {
+		try {
+			UserDetailedDTO data = userBO.findUserById(id);
+			return Response.ok(data, MediaType.APPLICATION_JSON).build();
+		} catch (NotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+		}
 	}
 
 	@GET
-	@Produces("application/json")
-	public Collection<UserPermissionsDTO> listUsers() {
-		Collection<UserPermissionsDTO> data = userBO.listUsers();
-		for (UserPermissionsDTO u : data) {
-			u.setPassword(null);
-		}
-		return data;
-	}
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response listUsers(@QueryParam("q") int quantity,
+                                         @QueryParam("u") String username,
+                                         @QueryParam("s") int start) {
+        try {
+            List<UserSimpleDTO> data = userBO.listUsers(
+                    quantity, start, username);
+            return Response.ok(data, MediaType.APPLICATION_JSON).build();
+        } catch (NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+        }
+    }
 
 	@POST
-	@Consumes("application/json")
-	@Produces("text/plain")
-	public String addUser(User user) {
-		return userBO.addUser(user);
-	}
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addUser(User user) {
+        try {
+            UserDetailedDTO data = userBO.addUser(user);
+            return Response.ok(data, MediaType.APPLICATION_JSON).build();
+        } catch (InvalidArgumentException e) {
+            return Response.status(422).entity(e.getMessage()).build();
+        } catch (ServerException e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
+    }
 
 	@PUT
-	@Consumes("application/json")
-	@Produces("text/plain")
-	public String updateUser(User user) {
-		return userBO.updateUser(user);
-	}
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateUser(User user) {
+        try {
+            UserDetailedDTO data = userBO.updateUser(user);
+            return Response.ok(data, MediaType.APPLICATION_JSON).build();
+        } catch (InvalidArgumentException e) {
+            return Response.status(422).entity(e.getMessage()).build();
+        } catch (ServerException e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        } catch (NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+        }
+    }
 
 	@Path("{id}")
 	@DELETE
-	@Produces("text/plain")
-	public String removeUser(@PathParam("id") Long id) {
-		return userBO.removeUser(id);
-	}
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response removeUser(@PathParam("id") Long id) {
+        try {
+            UserSimpleDTO data = userBO.removeUser(id);
+            return Response.ok(data, MediaType.APPLICATION_JSON).build();
+        } catch (ServerException e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        } catch (NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+        }
+    }
 
 }

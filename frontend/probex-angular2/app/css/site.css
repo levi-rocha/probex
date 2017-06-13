@@ -1,5 +1,41 @@
+body {
+    background-color: #f3f3f3;
+}
+
+.top-fixed {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+}
+
+.mat-input-error {
+    margin-bottom: 8px;
+}
+
+.top-margin {
+    margin-top: 60px;
+}
+
 .full-width {
     width: 100%;
+}
+
+.filled-icon {
+    color: blueviolet;
+}
+
+.filled-icon svg {
+    fill: inherit;
+}
+
+.login md-card-header {
+    margin: 30px 20px;
+}
+
+.login .mat-card-header-text {
+    margin: 0;
 }
 
 .loader {
@@ -11,14 +47,83 @@
     animation: spin 2s linear infinite;
 }
 
+.margin-auto {
+    margin: auto;
+}
+
+#main-menu-toggle img {
+    border-radius: 50%;
+}
+
+.mat-spacer {
+    flex: 1 1 auto;
+}
+
+md-card-header a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+md-card-header a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.post-list md-card {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.post-list md-card.mat-card {
+    padding-top: 4px !important;
+}
+
+.post-list md-card md-card-actions {
+    margin-bottom: 0;
+}
+
+.post-actions {
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 5px;
+    color: #999999;
+}
+
+.post-actions a {
+    color: inherit;
+}
+
+.post-actions a:hover {
+    color: inherit;
+}
+
+.post-actions a:visited {
+    color: inherit;
+}
+
+.post-actions .material-icons {
+    margin: 0 10px;
+}
+
 .vertical-center {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */
     display: flex;
     align-items: center;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

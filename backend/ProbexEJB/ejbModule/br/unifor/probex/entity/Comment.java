@@ -1,20 +1,22 @@
 package br.unifor.probex.entity;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "comments")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 7181905141104406592L;
+
+	@PrePersist
+	protected void onCreate() {
+		date = new Date();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +30,10 @@ public class Comment implements Serializable {
 
 	@ManyToOne
 	private Post post;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
 	/* getters and setters */
 
@@ -61,6 +67,14 @@ public class Comment implements Serializable {
 
 	public void setPost(Post post) {
 		this.post = post;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

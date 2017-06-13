@@ -1,24 +1,33 @@
 package br.unifor.probex.business;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Remote;
 
-import br.unifor.probex.dto.UserPermissionsDTO;
+import br.unifor.probex.dto.UserDetailedDTO;
+import br.unifor.probex.dto.UserSimpleDTO;
 import br.unifor.probex.entity.User;
+import br.unifor.probex.exception.*;
 
 @Remote
 public interface UserBORemote {
 
-	public Collection<UserPermissionsDTO> listUsers();
+	List<UserSimpleDTO> listUsers(int quantity, int start,
+								  String username)
+			throws NotFoundException;
 
-	public User findUserById(Long id);
+	UserDetailedDTO findUserById(Long id) throws NotFoundException;
 
-	public User validateUserPassword(String username, String password);
+	User validateUserPassword(String username, String password)
+            throws NotFoundException, ServerException;
 
-	public String addUser(User user);
+	UserDetailedDTO addUser(User user) throws InvalidUsernameException,
+            InvalidPasswordException, DatabaseException, ServerException;
 
-	public String removeUser(Long id);
+	UserSimpleDTO removeUser(Long id) throws DatabaseException,
+			NotFoundException;
 
-	public String updateUser(User user);
+	UserDetailedDTO updateUser(User user) throws
+			InvalidUsernameException, InvalidPasswordException,
+			DatabaseException, NotFoundException, ServerException;
 }
