@@ -24,6 +24,13 @@
                         <input mdInput type="password" placeholder="Senha" [(ngModel)]="user.password" required>
                     </md-input-container>
                 </div>
+                <div>
+                    <select [(ngModel)]="user.permission">
+                        <option *ngFor="let permission of permissions" [value]="permission.id">
+                            {{permission.name}}
+                        </option>
+                    </select>
+                </div>
             </md-card-content>
             <md-card-actions>
                 <div>

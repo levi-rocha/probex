@@ -22,6 +22,7 @@ import {
     MdInputModule,
     MdListModule,
     MdMenuModule,
+    MdSelectModule,
     MdProgressBarModule,
     MdSidenavModule,
     MdSnackBarModule,
