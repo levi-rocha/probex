@@ -18,6 +18,14 @@ body {
     width: 100%;
 }
 
+.filled-icon svg {
+    fill: blue;
+}
+
+.filled-icon svg {
+    fill: inherit;
+}
+
 .login md-card-header {
     margin: 30px 20px;
 }

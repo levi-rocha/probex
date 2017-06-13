@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ProbexService">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProbexService</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ProbexService/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="javaee-facet-classes" facet="ProbexService/web/Web" />
+          <element id="module-output" name="ProbexEAR" />
+          <element id="module-output" name="ProbexEJB" />
+          <element id="jpa-descriptors" facet="ProbexEJB/jpa/JPA" />
+          <element id="module-output" name="ProbexService" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.ejb:ejb-api:3.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.8" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.0_spec:1.0.1.Beta1" />
+          <element id="library" level="project" name="Maven: javax.ejb:ejb-api:3.0-alpha-1" />
+          <element id="library" level="project" name="Maven: javax.transaction:transaction-api:1.1" />
+          <element id="library" level="project" name="Maven: javax.xml:jaxrpc-api:1.1" />
+          <element id="library" level="project" name="Maven: com.thetransactioncompany:cors-filter:2.5" />
+          <element id="library" level="project" name="Maven: com.thetransactioncompany:java-property-utils:1.9.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="ProbexService/ejb/EJB" />
+    </root>
+  </artifact>
+</component>

@@ -35,6 +35,7 @@ export class SigninComponent {
 			user => {
 				if (user != null) {
 					sessionStorage['username'] = user.username;
+					sessionStorage['userid'] = user.id;
 					this.router.navigate(['']);
 				}
 			},
