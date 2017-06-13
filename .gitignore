@@ -11,3 +11,4 @@ frontend/probex-angular2/firefox_root/
 *.ear
 *.class
 .idea/workspace.xml
+frontend/probex-angular2/.idea/workspace.xml

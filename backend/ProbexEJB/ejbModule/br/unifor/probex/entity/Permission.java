@@ -18,6 +18,14 @@ public class Permission implements Serializable {
 
 	private static final long serialVersionUID = -6331748582983397498L;
 
+	public Permission() {
+
+	}
+
+	public Permission(String id) {
+		this.id = Long.valueOf(id);
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
