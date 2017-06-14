@@ -25,6 +25,15 @@ i {
     cursor: pointer;
 }
 
+.section {
+    padding-top: 12px;
+    font-size: 18px;
+}
+
+.expand {
+    float: right;
+}
+
 div.page-navigation i {
     font-size: 28px;
 }
@@ -54,6 +63,10 @@ div.page-navigation i {
 
 .filled-icon {
     color: blueviolet;
+}
+
+md-list-item {
+    padding: auto;
 }
 
 .filled-icon svg {

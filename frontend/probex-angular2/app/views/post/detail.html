@@ -16,8 +16,12 @@
             </div>
         </md-card-actions>
         <md-card-content>
-            <h4>Solucoes</h4>
-            <md-list>
+            <div class="section"[ngSwitch]="showSolutions" (click)="toggleShowSolutions()">
+                <label>Solucoes</label>
+                <i class="material-icons md-18 expand" *ngSwitchCase="false">expand_more</i>
+                <i class="material-icons md-18 expand" *ngSwitchCase="true">expand_less</i>
+            </div>
+            <md-list *ngIf="showSolutions">
                 <md-divider></md-divider>
                 <div *ngFor="let solution of post.solutions">
                     <md-list-item>
@@ -41,8 +45,12 @@
                     </div>
                 </md-list-item>
             </md-list>
-            <h4>Comentarios</h4>
-            <md-list>
+            <div class="section"[ngSwitch]="showComments" (click)="toggleShowComments()">
+                <label >Comentarios</label>
+                <i class="material-icons md-18 expand" *ngSwitchCase="false">expand_more</i>
+                <i class="material-icons md-18 expand" *ngSwitchCase="true">expand_less</i>
+            </div>
+            <md-list *ngIf="showComments">
                 <md-divider></md-divider>
                 <div *ngFor="let comment of post.comments">
                     <md-list-item>
