@@ -9,12 +9,15 @@ export class PostService {
     serviceUrl: string = "http://localhost:8080/ProbexService/rest/posts";
     commentsUrl: string = "http://localhost:8080/ProbexService/rest/comments";
 
+    public static POPULAR: string = "&c=popular";
+    public static LATEST: string = "";
+
     constructor(private http: Http) {
     }
 
-    listLast(number: number) {
-        let url = this.serviceUrl + '/q=' + number;
-        return this.http.get(this.serviceUrl).map(res => res.json());
+    list(quantity: number, start: number, criteria: string) {
+        let url = this.serviceUrl + "?q=" + quantity + "&s=" + start + criteria;
+        return this.http.get(url).map(res => res.json());
     }
 
     insert(post: Post): Observable<Post> {
@@ -49,4 +52,6 @@ export class PostService {
             .map((res) => res.json())
             .catch((error:any) => Observable.throw(error._body));
     }
+
+
 }
