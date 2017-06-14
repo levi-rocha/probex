@@ -22,11 +22,12 @@ import {
     MdInputModule,
     MdListModule,
     MdMenuModule,
-    MdSelectModule,
     MdProgressBarModule,
     MdSidenavModule,
     MdSnackBarModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MdTabsModule,
+    MdIconModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -34,7 +35,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 @NgModule({
     imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES, AUTH_PROVIDERS), FormsModule, HttpModule,
         MdButtonModule, MdSidenavModule, MdToolbarModule, MdCardModule, MdInputModule, BrowserAnimationsModule,
-        MdSnackBarModule, MdMenuModule, MdProgressBarModule, MdListModule],
+        MdSnackBarModule, MdMenuModule, MdProgressBarModule, MdListModule, MdTabsModule, MdIconModule],
     declarations: [AppComponent, UserListComponent, UserSignupComponent, UserEditComponent, UserViewComponent,
         SigninComponent, NewPostComponent, PostListComponent, PostDetailComponent],
     providers: [AuthGuard, SigninService],

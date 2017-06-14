@@ -13,18 +13,55 @@ export class PostListComponent implements OnInit {
 
 	error: string;
 
+	private page: number = 0;
+
+	private pageSize: number = 3;
+
+	private criteria: string;
+
 	constructor(private postService: PostService) {
 	}
 
 	ngOnInit() {
-		this.listLatest();
+	    this.criteria = PostService.LATEST;
+		this.refreshList();
 	}
 
-	listLatest() {
-        this.postService.listLast(10).subscribe(
+	refreshList() {
+        this.postService.list(this.pageSize, this.pageSize*this.page, this.criteria).subscribe(
             data => this.posts = data,
-            error => this.error = "Could not list users"
+            error => this.error = "Could not list posts"
         );
+    }
+
+	onTabChange($event: any) {
+        if ($event.index == 1) {
+            this.criteria = PostService.POPULAR;
+        } else {
+            this.criteria = PostService.LATEST;
+        }
+        this.refreshList();
+	}
+
+	getPostsLength(): number {
+		if (this.posts != null)
+			return this.posts.length;
+		return 0;
+	}
+
+	firstPage() {
+        this.page = 0;
+        this.refreshList();
+    }
+
+    previousPage() {
+        this.page--;
+        this.refreshList();
+    }
+
+    nextPage() {
+        this.page++;
+        this.refreshList();
     }
 
 }
