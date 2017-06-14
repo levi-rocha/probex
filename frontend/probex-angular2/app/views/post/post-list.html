@@ -28,7 +28,7 @@
             <i class="material-icons" (click)="previousPage()">chevron_left</i>
         </span>
 
-        <span class="page-navigation-center">{{"Showing: " + page*pageSize + " - " + pageSize*(page+1)}}</span>
+        <span class="page-navigation-center">{{page*pageSize + " - " + pageSize*(page+1)}}</span>
 
         <span class="page-navigation-right" [hidden]="getPostsLength() < pageSize">
             <i class="material-icons" (click)="nextPage()">chevron_right</i>

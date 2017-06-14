@@ -101,6 +101,10 @@ md-card-header a:visited {
     cursor: auto;
 }
 
+md-card-content h4 {
+    padding-top: 12px;
+}
+
 .no-padding {
     padding: 0;
 }

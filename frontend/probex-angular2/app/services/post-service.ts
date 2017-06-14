@@ -3,11 +3,13 @@ import {Post} from '../models/post';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {PostComment} from "../models/post-comment";
+import {Solution} from "../models/solution";
 
 @Injectable()
 export class PostService {
     serviceUrl: string = "http://localhost:8080/ProbexService/rest/posts";
     commentsUrl: string = "http://localhost:8080/ProbexService/rest/comments";
+    solutionsUrl: string = "http://localhost:8080/ProbexService/rest/solutions";
 
     public static POPULAR: string = "&c=popular";
     public static LATEST: string = "";
@@ -40,6 +42,13 @@ export class PostService {
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(comment);
         return this.http.post(this.commentsUrl, body, options).map(res => res.text());
+    }
+
+    addSolution(solution: Solution) {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        let body = JSON.stringify(solution);
+        return this.http.post(this.solutionsUrl, body, options).map(res => res.text());
     }
 
     addVote(username: string, postId: number) {
