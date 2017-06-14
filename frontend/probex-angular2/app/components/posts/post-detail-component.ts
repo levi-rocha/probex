@@ -19,6 +19,9 @@ export class PostDetailComponent implements OnInit {
     private newComment: string;
     private newSolution: string;
 
+    private showSolutions: boolean = true;
+    private showComments: boolean = true;
+
     constructor(
         private route: ActivatedRoute,
         private postService: PostService,
@@ -93,5 +96,19 @@ export class PostDetailComponent implements OnInit {
         if (sessionStorage['permissionid'] == '2')
             return true;
         return false;
+    }
+
+    toggleShowComments() {
+        if (this.showComments)
+            this.showComments = false;
+        else
+            this.showComments = true;
+    }
+
+    toggleShowSolutions() {
+        if (this.showSolutions)
+            this.showSolutions = false;
+        else
+            this.showSolutions = true;
     }
 }
