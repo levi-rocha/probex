@@ -25,6 +25,10 @@ i {
     cursor: pointer;
 }
 
+.post-details {
+    float: right;
+}
+
 .section {
     padding-top: 12px;
     font-size: 18px;
@@ -62,7 +66,25 @@ div.page-navigation i {
 }
 
 .filled-icon {
-    color: blueviolet;
+    color: red;
+}
+
+.input-section {
+    width: 100%;
+}
+
+.input-area {
+    position: relative;
+    margin-top: 16px;
+    height: 80px;
+}
+
+.input-area button {
+    min-width: 78px;
+    padding: 4px;
+    position: absolute;
+    right:    -30px;
+    bottom:   -72px;
 }
 
 md-list-item {
