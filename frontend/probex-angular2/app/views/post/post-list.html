@@ -22,4 +22,16 @@
             </div>
         </md-card-actions>
     </md-card>
+    <div class="page-navigation">
+        <span class="page-navigation-left" [hidden]="page == 0">
+            <i class="material-icons" (click)="firstPage()">first_page</i>
+            <i class="material-icons" (click)="previousPage()">chevron_left</i>
+        </span>
+
+        <span class="page-navigation-center">{{"Showing: " + page*pageSize + " - " + pageSize*(page+1)}}</span>
+
+        <span class="page-navigation-right" [hidden]="getPostsLength() < pageSize">
+            <i class="material-icons" (click)="nextPage()">chevron_right</i>
+        </span>
+    </div>
 </div>
