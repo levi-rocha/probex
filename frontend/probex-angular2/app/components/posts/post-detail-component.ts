@@ -6,6 +6,7 @@ import {MdSnackBar} from "@angular/material";
 import {PostComment} from "../../models/post-comment";
 import {AppComponent} from "../../app.component";
 import {User} from "../../models/user";
+import {Solution} from "../../models/solution";
 
 @Component({
     selector: 'post-detail',
@@ -16,6 +17,7 @@ export class PostDetailComponent implements OnInit {
 
     private post: Post;
     private newComment: string;
+    private newSolution: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -52,6 +54,22 @@ export class PostDetailComponent implements OnInit {
         )
     }
 
+    submitNewSolution() {
+       let solution = new Solution();
+       solution.content = this.newSolution;
+       solution.author = new User();
+       solution.author.username = AppComponent.loggedUsername();
+       solution.post = new Post();
+       solution.post.id = this.post.id;
+       this.postService.addSolution(solution).subscribe(
+           data => {
+               this.newSolution = null;
+               this.reloadPost();
+           },
+           error => this.snackBar.open("Erro ao enviar solucao", "OK")
+       );
+    }
+
     voteOnPost() {
         this.postService.addVote(sessionStorage['username'], this.post.id).subscribe(
           data => this.reloadPost(),
@@ -67,6 +85,12 @@ export class PostDetailComponent implements OnInit {
 
     userHasVoted(): boolean {
         if (this.post.voteIds != null && this.post.voteIds.indexOf(+sessionStorage['userid']) >= 0)
+            return true;
+        return false;
+    }
+
+    userCanPostSolution(): boolean {
+        if (sessionStorage['permissionid'] == '2')
             return true;
         return false;
     }
