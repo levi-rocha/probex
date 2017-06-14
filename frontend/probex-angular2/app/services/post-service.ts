@@ -3,18 +3,23 @@ import {Post} from '../models/post';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {PostComment} from "../models/post-comment";
+import {Solution} from "../models/solution";
 
 @Injectable()
 export class PostService {
     serviceUrl: string = "http://localhost:8080/ProbexService/rest/posts";
     commentsUrl: string = "http://localhost:8080/ProbexService/rest/comments";
+    solutionsUrl: string = "http://localhost:8080/ProbexService/rest/solutions";
+
+    public static POPULAR: string = "&c=popular";
+    public static LATEST: string = "";
 
     constructor(private http: Http) {
     }
 
-    listLast(number: number) {
-        let url = this.serviceUrl + '/q=' + number;
-        return this.http.get(this.serviceUrl).map(res => res.json());
+    list(quantity: number, start: number, criteria: string) {
+        let url = this.serviceUrl + "?q=" + quantity + "&s=" + start + criteria;
+        return this.http.get(url).map(res => res.json());
     }
 
     insert(post: Post): Observable<Post> {
@@ -39,6 +44,13 @@ export class PostService {
         return this.http.post(this.commentsUrl, body, options).map(res => res.text());
     }
 
+    addSolution(solution: Solution) {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        let body = JSON.stringify(solution);
+        return this.http.post(this.solutionsUrl, body, options).map(res => res.text());
+    }
+
     addVote(username: string, postId: number) {
         let url = this.serviceUrl + '/vote';
         let headers = new Headers({'Content-Type': 'application/json'});
@@ -49,4 +61,6 @@ export class PostService {
             .map((res) => res.json())
             .catch((error:any) => Observable.throw(error._body));
     }
+
+
 }
