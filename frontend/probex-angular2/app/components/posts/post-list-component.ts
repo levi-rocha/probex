@@ -21,10 +21,25 @@ export class PostListComponent implements OnInit {
 	}
 
 	listLatest() {
-        this.postService.listLast(10).subscribe(
-            data => this.posts = data,
-            error => this.error = "Could not list users"
-        );
+		this.postService.list(10, 0, PostService.LATEST).subscribe(
+			data => this.posts = data,
+			error => this.error = "Could not list posts"
+		);
     }
+
+    listPopular() {
+		this.postService.list(10, 0, PostService.POPULAR).subscribe(
+			data => this.posts = data,
+			error => this.error = "Could not list posts"
+		);
+	}
+
+	onTabChange($event: any) {
+        if ($event.index == 1) {
+            this.listPopular();
+        } else {
+            this.listLatest();
+        }
+	}
 
 }
