@@ -87,6 +87,29 @@ div.page-navigation i {
     bottom:   -72px;
 }
 
+md-tab-group, md-tab-group div {
+    height: 40px;
+}
+
+.mat-tab-label[_ngcontent-c3] {
+    line-height: 36px !important;
+}
+
+.search-area {
+    padding-left: 6px;
+    position: relative;
+    margin-top: 8px;
+    height: 36px;
+}
+
+.search-area button {
+    position: absolute;
+    right: -20px;
+    bottom: -32px;
+    min-width: 20px;
+    line-height: 32px;
+}
+
 md-list-item {
     padding: auto;
 }

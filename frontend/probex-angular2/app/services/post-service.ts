@@ -19,8 +19,10 @@ export class PostService {
     constructor(private http: Http) {
     }
 
-    list(quantity: number, start: number, criteria: string) {
+    list(quantity: number, start: number, criteria: string, keywords: string) {
         let url = this.serviceUrl + "?q=" + quantity + "&s=" + start + criteria;
+        if (keywords != null && keywords.length > 3)
+            url += "&k=" + keywords;
         return this.http.get(url).map(res => res.json());
     }
 
