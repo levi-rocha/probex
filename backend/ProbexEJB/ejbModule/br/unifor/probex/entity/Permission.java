@@ -26,6 +26,10 @@ public class Permission implements Serializable {
 		this.id = Long.valueOf(id);
 	}
 
+	public Permission(Long id) {
+		this.id = id;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

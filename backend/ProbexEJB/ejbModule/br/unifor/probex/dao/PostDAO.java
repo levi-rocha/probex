@@ -56,6 +56,8 @@ public class PostDAO {
         String query;
         List<Object[]> list;
         if (ids != null) {
+            if (ids.size() < 1)
+                return new ArrayList<Post>();
             query = "select distinct p.id, count(v.id) from Post p " +
                     "left join p.votes v where p.id in :ids group by p.id " +
                     "order by count(v.id) desc";
@@ -109,7 +111,8 @@ public class PostDAO {
             String keyword = keywords.get(0);
             String query = "select distinct p from Post p " +
                     "left join fetch p.author left join fetch p.votes " +
-                    "where lower(p.content) like lower(:keyword)" + LATEST;
+                    "where lower(p.content) like lower(:keyword) or " +
+                    "lower(p.title) like lower(:keyword)" + LATEST;
             List<Post> searchResults = manager
                     .createQuery(query, Post.class)
                     .setParameter("keyword", "%" + keyword + "%")
@@ -118,7 +121,9 @@ public class PostDAO {
                 boolean hit = true;
                 for (String key : keywords) {
                     if (!p.getContent().toLowerCase()
-                            .contains(key.toLowerCase())) {
+                            .contains(key.toLowerCase()) &&
+                            !p.getTitle().toLowerCase()
+                                    .contains(key.toLowerCase())) {
                         hit = false;
                         break;
                     }

@@ -25,11 +25,11 @@
                     </md-input-container>
                 </div>
                 <div>
-                    <select [(ngModel)]="user.permission">
-                        <option *ngFor="let permission of permissions" [value]="permission.id">
+                    <md-select [(ngModel)]="user.permission">
+                        <md-option *ngFor="let permission of permissions" [value]="permission.id">
                             {{permission.name}}
-                        </option>
-                    </select>
+                        </md-option>
+                    </md-select>
                 </div>
             </md-card-content>
             <md-card-actions>
