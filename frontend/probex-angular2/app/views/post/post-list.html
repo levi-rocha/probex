@@ -5,6 +5,19 @@
         <md-tab label="Popular">
         </md-tab>
     </md-tab-group>
+    <div class="search-area">
+        <div class="col-xs-9 col-md-11 no-padding">
+            <md-input-container class="full-width">
+                <textarea mdInput name="content" [(ngModel)]="searchInput" placeholder="Buscar (4 ou mais caracteres)"
+                          rows="1" class="col-xs-11"></textarea>
+            </md-input-container>
+        </div>
+        <div class="col-xs-2 col-md-1">
+            <button md-raised-button color="primary" (click)="onSearch()">
+                <i class="material-icons md-18">search</i>
+            </button>
+        </div>
+        </div>
     <new-post></new-post>
     <md-card *ngFor="let post of posts" [routerLink]="['/post/'+post.id]">
         <md-card-header>

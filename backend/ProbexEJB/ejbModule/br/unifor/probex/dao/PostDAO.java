@@ -42,8 +42,9 @@ public class PostDAO {
     public Post findById(Long id) throws NotFoundException {
         try {
             return manager.createQuery(
-                    "select p from Post p left join fetch p.author " +
-                            "left join fetch p.votes left join fetch p.comments " +
+                    "select distinct p from Post p " +
+                            "left join fetch p.author " +
+                            "left join fetch p.votes " +
                             "where p.id = :id", Post.class)
                     .setParameter("id", id).getSingleResult();
         } catch (NoResultException e) {
@@ -53,17 +54,26 @@ public class PostDAO {
 
     private List<Post> getMostPopular(List<Long> ids, int quantity, int start) {
         String query;
+        List<Object[]> list;
         if (ids != null) {
+            if (ids.size() < 1)
+                return new ArrayList<>();
             query = "select distinct p.id, count(v.id) from Post p " +
                     "left join p.votes v where p.id in :ids group by p.id " +
                     "order by count(v.id) desc";
+            list = manager.createQuery(query)
+                    .setParameter("ids", ids).setFirstResult(start)
+                    .setMaxResults(quantity).getResultList();
         } else {
             query = "select distinct p.id, count(v.id) from Post p " +
                     "left join p.votes v group by p.id " +
                     "order by count(v.id) desc";
+             list = manager.createQuery(query)
+                    .setFirstResult(start).setMaxResults(quantity)
+                    .getResultList();
         }
-        List<Object[]> list = manager.createQuery(query)
-                .setFirstResult(start).setMaxResults(quantity).getResultList();
+        if (list.size() < 1)
+            return new ArrayList<>();
         List<Long> pids = new ArrayList<>();
         for (Object[] ob : list) {
             Long id = (Long) ob[0];
@@ -103,7 +113,8 @@ public class PostDAO {
             String keyword = keywords.get(0);
             String query = "select distinct p from Post p " +
                     "left join fetch p.author left join fetch p.votes " +
-                    "where lower(p.content) like lower(:keyword)" + LATEST;
+                    "where lower(p.content) like lower(:keyword) or " +
+                    "lower(p.title) like lower(:keyword)" + LATEST;
             List<Post> searchResults = manager
                     .createQuery(query, Post.class)
                     .setParameter("keyword", "%" + keyword + "%")
@@ -112,7 +123,9 @@ public class PostDAO {
                 boolean hit = true;
                 for (String key : keywords) {
                     if (!p.getContent().toLowerCase()
-                            .contains(key.toLowerCase())) {
+                            .contains(key.toLowerCase()) &&
+                            !p.getTitle().toLowerCase()
+                                    .contains(key.toLowerCase())) {
                         hit = false;
                         break;
                     }

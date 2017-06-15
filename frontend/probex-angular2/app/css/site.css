@@ -25,6 +25,10 @@ i {
     cursor: pointer;
 }
 
+.post-details {
+    float: right;
+}
+
 .section {
     padding-top: 12px;
     font-size: 18px;
@@ -62,7 +66,48 @@ div.page-navigation i {
 }
 
 .filled-icon {
-    color: blueviolet;
+    color: red;
+}
+
+.input-section {
+    width: 100%;
+}
+
+.input-area {
+    position: relative;
+    margin-top: 16px;
+    height: 80px;
+}
+
+.input-area button {
+    min-width: 78px;
+    padding: 4px;
+    position: absolute;
+    right:    -30px;
+    bottom:   -72px;
+}
+
+md-tab-group, md-tab-group div {
+    height: 40px;
+}
+
+.mat-tab-label[_ngcontent-c3] {
+    line-height: 36px !important;
+}
+
+.search-area {
+    padding-left: 6px;
+    position: relative;
+    margin-top: 8px;
+    height: 36px;
+}
+
+.search-area button {
+    position: absolute;
+    right: -20px;
+    bottom: -32px;
+    min-width: 20px;
+    line-height: 32px;
 }
 
 md-list-item {
