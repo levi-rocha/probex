@@ -57,7 +57,7 @@ public class PostDAO {
         List<Object[]> list;
         if (ids != null) {
             if (ids.size() < 1)
-                return new ArrayList<Post>();
+                return new ArrayList<>();
             query = "select distinct p.id, count(v.id) from Post p " +
                     "left join p.votes v where p.id in :ids group by p.id " +
                     "order by count(v.id) desc";
@@ -72,6 +72,8 @@ public class PostDAO {
                     .setFirstResult(start).setMaxResults(quantity)
                     .getResultList();
         }
+        if (list.size() < 1)
+            return new ArrayList<>();
         List<Long> pids = new ArrayList<>();
         for (Object[] ob : list) {
             Long id = (Long) ob[0];
