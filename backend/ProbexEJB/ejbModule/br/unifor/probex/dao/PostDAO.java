@@ -42,8 +42,9 @@ public class PostDAO {
     public Post findById(Long id) throws NotFoundException {
         try {
             return manager.createQuery(
-                    "select p from Post p left join fetch p.author " +
-                            "left join fetch p.votes left join fetch p.comments " +
+                    "select distinct p from Post p " +
+                            "left join fetch p.author " +
+                            "left join fetch p.votes " +
                             "where p.id = :id", Post.class)
                     .setParameter("id", id).getSingleResult();
         } catch (NoResultException e) {
