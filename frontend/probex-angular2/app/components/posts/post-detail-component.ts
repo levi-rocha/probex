@@ -7,6 +7,7 @@ import {PostComment} from "../../models/post-comment";
 import {AppComponent} from "../../app.component";
 import {User} from "../../models/user";
 import {Solution} from "../../models/solution";
+import {Report} from "../../models/report";
 
 @Component({
     selector: 'post-detail',
@@ -18,9 +19,11 @@ export class PostDetailComponent implements OnInit {
     private post: Post;
     private newComment: string;
     private newSolution: string;
+    private newFlag: string;
 
     private showSolutions: boolean = true;
     private showComments: boolean = true;
+    private showFlag: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -76,6 +79,31 @@ export class PostDetailComponent implements OnInit {
     voteOnPost() {
         this.postService.addVote(sessionStorage['username'], this.post.id).subscribe(
           data => this.reloadPost(),
+            error => this.snackBar.open('Erro:' + error, "OK")
+        );
+    }
+
+    toggleShowFlag() {
+        if (this.showFlag)
+            this.showFlag = false;
+        else
+            this.showFlag = true;
+    }
+
+    flagPost() {
+        let report = new Report();
+        report.description = this.newFlag;
+        report.author = new User();
+        report.author.username = AppComponent.loggedUsername();
+        report.post = new Post();
+        report.post.id = this.post.id;
+        this.postService.addFlag(report).subscribe(
+            data => {
+                this.newFlag = null;
+                this.toggleShowFlag();
+                this.reloadPost();
+                this.snackBar.open('Post reportado com sucesso', "OK");
+            },
             error => this.snackBar.open('Erro:' + error, "OK")
         );
     }

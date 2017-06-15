@@ -4,12 +4,14 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {PostComment} from "../models/post-comment";
 import {Solution} from "../models/solution";
+import {Report} from "../models/report";
 
 @Injectable()
 export class PostService {
     serviceUrl: string = "http://localhost:8080/ProbexService/rest/posts";
     commentsUrl: string = "http://localhost:8080/ProbexService/rest/comments";
     solutionsUrl: string = "http://localhost:8080/ProbexService/rest/solutions";
+    reportsUrl: string = "http://localhost:8080/ProbexService/rest/reports";
 
     public static POPULAR: string = "&c=popular";
     public static LATEST: string = "";
@@ -58,6 +60,16 @@ export class PostService {
         let body = JSON.stringify({username: username, postId: postId});
         return this.http
             .post(url, body, options)
+            .map((res) => res.json())
+            .catch((error:any) => Observable.throw(error._body));
+    }
+
+    addFlag(report: Report) {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        let body = JSON.stringify(report);
+        return this.http
+            .post(this.reportsUrl, body, options)
             .map((res) => res.json())
             .catch((error:any) => Observable.throw(error._body));
     }
