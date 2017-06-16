@@ -30,7 +30,7 @@ export class ReportListComponent implements OnInit {
     removePost(id: number) {
         this.postService.remove(id).subscribe(
             data => {
-                this.snackBar.open("Post removido com sucesso");
+                this.snackBar.open("Post removido com sucesso", "OK");
                 this.refreshList();
             },
             error => this.snackBar.open("Erro: " + error._body, "OK")

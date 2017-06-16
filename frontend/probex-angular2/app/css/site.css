@@ -21,6 +21,23 @@ div.page-navigation {
     font-size: large;
 }
 
+div.report-list md-card {
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+
+.remove-action {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+}
+
+.remove-action {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+}
+
 i {
     cursor: pointer;
 }
@@ -55,10 +72,6 @@ div.page-navigation i {
 .page-navigation-right {
     position: absolute;
     right: 0;
-}
-
-.remove-action {
-    float:right;
 }
 
 .top-margin {

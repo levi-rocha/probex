@@ -55,11 +55,23 @@ public class Post implements Serializable {
 			orphanRemoval = true)
 	private List<Solution> solutions;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE,
+            orphanRemoval = true)
+    private List<Report> reports;
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	/* getters and setters */
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
 
 	public Date getDate() {
 		return date;

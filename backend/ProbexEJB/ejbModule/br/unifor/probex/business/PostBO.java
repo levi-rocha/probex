@@ -65,7 +65,10 @@ public class PostBO implements PostBORemote {
 	@Override
 	public PostDetailedDTO removePost(Long id) throws NotFoundException,
 			DatabaseException {
-		return PostDetailedDTO.fromPost(this.postDAO.remove(id));
+		this.postDAO.remove(id);
+		PostDetailedDTO dto = new PostDetailedDTO();
+		dto.setId(id);
+		return dto;
 	}
 
 	@Override
