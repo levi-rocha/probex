@@ -41,6 +41,11 @@ export class PostService {
         return this.http.get(url).map(res => res.json());
     }
 
+    remove(id: number) {
+        let url = this.serviceUrl + '/' + id;
+        return this.http.delete(url).map(res => res.json());
+    }
+
     addComment(comment: PostComment) {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
@@ -74,6 +79,10 @@ export class PostService {
             .post(this.reportsUrl, body, options)
             .map((res) => res.json())
             .catch((error:any) => Observable.throw(error._body));
+    }
+
+    listReports() {
+        return this.http.get(this.reportsUrl).map(res => res.json());
     }
 
 

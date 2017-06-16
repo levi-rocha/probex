@@ -57,6 +57,10 @@ div.page-navigation i {
     right: 0;
 }
 
+.remove-action {
+    float:right;
+}
+
 .top-margin {
     margin-top: 60px;
 }
