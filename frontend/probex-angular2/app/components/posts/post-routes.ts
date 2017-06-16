@@ -3,6 +3,7 @@ import {NewPostComponent} from "./new-post-component";
 import {PostListComponent} from "./post-list-component";
 import {AuthGuard} from "../../auth-guard";
 import {PostDetailComponent} from "./post-detail-component";
+import {ReportListComponent} from "./report-list-component";
 
 export const PostRoutes: Routes = [
 	{ 
@@ -20,6 +21,11 @@ export const PostRoutes: Routes = [
 		component: PostDetailComponent,
 		canActivate: [ AuthGuard ]
 	},
+    {
+        path: 'report-list',
+        component: ReportListComponent,
+        canActivate: [AuthGuard]
+    },
 	{ 
 		path: '', 
 		redirectTo: '/post-list',
