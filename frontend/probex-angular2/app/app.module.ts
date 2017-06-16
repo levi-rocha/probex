@@ -14,6 +14,7 @@ import {UserViewComponent} from "./components/users/user-view-component";
 import {SigninComponent} from "./components/auth/signin-component";
 import {PostListComponent} from "./components/posts/post-list-component";
 import {PostDetailComponent} from "./components/posts/post-detail-component";
+import {ReportListComponent} from "./components/posts/report-list-component";
 import {AuthGuard} from "./auth-guard";
 import {SigninService} from "./services/signin-service";
 import {
@@ -38,7 +39,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         MdButtonModule, MdSidenavModule, MdToolbarModule, MdCardModule, MdInputModule, BrowserAnimationsModule,
         MdSnackBarModule, MdMenuModule, MdProgressBarModule, MdListModule, MdTabsModule, MdIconModule, MdSelectModule],
     declarations: [AppComponent, UserListComponent, UserSignupComponent, UserEditComponent, UserViewComponent,
-        SigninComponent, NewPostComponent, PostListComponent, PostDetailComponent],
+        SigninComponent, NewPostComponent, PostListComponent, PostDetailComponent, ReportListComponent],
     providers: [AuthGuard, SigninService],
     bootstrap: [AppComponent]
 })

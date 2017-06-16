@@ -38,4 +38,10 @@ export class AppComponent {
         sessionStorage.clear();
         this.router.navigate(['/signIn']);
     }
+
+    userIsAdmin(): boolean {
+        if (sessionStorage['permissionid'] == "3")
+            return true;
+        return false;
+    }
 }
